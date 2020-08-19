@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="loading" lang="en" data-textdirection="rtl">
+<html class="loading" lang="en" dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

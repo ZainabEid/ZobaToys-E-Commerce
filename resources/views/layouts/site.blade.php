@@ -1,6 +1,6 @@
 <!-- begin index.tpl -->
 <!doctype html>
-<html lang="ar">
+<html  dir="{{ LaravelLocalization::getCurrentLocaleDirection() }}">
 
 <head>
     <meta charset="utf-8">
