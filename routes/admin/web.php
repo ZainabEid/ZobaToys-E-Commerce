@@ -18,9 +18,9 @@ Route::group(['middleware' => 'auth:admin'],function() {
 | login  Routes
 |--------------------------------------------------------------------------
 */
-Route::group(['name' => 'admin.','middleware' => 'guest:admin'], function(){
+Route::name('admin.')->group(['middleware' => 'guest:admin'], function(){
 
-    Route::get('/login','LoginController@getlogin');
+    Route::get('/login','LoginController@getlogin')->name('getlogin');
     Route::post('/login','LoginController@login')->name('login');
 
     });
