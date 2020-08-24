@@ -74,7 +74,7 @@
         - route to view('/admin/dashboard')
     - in /app/Providers/RouteServiceProvider
        - @map(): add route name '$this->mapAdminRoutes()' 
-       - @mapAdminRoutes(){//copy past the prev setting for web and chang the middleware and path}
+       - @mapAdminRoutes(){//copy past the prev setting for web and chang the path}
 
 # login admins
 [forth video](https://www.youtube.com/watch?v=v6t5nYeJ-k0&list=PLCm7ZeRfGSP6NeupdX_K9-Qm3ROqGud-t&index=5)
@@ -89,7 +89,7 @@
         - resetting passward: 
     - **Make admin Model,controller DB:**
         - php artisan make:model Models\Admin -m 
-        - php artisan make:controller admin\AdminController
+        - php artisan make:controller Admin\AdminController
         - Admin Model:
             - class extends Authenticatable , user the user as Authenticatable
             -  fillable: name, email, phone, photo, passward, created_at, updated_at
@@ -131,15 +131,15 @@
                 // laravel sets this to false by defult not to allow any one to login unless developer permits
             - rules() // validation `['email' => 'required|email', 'password' => 'required']`
             - messages() //error massages: `['email.required' ='please enter valid email' , 'password.valid' => 'please enter correct password']`
-    - ***middleware setting:***
-        -*** RedirectifAuthenticated:*** // check guard is home or admin
+    - ***middleware setting:*** if admin is login and went to login
+        - *** RedirectifAuthenticated:*** // check guard is home or admin
            ` return ($guard=='admin') ?  redirect(RouteServiceProvider::ADMIN) :  redirect(RouteServiceProvider::HOME) ;`
         - ***RouteServiceProvider:*** // Set The path to the "admin" route for your application.
            ` public const ADMIN = '/admin';`
         - ***Authenticate:*** 
             redirectTo(){
             `return (Request::is('admin/*')) ? route('admin.login') :  route('login');`
-    - **Register the master admin throw  tinker:**
+    - **Register the master admin throw  tinker:** we can use seeder instead
         - php artisan tinker:
         `---`
          $admin = new() App\Models\Admin()
@@ -149,18 +149,14 @@
          $admin->phone = 114033369
          $admin->save()
          `---`
+__note__ : very annoying error about multi routing [too many redirects] :
+    - I used the steps in the multi route gide to revise my code
+    - I transfered the auth routes to the main web route
+    - I transfered the admin login blade too to the views/auth directory
+    - I used middleware in controller with second attripute as laracast QA:
+>>>>>
+        You can not have auth:crm and guest:crm for the same route. That is why you get too many redirects. You can have either auth:crm or guest:crm on one route. And if that route is not API route then you should have also web middleware. You can have something like following:
 
-9. 
-         
-
-
-        
-
-
-        
-        
-
-        
- 
-
+        $this->middleware('guest:crm', ['only' => ['login']);
     
+9. 

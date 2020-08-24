@@ -13,6 +13,22 @@
 
     <title> @yield('title') </title>
 
+    @if( Lang::locale() == 'ar' )
+    
+        <style>
+            body,h1, h2, h3, h4, h5, h6 {
+                font-family: 'Cairo', sans-serif !imaportant; 
+            }
+        </style>
+    @else
+    
+    @endif
+    {{-- font-awsom --}}
+    <link type="text/css" href="{{ asset('assets/fontawesome-free/css/fontawesome.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('assets/fontawesome-free/css/brands.css') }}" rel="stylesheet">
+    <link type="text/css" href="{{ asset('assets/fontawesome-free/css/solid.css') }}" rel="stylesheet">
+    <link  type="text/css" href="{{ asset('assets/fontawesome-free/css/all.css') }}" rel="stylesheet">
+
     <link rel="apple-touch-icon" href="{{ asset('assets/admin/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('asstes/admin/images/ico/favicon.ico')}}">
     <link
@@ -22,6 +38,7 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/plugins/animate/animate.css')}}">
     
+
     <!-- BEGIN VENDOR CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/vendors.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/vendors/css/weather-icons/climacons.min.css')}}">
@@ -68,14 +85,16 @@
     class="vertical-layout vertical-menu 2-columns  @if(Request::is('admin/users/tickets/reply*')) chat-application @endif menu-expanded fixed-navbar"
     data-open="click" data-menu="vertical-menu" data-col="2-columns">
     <!-- fixed-top-->
+    
+    @include('adminDashboard.includes.header')
 
-    @include('admin.includes.header')
-
-    @include('admin.includes.sidebar')
+    @include('adminDashboard.includes.sidebar')
 
     @yield('content')
     
-    @include('admin.includes.footer')
+    @include('adminDashboard.includes.alert')
+
+    @include('adminDashboard.includes.footer')
    
 
 <!-- BEGIN VENDOR JS-->
