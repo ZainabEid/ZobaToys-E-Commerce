@@ -21,8 +21,16 @@ class Admin extends Authenticatable
         'name', 'email', 'phone', 'photo', 'password', 'created_at', 'updated_at',
     ];
 
+    protected $appends = ['image_path'];
+
     public function getNameAttribute($value)
     {
         return ucfirst($value);
+    }
+
+    // there is an error here
+    public function getImagePathAttribute()
+    {
+        return asset('public/uploads/admin_images/'.$this->photo);
     }
 }

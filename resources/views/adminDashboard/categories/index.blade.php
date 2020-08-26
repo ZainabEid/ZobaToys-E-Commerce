@@ -1,6 +1,6 @@
-@extends('layouts.category')
+@extends('layouts.admin')
 
-@section('tilte', 'Show categories')
+@section('tilte', 'Show Admins')
 
 @section('content')
     {{-- content --}}
@@ -14,13 +14,13 @@
                       <div class="card">
 
                         <div class="card-header">
-                          {{-- title: show categories data --}}
+                          {{-- title: show admins data --}}
                           <div class="mb-2">
-                            <h3 class="card-title"><strong>@lang('site.show-categories-data')</strong> <small>{{ $categories->total() }}</small></h3>
+                            <h3 class="card-title"><strong>@lang('site.show-admins-data')</strong> <small>{{ $admins->total() }}</small></h3>
                           </div>
 
                             {{-- search & add button --}}
-                            <form action="{{ route('category.index') }}" method="get">
+                            <form action="{{ route('admin.index') }}" method="get">
                               <div class="d-flex" style="width: 300px;" >
                                 
                                 <input type="text" name="search" class="form-control float-right" placeholder="@lang('site.search')" value="{{ request()->search }}">
@@ -29,10 +29,10 @@
                                   <button type="submit" class="btn btn-default"><i class="fas fa-search"> @lang('site.search')</i></button>
                                 </div>
 
-                                {{-- add new category Button --}}
+                                {{-- add new admin Button --}}
                                 <div class="input-group-append">
-                                  @if (auth()->user()->hasPermission('create_categories'))
-                                  <a href="{{ route('category.create') }}" class="btn btn-info "><i class="fas fa-plus"></i> @lang('site.create')</a>
+                                  @if (auth()->user()->hasPermission('create_admins'))
+                                  <a href="{{ route('admin.create') }}" class="btn btn-info "><i class="fas fa-plus"></i> @lang('site.create')</a>
                                   @else
                                   <a href="#" class="btn btn-info disabled btn-sm"><i class="fas fa-plus"></i> @lang('site.create')</a>
                                   @endif
@@ -56,33 +56,33 @@
                                 <th>@lang('site.email')</th>
                                 <th>@lang('site.phone')</th>
                                 <th>@lang('site.photo')</th>
-                                <th>@lang('site.edit-category')</th>
+                                <th>@lang('site.edit-admin')</th>
                               </tr>
                             </thead>
 
-                            @if ($categories->count() > 0)
+                            @if ($admins->count() > 0)
                             <tbody>
-                              @foreach ($categories as $index=>$category)
+                              @foreach ($admins as $index=>$admin)
                               <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $category->name }}</td>
-                                <td>{{ $category->email }}</td>
-                                <td>{{ $category->phone }}</td>
-                                <td><img src="{{ $category->image_path}}" alt="image" class="rounded-circle img-thumbnail"></td>
+                                <td>{{ $admin->name }}</td>
+                                <td>{{ $admin->email }}</td>
+                                <td>{{ $admin->phone }}</td>
+                                <td><img src="{{ $admin->image_path}}" alt="image" class="rounded-circle img-thumbnail"></td>
                                 <td>
 
                                   {{-- edit button --}}
-                                  @if (auth()->user()->hasPermission('update_categories'))
-                                  <a href="{{ route('category.edit',$category->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> @lang('site.edit')</a>
+                                  @if (auth()->user()->hasPermission('update_admins'))
+                                  <a href="{{ route('admin.edit',$admin->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> @lang('site.edit')</a>
                                   @else
                                   <a href="#" class="btn btn-info disabled btn-sm"><i class="fas fa-edit"></i> @lang('site.edit')</a>
                                   @endif
 
                                   
                                   {{-- delete button --}}
-                                  @if (auth()->user()->hasPermission('delete_categories'))
+                                  @if (auth()->user()->hasPermission('delete_admins'))
 
-                                  <form class="delete" method="POST" action="{{ route('category.destroy', $category->id) }}" style="display: inline-block">
+                                  <form class="delete" method="POST" action="{{ route('admin.destroy', $admin->id) }}" style="display: inline-block">
                                     @csrf
                                     @method('DELETE')
                                       <button type="submit" class="btn btn-danger btn-sm">
@@ -108,7 +108,7 @@
                             @endif
 
                           </table>
-                          {{ $categories->appends(request()->query())->links() }}
+                          {{ $admins->appends(request()->query())->links() }}
                         </div>
                         <!-- /.card-body -->
                       </div>

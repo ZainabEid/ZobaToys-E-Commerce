@@ -45,6 +45,7 @@ return [
    'create' =>'اضافة',
    'delete' =>'حذف',
    'search' =>'بحث',
+   'index' =>'تسلسل',
    
    /* Edit Admin Form  */
    'edit-admin-data' =>'تعديل بيانات مشرف',
@@ -59,7 +60,7 @@ return [
    'email' => "البريد الالكتروني",
    'password' => "كلمة المرور ",
    'password_confirmation' =>'تأكيد كلمة المرور ',
-   'upload-photo' => "رفع صورة",
+   'choose-photo' => "اختر صورة",
    'photo' => " الصورة",
    'phone' => " الموبايل ",
    'check' => " اختيار ",
