@@ -11,7 +11,7 @@ return [
     */
 
    //  header
-   'hellow' => 'مرجبا',
+   'hellow' => 'Hello',
    'edit-profile' => 'تعديل الملف الشحصي ',
    'logout' => 'تسجيل الخروج ',
 

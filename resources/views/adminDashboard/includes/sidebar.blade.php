@@ -7,15 +7,15 @@
                         data-i18n="nav.add_on_drag_drop.main">@lang('site.dashboard') </span></a>
             </li>
 
-            {{-- sidebar languages  --}}
-            <li class="nav-item">
+            {{-- sidebar languages --}}
+            <li class="nav-item  ">
                 <a href=""><i class="la la-home"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">@lang('site.languages') </span>
+                    <span class="menu-title" >@lang('site.languages') </span>
                     <span class="badge badge badge-info badge-pill float-right mr-2">5</span>
                 </a>
-                <ul class="menu-content">
+                <ul class="menu-content @if(Request::is('adminDashboard/languages*')) open @endif">
                     @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                        <li class="active">
+                        <li class="">
                             <a class="menu-item" data-i18n="nav.dash.ecommerce" rel="alternate"
                                 hreflang="{{ $localeCode }}"
                                 href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
@@ -32,37 +32,67 @@
             </li>
 
             {{-- sidbar Admins --}}
-            <li class="nav-item"><a href=""><i class="la la-group"></i>
+            <li class="nav-item @if(Request::is('adminDashboard/admin') || Request::is('adminDashboard/admin/*') ) open @endif">
+                <a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.admins') </span>
-                    <span class="badge badge badge-danger badge-pill float-right mr-2"></span>
+                    <span class="badge badge badge-danger badge-pill float-right mr-2"> 2 </span>
                 </a>
-                <ul class="menu-content">
+                <ul class="menu-content ">
 
-                        @if (auth()->user()->hasPermission('read_admins'))
-                        <li class="active">
-                        <a class="menu-item" href=" {{ route('admin.index') }}" data-i18n="nav.dash.ecommerce">
-                                @lang('site.show-all')
-                        </a>
+                    @if (auth()->user()->hasPermission('read_admins'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/admin')) active @endif ">
+                            <a class="menu-item" href=" {{ route('admin.index') }}" data-i18n="nav.dash.ecommerce">
+                                @lang('site.show-all-admins')
+                            </a>
                         </li>
-                        @endif
-                        
-                        @if (auth()->user()->hasPermission('create_admins'))
-                        <li>
-                                <a class="menu-item" href="{{ route('admin.create') }}" data-i18n="nav.dash.crypto">
+                    @endif
+
+                    @if (auth()->user()->hasPermission('create_admins'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/admin/create')) active @endif ">
+                            <a class="menu-item" href="{{ route('admin.create') }}" data-i18n="nav.dash.crypto">
                                 @lang('site.add-new-admin')
-                                </a>
+                            </a>
                         </li>
-                        @endif
+                    @endif
 
                 </ul>
             </li>
 
-            <li class="nav-item"><a href=""><i class="la la-male"></i>
+
+            {{-- sidbar Categories --}}
+            <li class="nav-item  @if(Request::is('adminDashboard/categories*')) open @endif">
+                <a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">@lang('site.categories') </span>
+                    <span class="badge badge badge-success badge-pill float-right mr-2"> 2 </span>
+                </a>
+                <ul class="menu-content">
+
+                    @if (auth()->user()->hasPermission('read_categories'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/categories')) active @endif ">
+                            <a class="menu-item" href=" {{ route('adminDashboard.categories.index') }}" data-i18n="nav.dash.ecommerce">
+                                @lang('site.show-all-categories')
+                            </a>
+                        </li>
+                    @endif
+
+                    @if (auth()->user()->hasPermission('create_categories'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/categories/create')) active @endif ">
+                            <a class="menu-item" href="{{ route('adminDashboard.categories.create') }}" data-i18n="nav.dash.crypto">
+                                @lang('site.add-new-category')
+                            </a>
+                        </li>
+                    @endif
+
+                </ul>
+            </li>
+
+            <li class="nav-item  @if(Request::is('adminDashboard/products*')) open @endif">
+                <a href=""><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">المدربين </span>
                     <span class="badge badge badge-success badge-pill float-right mr-2"></span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active">
+                    <li class="">
                         <a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
                     <li>
@@ -78,7 +108,7 @@
                     <span class="badge badge badge-warning  badge-pill float-right mr-2"></span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                    <li class=""><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
                     </li>
                     <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
                             طالب </a>
@@ -93,7 +123,7 @@
                     <span class="badge badge badge-danger  badge-pill float-right mr-2">0</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> تذاكر الطلاب
+                    <li class=""><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> تذاكر الطلاب
                         </a>
                     </li>
                 </ul>

@@ -1,6 +1,16 @@
 # ZobaToys-E-Commerce:
     E-commerce web application with mutli-languages and Admin Control pannel with POS system made with php/laravel by me [Zainab Eid]. the site is specialized in providing fun educational toys and services in different categuaries and for different ages with admin control pannel and POS system made with php/laravel by me [Zainab Eid]
 
+
+## Bugs-To-Fix:
+1. localization doesnt chang the content from arabic to english to turkis
+2. create category doesnt see traslatable trait and locales
+3. 
+
+
+
+
+
 ## Site Features:
     - Multi lang
     - search, browse, buy products

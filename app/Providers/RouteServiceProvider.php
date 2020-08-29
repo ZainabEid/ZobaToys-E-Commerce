@@ -91,8 +91,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapAdminDashboardRoutes()
     {
-        Route::prefix('adminDashboard')
-            ->middleware('web')
+        Route::middleware('web')
             ->namespace($this->adminDashboard_namespace)
             ->group(base_path('routes/adminDashboard/web.php'));
     }
