@@ -223,7 +223,8 @@
 
     </script>
 
-
+    <script src="{{ asset('assets/admin/plugins/ckeditor/ckeditor.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js"></script>
 
 </body>
 <script>
@@ -254,8 +255,12 @@
             reader.readAsDataURL(this.files[0]); // convert to base64 string
         }
 
-
     });
+
+    // editor direction
+    CKEDITOR.config.language =  "{{ app()->getLocale() }}";
+    
+
 
 </script>
 

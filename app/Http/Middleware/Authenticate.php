@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Support\Facades\Request;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class Authenticate extends Middleware
 {
@@ -17,7 +18,7 @@ class Authenticate extends Middleware
     {
         if (! $request->expectsJson()) {
             
-            if ($request->is('adminDashboard') || $request->is('adminDashboard/*')) {
+            if ($request->is('adminDashboard') || $request->is('adminDashboard/*') || $request->is(LaravelLocalization::setLocale().'adminDashboard/' )) {
                 return redirect()->guest(route('adminDashboard.login'));
             }
             

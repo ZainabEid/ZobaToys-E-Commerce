@@ -3,22 +3,36 @@
 
 
 ## Bugs-To-Fix:
-1. localization doesnt chang the content from arabic to english to turkis
-2. create category doesnt see traslatable trait and locales
-3. 
+1. create category doesnt see traslatable trait and locales : __php artisan config:cache__
+2. if un authenticated admindashboard request redirect to admindashboard/login not site/login: 
 
+## Site and  Admin panel Features:
+    - Multi lang ..........................................................  [Done]
+    - Admin Guard Auth ....................................................  [Done]
+    - Admin model, migrations, ............................................  [Done]
+    - Admins rules and permissions ........................................  [Done]
+    - laratrust:seeder(master_admin) ......................................  [Done]
+    - admins/index & adminController@index and Delete:....................   [Done]
+        - show all admins
+        - search admins by name or email
+        - add, edit, delete buttons and function
+        - manage delete function
+    - admins/create, admins/edit & adminController@... : ..................  [Done]
+        - create new admin form
+        - managing admin photo in controller
+        - show admin last data in edit page
+        - update admin new data to db
+    - categories table, model, controller, route, managing ................. [Done]
+        - categories search ...............................................  [X]
+    - translatable name and description for category ....................... [Done] 
+    - products table, model, controller route, translatable ................ [Done]
+        - search by name or by category .................................... [Done]
+        - multi imagaes for one product insert and show in index ........... [X]
+        - edit and update proucts .......................................... [Done]
+        - delete proucts ................................................... [Done]
+    _____________________________________Git Push product model___________________________________
+    - client model
 
-
-
-
-## Site Features:
-    - Multi lang
-    - search, browse, buy products
-    - 
-
-## Admin panel Features: 
-    - manage sales, profits, products
-    - manage employees, employees permitions
 
 ## Application Database Structure:
 
@@ -35,10 +49,10 @@
 - incomes: // from order payment
 
 **Users Tables: for site files**  [11 Tables]
-- inventory // toys-in-stock-details, // has many prooduct
-    - Products: // toys 
-        -->> - photos // toys-photos, 
-        -->> - categories, Categories_products //M2M
+- inventory // toys-in-stock-details, // has many prooduct [place of stock , role materials]
+    - Products: // toys .......................................................... [Done]
+        -->> - photos // toys-photos, ............................................ [Error]
+        -->> - categories, //O2M ................................................. [Done]
 - Services: // color partys, consultant // setting nextplane
 - Users: // Cutomers, shops, groups, libraries
 - Orders: //by cutomers or admins // user has many orders

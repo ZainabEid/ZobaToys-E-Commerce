@@ -11,7 +11,7 @@
             <li class="nav-item  ">
                 <a href=""><i class="la la-home"></i>
                     <span class="menu-title" >@lang('site.languages') </span>
-                    <span class="badge badge badge-info badge-pill float-right mr-2">5</span>
+                    <span class="badge badge badge-info badge-pill float-right mr-2">{{ count( config('translatable.locales') ) }}</span>
                 </a>
                 <ul class="menu-content @if(Request::is('adminDashboard/languages*')) open @endif">
                     @foreach (LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
@@ -31,11 +31,12 @@
 
             </li>
 
+            
             {{-- sidbar Admins --}}
             <li class="nav-item @if(Request::is('adminDashboard/admin') || Request::is('adminDashboard/admin/*') ) open @endif">
                 <a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.admins') </span>
-                    <span class="badge badge badge-danger badge-pill float-right mr-2"> 2 </span>
+                    <span class="badge badge badge-danger badge-pill float-right mr-2">{{ count(App\Models\Admin::all()) >1  ? count(App\Models\Admin::all()) : 0 }} </span>
                 </a>
                 <ul class="menu-content ">
 
@@ -63,7 +64,7 @@
             <li class="nav-item  @if(Request::is('adminDashboard/categories*')) open @endif">
                 <a href=""><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.categories') </span>
-                    <span class="badge badge badge-success badge-pill float-right mr-2"> 2 </span>
+                    <span class="badge badge badge-success badge-pill float-right mr-2"> {{ count(App\Models\Category::all()) > 0  ? count(App\Models\Category::all()) : 0 }} </span>
                 </a>
                 <ul class="menu-content">
 
@@ -86,23 +87,34 @@
                 </ul>
             </li>
 
-            <li class="nav-item  @if(Request::is('adminDashboard/products*')) open @endif">
-                <a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">المدربين </span>
-                    <span class="badge badge badge-success badge-pill float-right mr-2"></span>
+             {{-- sidbar products --}}
+             <li class="nav-item  @if(Request::is('adminDashboard/products*')) open @endif">
+                <a href=""><i class="la la-television"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">@lang('site.products') </span>
+                    <span class="badge badge badge-warning badge-pill float-right mr-2"> {{ count(App\Models\Product::all()) > 0  ? count(App\Models\Product::all()) : 0 }}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="">
-                        <a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
-                    </li>
-                    <li>
-                        <a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
-                            مدرب </a>
-                    </li>
+
+                    @if (auth()->user()->hasPermission('read_products'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/products')) active @endif ">
+                            <a class="menu-item" href=" {{ route('adminDashboard.products.index') }}" data-i18n="nav.dash.ecommerce">
+                                @lang('site.show-all-products')
+                            </a>
+                        </li>
+                    @endif
+
+                    @if (auth()->user()->hasPermission('create_products'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/products/create')) active @endif ">
+                            <a class="menu-item" href="{{ route('adminDashboard.products.create') }}" data-i18n="nav.dash.crypto">
+                                @lang('site.add-new-product')
+                            </a>
+                        </li>
+                    @endif
+
                 </ul>
             </li>
 
-
+        
             <li class="nav-item"><a href=""><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">الطلاب </span>
                     <span class="badge badge badge-warning  badge-pill float-right mr-2"></span>

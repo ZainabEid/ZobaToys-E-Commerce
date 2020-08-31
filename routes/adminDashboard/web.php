@@ -19,8 +19,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
             /*
             |--------------------------------------------------------------------------
-            | [AdminLogin] Routes - should have (guest:admin, namespace: auth,)
+            | [AdminLogin] Routes - in controller middleware :(guest:admin) 
             |--------------------------------------------------------------------------
+            | should have (namespace: auth,)
             */
             Route::group(['namespace' => 'Admin'], function () {
 
@@ -43,6 +44,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 
                 ##########   [Categories] Routes   ##########
                 Route::resource('categories', 'CategoryController')->except(['show']);
+
+                ##########   [products] Routes   ##########
+                Route::resource('products', 'ProductController')->except(['show']);
            
             });//end of auth:admin
 

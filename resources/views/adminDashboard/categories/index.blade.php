@@ -53,6 +53,8 @@
                               <tr>
                                 <th>@lang('site.index')</th>
                                 <th>@lang('site.name')</th>
+                                <th>@lang('site.products-count')</th>
+                                <th>@lang('site.related-products')</th>
                                 <th>@lang('site.edit-category')</th>
                               </tr>
                             </thead>
@@ -68,6 +70,8 @@
                               <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $category->translate( $locale)->name  ??  $category->name }}</td>
+                                <td>{{ $category->products->count() }}</td>
+                                <td> <a href="{{ route('adminDashboard.products.index', ['category_id' => $category->id]) }}" class="btn btn-info btn-sm"> @lang('site.show-products')</a> </td>
                                 <td>
 
                                   {{-- edit button --}}

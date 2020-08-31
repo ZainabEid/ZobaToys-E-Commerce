@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -64,7 +65,7 @@ class Handler extends ExceptionHandler
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        if ($request->is('adminDashboard') || $request->is('adminDashboard/*')) {
+        if ($request->is('adminDashboard') || $request->is('adminDashboard/*') || $request->is(LaravelLocalization::setLocale().'adminDashboard/')) {
             return redirect()->guest(route('adminDashboard.login'));
         }
 

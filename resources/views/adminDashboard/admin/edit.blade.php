@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('tilte', 'Edit Ctegories')
+@section('tilte', 'Edit Admins')
 
 @section('content')
     {{-- content --}}
@@ -11,27 +11,102 @@
             <div class="card card-primary">
 
                 <div class="card-header with-border ">
-                    <h3 class="card-title">@lang('site.edit-category')</h3>
+                    <h3 class="card-title">@lang('site.add-new-admin')</h3>
                 </div>
                 <!-- end of card-header -->
 
                 @include('adminDashboard.includes.errors')
 
                 <!-- form start -->
-                <form method="POST" action="{{ route('adminDashboard.categories.update', $category->id) }}" >
+                <form method="POST" action="{{ route('admin.update', $admin->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="card-body">
-
                         {{-- name --}}
-                        @foreach ( config('translatable.locales') as $locale )
-                            <div class="form-group">
-                                <label for="name">@lang('site.'.$locale.'.name')</label>
-                                <input type="name" class="form-control" name="{{ $locale }}[name]"
-                                    placeholder=" @lang('site.enter-name')" value="{{ $category->translate($locale)->name }}">
-                            </div>
-                        @endforeach
+                        <div class="form-group">
+                            <label for="name">@lang('site.name')</label>
+                            <input type="name" class="form-control" name="name" id="name"
+                                placeholder=" @lang('site.enter-name')" value="{{ old('name') ?? $admin->name  }}">
+                        </div>
+                        {{-- email --}}
+                        <div class="form-group">
+                            <label for="email">@lang('site.email')</label>
+                            <input type="email" class="form-control" name="email" id="email"
+                                placeholder="@lang('site.enter-email')" value="{{ old('email') ?? $admin->email }}">
+                        </div>
+                        {{-- phone --}}
+                        <div class="form-group">
+                            <label for="phone">@lang('site.phone')</label>
+                            <input type="phone" class="form-control" name="phone" id="phone"
+                                placeholder="@lang('site.phone')" value="{{ old('phone') ??  $admin->phone}}">
+                        </div>
+                        
+                        {{-- photo --}}
+                        <div class="form-group">
+                            <label for="photo">@lang('site.photo')</label>
 
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input photo" id="photo" name="photo">
+                                <label class="custom-file-label" for="photo"> @lang('site.choose-photo') </label>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <img src="{{ $admin->image_path }}" alt="image"
+                                class="rounded-circle img-thumbnail photo-preview " id="photo-preview">
+                        </div>
+
+
+                        {{-- permission tabs --}}
+                        <div class="form-group card-tabs">
+
+                            <label>@lang('site.permissions')</label>
+
+                            @php
+                            $models = ['admins','customers','products','suppliers', 'production_cycles', ];  
+                            $maps = ['read','create','update','delete', ];  
+                            @endphp
+
+                            {{-- nav tabs --}}
+                            <ul class="nav nav-tabs" role="tablist">
+
+                                @foreach ($models as $index=>$model)
+                                <li class="nav-item">
+                                    <a class="nav-link {{ ($index == 0 )? 'active' : '' }}" data-toggle="tab"
+                                        href="#{{ $model }}" role="tab" 
+                                        aria-selected="true">@lang('site.'.$model)</a>
+                                </li>
+                                @endforeach
+                               
+                            </ul>
+
+                            {{-- tab content : checkboxes --}}
+                            <div class="tab-content" >
+
+                                @foreach ($models as $index=>$model)
+                                <div class="tab-pane {{ ($index == 0) ? 'active': '' }}" id="{{ $model }}" role="tabpanel">
+
+                                    @foreach ($maps as $map)
+                                    
+                                    <div class="form-check">
+                                        <label class="form-check-label" for="{{ $map }}">
+                                            <input type="checkbox" class="form-check-input" name="permissions[]"  {{ $admin->hasPermission($map.'_'.$model) ? 'checked' : ''  }} value="{{ $map.'_'.$model }}" id="{{ $map }}">
+                                            @lang('site.'.$map) @lang('site.'.$model.(($map != 'read' ) ? '-single' : ''))
+                                        </label>
+                                    </div>
+                                    
+                                    @endforeach
+                                    
+                                </div>
+                                @endforeach
+                                    
+                            </div><!--end of tab content-->
+                            
+                        </div><!--end of permission tabs-->
+                        
+
+                       
                     </div><!-- end of card-body -->
 
                     <div class="card-footer">
@@ -39,7 +114,7 @@
                     </div>
                 </form>
             </div>
-            <!--end of create new category card -->
+            <!--end of create new admin card -->
 
         </div><!--end of content wrapper -->
     </div><!--end of content -->

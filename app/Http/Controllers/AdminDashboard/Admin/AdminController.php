@@ -81,12 +81,12 @@ class AdminController extends Controller
         session()->flash('success',__('site.added-successfuly'));
 
         return redirect()->route('admin.index');
-    }
+    }//end of store()
 
     public function edit(Admin $admin)
     {
         return view('adminDashboard.admin.edit',compact('admin'));
-    }
+    }// end of edit
 
     public function update(Request $request, Admin $admin)
     {
@@ -120,13 +120,13 @@ class AdminController extends Controller
         // store data in the DB
         $admin->update($request_data);
 
-        // add permissions
+        // add permissions to and admin
         $admin->syncPermissions($request->permissions);
 
         session()->flash('success',__('site.updated-successfuly'));
 
         return redirect()->route('admin.index');
-    }
+    }// end of update
 
     public function destroy(Admin $admin)
     {

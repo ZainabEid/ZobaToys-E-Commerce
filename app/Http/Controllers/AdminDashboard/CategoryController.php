@@ -12,8 +12,10 @@ class CategoryController extends Controller
 {
     public function index(Request $request)
     {
-        $categories = Category::when($request->search, function ($qurey) use ($request) {
-            return $qurey->where('name', 'like', '%' . $request->search . '%');
+        $categories = Category::when($request->search, function ($q) use ($request) {
+
+            return $q->whereTranslationLike('name', '%'.$request->search.'%');
+            
         })->latest()->paginate(5);
 
         return view('adminDashboard.categories.index', compact('categories'));
@@ -49,7 +51,7 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('adminDashboard.admin.edit', compact('category'));
+        return view('adminDashboard.categories.edit', compact('category'));
     }
 
     public function update(Request $request, Category $category)
