@@ -46,7 +46,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::resource('categories', 'CategoryController')->except(['show']);
 
                 ##########   [products] Routes   ##########
-                Route::resource('products', 'ProductController')->except(['show']);
+                Route::resource('products', 'ProductController');
+
+                Route::resource('productimages', 'ProductimageController');
            
             });//end of auth:admin
 

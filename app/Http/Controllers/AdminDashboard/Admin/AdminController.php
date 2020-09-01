@@ -135,7 +135,7 @@ class AdminController extends Controller
         }
         $admin->delete();
         session()->flash('success',__('site.deleted-successfuly'));
-        return redirect()->route('admin.index');
+        return redirect()->back('admin.index');
 
     }
 }

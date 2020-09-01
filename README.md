@@ -5,6 +5,9 @@
 ## Bugs-To-Fix:
 1. create category doesnt see traslatable trait and locales : __php artisan config:cache__
 2. if un authenticated admindashboard request redirect to admindashboard/login not site/login: 
+3.  >> delete product images ....................................... [X]
+        . in products.edit.blade only one form works either delete or update
+        . using javascript without form is not responding
 
 ## Site and  Admin panel Features:
     - Multi lang ..........................................................  [Done]
@@ -27,8 +30,11 @@
     - translatable name and description for category ....................... [Done] 
     - products table, model, controller route, translatable ................ [Done]
         - search by name or by category .................................... [Done]
-        - multi imagaes for one product insert and show in index ........... [X]
-        - edit and update proucts .......................................... [Done]
+        - multi imagaes for one product insert and show in index ........... [Done] 
+            >> edit, show .................................................. [Done]
+            >> delete product images ....................................... [X]
+            >> id admin has permission to crud product then give hime the same permission to images
+        - edit and update products ......................................... [Done]
         - delete proucts ................................................... [Done]
     _____________________________________Git Push product model___________________________________
     - client model

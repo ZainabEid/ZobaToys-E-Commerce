@@ -242,6 +242,18 @@
 
     });
 
+    $(".delete").on("click",function checkDelete(url) {
+        if (confirm('Really delete?')) {
+            $.ajax({
+                type: "DELETE",
+                url: url,
+                success: function(result) {
+                    document.location.href=url;
+                }
+            });
+        }
+    }
+
     //image preview
     $(".photo").change(function() { // .image : input field class name
 
@@ -258,9 +270,7 @@
     });
 
     // editor direction
-    CKEDITOR.config.language =  "{{ app()->getLocale() }}";
-    
-
+    CKEDITOR.config.language = "{{ app()->getLocale() }}";
 
 </script>
 

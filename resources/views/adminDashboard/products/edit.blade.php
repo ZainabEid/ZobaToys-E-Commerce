@@ -18,94 +18,119 @@
                 @include('adminDashboard.includes.errors')
 
                 <!-- form start -->
-                <form method="POST" action="{{ route('adminDashboard.products.update', $product->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('adminDashboard.products.update', $product->id) }}"
+                    enctype="multipart/form-data">
                     @csrf
                     @method('put')
-                    
-                    @php
-                       // (old('category_id') == $category->id ||
 
-                    @endphp
+
                     <div class="card-body">
 
                         <!-- category select -->
-                      <div class="form-group">
-                        <label>@lang('site.category')</label>
-                        <select name="category_id" class="form-control">
-                            
-                            <option value="">@lang('site.choose-category')</option>
+                        <div class="form-group">
+                            <label>@lang('site.category')</label>
+                            <select name="category_id" class="form-control">
 
-                            @foreach ($categories as $category)
-                            <option value="{{ $category->id }}" 
-                                    {{   (old('category_id') == $category->id || $product->category_id == $category->id)  ?  'selected' : ''  }}>
-                                {{ $category->translate(app()->getLocale())->name }}
-                            </option>
-                            @endforeach
-                          
-                        </select>
-                      </div>
-                       
-                       
-                        
-                        @foreach ( config('translatable.locales') as $locale )
-                        
+                                <option value="">@lang('site.choose-category')</option>
+
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ old('category_id') == $category->id || $product->category_id == $category->id ? 'selected' : '' }}>
+                                        {{ $category->translate(app()->getLocale())->name }}
+                                    </option>
+                                @endforeach
+
+                            </select>
+                        </div>
+
+
+
+                        @foreach (config('translatable.locales') as $locale)
+
                             {{-- name --}}
-                            <label class="border-bottom" ><strong>@lang('site.'.$locale.'.product')</strong></label>
+                            <label class="border-bottom"><strong>@lang('site.'.$locale.'.product')</strong></label>
                             <div class="form-group">
                                 <label for="name">@lang('site.'.$locale.'.name')</label>
                                 <input type="name" class="form-control" name="{{ $locale }}[name]"
-                                    placeholder=" @lang('site.'.$locale.'.enter-name')" value="{{ old( $locale.'.name') ?? $product->translate($locale)->name }}">
+                                    placeholder=" @lang('site.'.$locale.'.enter-name')"
+                                    value="{{ old($locale . '.name') ?? $product->translate($locale)->name }}">
                             </div>
 
                             {{-- description --}}
                             <div class="form-group">
                                 <label for="description">@lang('site.'.$locale.'.description')</label>
-                                <textarea class="form-control ckeditor" id="editor1" name="{{ $locale }}[description]" 
-                                    placeholder=" @lang('site.'.$locale.'.enter-description')" >{{ old( $locale.'.description') ?? $product->translate($locale)->description }}</textarea>
+                                <textarea class="form-control ckeditor" id="editor1" name="{{ $locale }}[description]"
+                                    placeholder=" @lang('site.'.$locale.'.enter-description')">{{ old($locale . '.description') ?? $product->translate($locale)->description }}</textarea>
                             </div>
                             <hr>
                         @endforeach
 
-                        
-                        @foreach ( config('translatable.locales') as $locale )
-                            
-                        @endforeach
-
-                        {{-- image [input:file class = "photo"] --}}
+                        {{-- image [input:file class = "photo"]
+                        --}}
                         <div class="form-group">
                             <h5>@lang('site.image')</h5>
                             <div class="custom-file">
-                                <input type="file" multiple="multiple" class="custom-file-input photo" name="image[]" >
-                                <label class="custom-file-label" for="image" > @lang('site.choose-image') </label>
+                                <input type="file" multiple="multiple" class="custom-file-input photo" name="image[]">
+                                <label class="custom-file-label" for="image"> @lang('site.choose-image') </label>
                             </div>
-                            
+
                         </div>
-                        
-                        {{-- image preview [img class = "photo-preview"] --}}
-                        <div class="form-group">
-                            <img src="{{ $product->image_path }}" alt="image"
-                                class="rounded img-thumbnail photo-preview">
+
+                        {{-- image preview [img class = "photo-preview"]
+                        --}}
+                        <div class="form-group d-flex ">
+
+                            {{-- if the image is default just show that else loop  and show all
+                            --}}
+                            @if ($product->productimage()->first()->image == 'default.png')
+
+                                <img class="rounded float-left img-thumbnail photo-preview" style="width: 100px"
+                                    src="{{ $product->productimage()->first()->image_path }}">
+                            @else
+                                @foreach ($product->productimage as $productimage)
+                                    <div class="position-relative mr-1">
+                                        {{-- delete image --}}
+                                        {{-- <button class="btn btn-danger btn-sm position-absolute mr-1" formaction="{{ route('adminDashboard.productimages.destroy', $productimage->id) }}" onclick="event.preventDefault();
+                                                            document.getElementById('image-destroy-form').submit();">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                         --}}
+                                        <a class="btn btn-danger btn-sm position-absolute mr-1 delete" 
+                                            onclick=" javascript:checkDelete({{ route('adminDashboard.productimages.destroy', $productimage->id) }});">
+                                            <i class="fas fa-trash"></i>
+                                        </a>
+                                       
+
+                                        <img class="rounded float-left img-thumbnail photo-preview" style="width: 100px"
+                                            src="{{ $productimage->image_path }}">
+
+                                    </div>
+
+                                @endforeach
+                            @endif
                         </div>
 
                         {{-- perchase_price --}}
                         <div class="form-group">
                             <label for="perchase_price">@lang('site.perchase-price')</label>
                             <input type="number" class="form-control" name="perchase_price"
-                                placeholder=" @lang('site.enter-perchase-price')" value="{{ old('perchase_price') ?? $product->perchase_price }}">
+                                placeholder=" @lang('site.enter-perchase-price')"
+                                value="{{ old('perchase_price') ?? $product->perchase_price }}">
                         </div>
-                        
+
                         {{-- sale_price --}}
                         <div class="form-group">
                             <label for="sale_price">@lang('site.sale-price')</label>
                             <input type="number" class="form-control" name="sale_price"
-                                placeholder=" @lang('site.enter-sale-price')" value="{{ old('sale_price') ?? $product->sale_price }}">
+                                placeholder=" @lang('site.enter-sale-price')"
+                                value="{{ old('sale_price') ?? $product->sale_price }}">
                         </div>
 
-                         {{-- Stock --}}
-                         <div class="form-group">
+                        {{-- Stock --}}
+                        <div class="form-group">
                             <label for="stock">@lang('site.stock')</label>
-                            <input type="number" class="form-control" name="stock"
-                                placeholder=" @lang('site.enter-stock')" value="{{ old('stock') ?? $product->stock }}">
+                            <input type="number" class="form-control" name="stock" placeholder=" @lang('site.enter-stock')"
+                                value="{{ old('stock') ?? $product->stock }}">
                         </div>
 
                     </div><!-- end of card-body -->
@@ -114,13 +139,24 @@
                         <button type="submit" class="btn btn-primary">@lang('site.edit')</button>
                     </div>
                 </form>
+
+                {{-- delete image button --}}
+                {{-- <form id="image-destroy-form" class="delete" method="POST" style="display: none;"
+                    action="{{ route('adminDashboard.productimages.destroy', $productimage->id) }}">
+
+                    @csrf
+                    @method('DELETE')
+                </form> --}}
+
             </div>
             <!--end of create new product card -->
 
-        </div><!--end of content wrapper -->
-    </div><!--end of content -->
+        </div>
+        <!--end of content wrapper -->
+    </div>
+    <!--end of content -->
 
-    
+
     <!-- ////////////////////////////////////////////////////////////////////////////-->
 
 @endsection

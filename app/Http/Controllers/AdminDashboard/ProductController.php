@@ -42,35 +42,28 @@ class ProductController extends Controller
     }
 
 
-    public function handelingImages(Request $request)
+    public function handelingImages($images , $product)
     {
-        if ($request->hasFile('image')) {
- 
-            foreach($request->file('image') as $file){
-     
-                //get filename with extension
-                $filenamewithextension = $file->getClientOriginalName();
-     
-                //get filename without extension
-                $filename = pathinfo($filenamewithextension, PATHINFO_FILENAME);
-     
-                //get file extension
-                $extension = $file->getClientOriginalExtension();
-     
-                //filename to store [$filename.'_'.uniqid().'.'.$extension]
-                $filenametostore = $filename.$extension; // ==    $filenamewithextension
-     
-                Storage::put('public/product_images/'. $filenametostore, fopen($file, 'r+'));
-                Storage::put('public/images/thumbnail/'. $filenametostore, fopen($file, 'r+'));
-     
-                //Resize image here
-                $thumbnailpath = public_path('storage/images/thumbnail/'.$filenametostore);
-                $img = Image::make($thumbnailpath)->resize(400, 150, function($constraint) {
-                    $constraint->aspectRatio();
-                });
-                $img->save($thumbnailpath);
-            }
+        /*
+        steps to save default product images 
+        1. $product_image = new Productimage();
+        2. $product = Product::find(3);
+        3. $product->productimage();
+        4. $product->productimage()->save($product_image);
+        */
+
+        foreach($images as $image){
+
+            // manage image uploading: fit, compress, hash, move to public/uploads
+            $img = Image::make($image)
+                ->fit(300,300)->Save(public_path('uploads/product_images/'.$image->hashName()));
+
+            $product_image = new Productimage();
+            $product_image->image = $image->hashName();
+            $product->productimage()->save($product_image);
         }
+
+         
     }//end of handling image function
 
 
@@ -94,13 +87,7 @@ class ProductController extends Controller
         }
         ########## end validation rules ##########
 
-        /*
-        steps to save default product images 
-        1. $product_image = new Productimage();
-        2. $product = Product::find(3);
-        3. $product->productimage();
-        4. $product->productimage()->save($product_image);
-        */
+
         
         //submit validation and create a product
         $request->validate($rules);
@@ -110,19 +97,10 @@ class ProductController extends Controller
         $product = Product::create($requested_data);
 
         
-        ########## add images to the product if it is exist ##########
+        ########## if it is images add them to the product ##########
         if ($request->image) {
-            foreach($request->file('image') as $image){
-                //$path = $image->store('uploads/product_images');
-               // dd($image);
 
-                // manage image uploading: fit, compress, hash, move to public/uploads
-                $img = Image::make($image)
-                ->fit(300,300)->Save(public_path('uploads/product_images/'.$image->hashName()));
-                $product_image = new Productimage();
-                $product_image->image = $image->hashName();
-                $product->productimage()->save($product_image);
-            }
+            $this->handelingImages($request->image , $product);
             
         }else{
             $product_image = new Productimage();
@@ -140,7 +118,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        //
+        return view('adminDashboard.products.show', compact('product'));
     }// end of show
 
     public function edit(Product $product)
@@ -151,9 +129,8 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        // dd($request->image[0]->getClientOriginalName());
-        // start validation rules \\
-
+      
+         ########## start validation rules ##########
         //   [nun localized fields]
         $rules = [
             'category_id' => 'required',
@@ -170,33 +147,24 @@ class ProductController extends Controller
             ];
             //$rules += [$locale.'.description' => 'required'];
         }
-        // end validation rules \\
+         ########## end validation rules ##########
+
+
         
         //submit validation and create a product
         $request->validate($rules);
         $requested_data = $request->except(['_token','_method','image']);
         
-        // add images to the product id it is exist
-        // images[] is an array
-        // $product_images = [];
+       
         if ($request->image) {
-            if($product->photo != 'default.jpg' ){
-                Storage::disk('public_uploads')->delete('uploads/product_images/'.$product->photo);
+
+            // remove the default image from database
+            if( $product->productimage()->first()->image == 'default.png' ){
+                $product->productimage()->first()->delete();
             }
-            foreach($request->image as $image){
-                $path = $image->store('uploads/product_images/');
-                // manage image uploading: fit, compress, hash, move to public/uploads
-                $img = Image::make($path)
-                ->fit(300,300)->Save(public_path('uploads/product_images/'.$path->hashName()));
-                $product->productimages()->image = $path->hashName();
-                $product->push();
-            }
-            
-        }else{
-            // $product->productimages->create([]);
+
+             $this->handelingImages($request->image , $product);
         }
-        
-        
         
         
         $product->update($requested_data);
@@ -205,11 +173,22 @@ class ProductController extends Controller
         return redirect()->route('adminDashboard.products.index');
     }// end of update()
 
+   
 
     public function destroy(Product $product)
     {
-        if($product->photo != 'default.jpg' ){
-            Storage::disk('public_uploads')->delete('uploads/product_images/'.$product->photo);
+            /**
+             * if the first image is not default
+             * find all images name with this product id and delete them
+             */
+        if( $product->productimage()->first()->image != 'default.png' ){
+
+            
+            foreach ($product->productimage as $product_image) {
+                Storage::disk('public_uploads')->delete('product_images/'.$product_image->image);
+                //$product_image->delete();
+            }
+            
         }
         $product->delete();
         session()->flash('success', __('site.deleted-successfuly'));

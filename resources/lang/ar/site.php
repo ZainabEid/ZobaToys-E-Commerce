@@ -77,6 +77,7 @@ return [
    /** Categories  */
    'category' => 'القسم',
    'categories' => 'الأقسام',
+   'all-categories' => ' جميع الأقسام',
    'show-all-categories' => 'عرض جميع الأقسام',
    'add-new-category' => 'أضف قسم جديد',
    'show-categories-data' => 'عرض بيانات الاقسام',
@@ -90,10 +91,16 @@ return [
    'products' => 'المنتجات',
    'show-all-products' => 'عرض جميع المنتجات',
    'show-products-data' => 'عرض بيانات المنتجات',
+   'show-product-data' => 'عرض بيانات المنتج',
+   'show-product-images' => 'عرض صور المنتجات',
    'edit-product' => 'تعديل بيانات المنتجات',
    'choose-category' => 'اختر قسم',
    'profit-percentage' => 'نسبة الربح ',
-   'all-categories' => 'كل الأقسام',
+   'previous' => 'السابق',
+   'product-name' => 'اسم المنتج',
+   'product-description' => 'وصف المنتج',
+   'next' => 'التالي',
+
 
    'add-new-product' => 'اضف منتج جديد',
    'image' => 'الصورة',
