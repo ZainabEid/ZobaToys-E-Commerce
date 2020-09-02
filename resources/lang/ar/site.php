@@ -112,7 +112,18 @@ return [
    'sale-price' => 'سعر البيع',
    'stock' => 'الكمية المتوفرة',
    'enter-stock' => 'ادخل الكمية المتوفرة',
-
+   
+   /** Clients */
+   'clients' => 'العميل',
+   'clients' => 'العملاء',
+   'show-all-clients' => 'عرض جميع العملاء',
+   'show-clients-data' => 'عرض بيانات العملاء',
+   'add-new-client' => 'اضافة عميل جديد',
+   'address' => 'العنوان',
+   'enter-address' => 'ادخل العنوان',
+   'enter-phone' => 'ادخل رقم الهاتف',
+   'edit-client' => 'تعديل بيانات العميل',
+   
 
    /** Localization  */
    'ar' => [

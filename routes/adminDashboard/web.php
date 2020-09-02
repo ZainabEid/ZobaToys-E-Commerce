@@ -47,8 +47,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
                 ##########   [products] Routes   ##########
                 Route::resource('products', 'ProductController');
-
                 Route::resource('productimages', 'ProductimageController');
+                
+                ##########   [clients] Routes   ##########
+                Route::resource('clients', 'ClientController');
            
             });//end of auth:admin
 

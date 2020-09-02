@@ -8,6 +8,7 @@
 3.  >> delete product images ....................................... [X]
         . in products.edit.blade only one form works either delete or update
         . using javascript without form is not responding
+4. migration bug in category_translation table when making client model
 
 ## Site and  Admin panel Features:
     - Multi lang ..........................................................  [Done]

@@ -114,19 +114,32 @@
                 </ul>
             </li>
 
-        
-            <li class="nav-item"><a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">الطلاب </span>
-                    <span class="badge badge badge-warning  badge-pill float-right mr-2"></span>
+             {{-- sidbar clients --}}
+             <li class="nav-item  @if(Request::is('adminDashboard/clients*')) open @endif">
+                <a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">@lang('site.clients') </span>
+                    <span class="badge badge badge-danger badge-pill float-right mr-2"> {{ count(App\Models\Client::all()) > 0  ? count(App\Models\Client::all()) : 0 }}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class=""><a class="menu-item" href="" data-i18n="nav.dash.ecommerce"> عرض الكل </a>
-                    </li>
-                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
-                            طالب </a>
-                    </li>
+
+                    @if (auth()->user()->hasPermission('read_clients'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/clients')) active @endif ">
+                            <a class="menu-item" href=" {{ route('adminDashboard.clients.index') }}" data-i18n="nav.dash.ecommerce">
+                                @lang('site.show-all-clients')
+                            </a>
+                        </li>
+                    @endif
+
+                    @if (auth()->user()->hasPermission('create_clients'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/clients/create')) active @endif ">
+                            <a class="menu-item" href="{{ route('adminDashboard.clients.create') }}" data-i18n="nav.dash.crypto">
+                                @lang('site.add-new-client')
+                            </a>
+                        </li>
+                    @endif
+
                 </ul>
-            </li>
+            </li> {{-- end of clients --}}
 
 
             <li class="nav-item">
