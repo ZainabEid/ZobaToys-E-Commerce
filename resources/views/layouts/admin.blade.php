@@ -223,11 +223,24 @@
 
     </script>
 
+
+    <!-- ck editor JS-->
     <script src="{{ asset('assets/admin/plugins/ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js"></script>
+    
+    <!-- jqurey number JS-->
+    <script src="{{ asset('assets/admin/plugins/jquery-number-master/jquery.number.min.js') }}"></script>
+
+
+    
+    
+   <!-- CUSTOM JS-->
+    <script src="{{ asset('assets/admin/js/custom/orders.js') }}"></script>
+
 
 </body>
 <script>
+
     // show the file name
     $('#photo').on('change', function() {
         //get the file name

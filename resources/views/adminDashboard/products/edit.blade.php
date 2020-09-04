@@ -113,7 +113,7 @@
                         {{-- perchase_price --}}
                         <div class="form-group">
                             <label for="perchase_price">@lang('site.perchase-price')</label>
-                            <input type="number" class="form-control" name="perchase_price"
+                            <input type="number" step="00.01" class="form-control" name="perchase_price"
                                 placeholder=" @lang('site.enter-perchase-price')"
                                 value="{{ old('perchase_price') ?? $product->perchase_price }}">
                         </div>
@@ -121,7 +121,7 @@
                         {{-- sale_price --}}
                         <div class="form-group">
                             <label for="sale_price">@lang('site.sale-price')</label>
-                            <input type="number" class="form-control" name="sale_price"
+                            <input type="number" step="00.01" class="form-control" name="sale_price"
                                 placeholder=" @lang('site.enter-sale-price')"
                                 value="{{ old('sale_price') ?? $product->sale_price }}">
                         </div>

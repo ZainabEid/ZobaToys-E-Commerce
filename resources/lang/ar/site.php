@@ -23,14 +23,17 @@ return [
    'edit-admin' => "تعديل بيانات  ",
 
    /** Models */
-   'customers' => 'العملاء',
-   'suppliers' => 'الموردين',
-   'production_cycles' => 'خطوط الانتاج',
    'admins-single' => 'مشرف',
-   'customers-single' => 'عميل',
+   'categories' => 'الأقسام',
+   'categories-single' => 'قسم',
    'products-single' => 'منتج',
+   'suppliers' => 'الموردين',
    'suppliers-single' => 'مورد',
+   'production_cycles' => 'خطوط الانتاج',
    'production_cycles-single' => 'خط انتاج',
+   'clients' => 'العملاء',
+   'clients-single' => 'عميل',
+   'orders-single' => 'طلب',
 
 
    /* show Admin table  */
@@ -123,6 +126,15 @@ return [
    'enter-address' => 'ادخل العنوان',
    'enter-phone' => 'ادخل رقم الهاتف',
    'edit-client' => 'تعديل بيانات العميل',
+   
+   /** Clients Orders */
+   'order' => 'الطلب',
+   'orders' => 'الطلبات',
+   'add-order' => 'أضف طلب',
+   'add-new-order' => 'أضف طلب جديد',
+   'quentity' => 'الكمية',
+   'price' => 'سعر المنتج',
+   'total' => 'الاجمالي ',
    
 
    /** Localization  */

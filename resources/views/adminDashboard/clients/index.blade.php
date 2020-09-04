@@ -25,12 +25,12 @@
                                 
                                 <input type="text" name="search" class="form-control float-right" placeholder="@lang('site.search')" value="{{ request()->search }}">
                                 
-                                <div class="input-group-append">
-                                  <button type="submit" class="btn btn-default"><i class="fas fa-search"> @lang('site.search')</i></button>
+                                <div class="input-group-append ">
+                                  <button type="submit" class="btn btn-default "><i class="fas fa-search"> @lang('site.search')</i></button>
                                 </div>
 
                                 {{-- add new client Button --}}
-                                <div class="input-group-append">
+                                <div class="input-group-append mr-1 ml-1">
                                   @if (auth()->user()->hasPermission('create_clients'))
                                   <a href="{{ route('adminDashboard.clients.create') }}" class="btn btn-info "><i class="fas fa-plus"></i> @lang('site.create')</a>
                                   @else
@@ -55,6 +55,7 @@
                                 <th>@lang('site.name')</th>
                                 <th>@lang('site.phone')</th>
                                 <th>@lang('site.address')</th>
+                                <th>@lang('site.orders')</th>
                                 <th>@lang('site.edit-client')</th>
                               </tr>
                             </thead>
@@ -71,6 +72,17 @@
                                 <td>{{ implode( $client->phone,'-') }}</td>
                                  
                                 <td>{{ $client->address}}</td>
+                                <td>
+                                  @if (auth()->user()->hasPermission('create_orders'))
+                                  <a href="{{ route('adminDashboard.clients.orders.create', $client->id) }}" class="btn btn-info btn-sm "> 
+                                    <i class="fa fa-plus"> </i> @lang('site.add-order')
+                                  </a>
+                                  @else
+                                  <a href="#" class="btn btn-info btn-sm disabled"> 
+                                    <i class="fa fa-plus"> </i> @lang('site.add-order')
+                                  </a>
+                                  @endif
+                                </td>
                                 <td>
 
                                   {{-- edit button --}}

@@ -79,7 +79,8 @@
 
                             @php
 
-                            $models = ['admins','customers','products','suppliers', 'production_cycles', ];
+                            $models = ['admins','categories','products', 'clients', 'orders','suppliers', 'production_cycles',
+                            ];
                             $maps = ['read','create','update','delete', ];
 
                             @endphp
@@ -100,17 +101,21 @@
                             <div class="tab-content">
 
                                 @foreach ($models as $index => $model)
-                                    <div class="tab-pane {{ $index == 0 ? 'active' : '' }}" role="tabpanel">
+                                    <div id="{{ $model }}" class="tab-pane {{ $index == 0 ? 'active' : '' }}"
+                                        role="tabpanel">
 
                                         @foreach ($maps as $map)
 
                                             <div class="form-check">
-                                                <label class="form-check-label" for="{{ $map }}">
-                                                    <input type="checkbox" class="form-check-input" name="permissions[]"
-                                                        value="{{ $map . '_' . $model }}">
-                                                    @lang('site.'.$map) @lang('site.'.$model.(($map != 'read' ) ? '-single'
-                                                    : ''))
+                                               
+                                                <input type="checkbox" class="form-check-input" name="permissions[]"
+                                                    value="{{ $map . '_' . $model }}">
+                                                    
+                                                <label class="form-check-label">
+                                                    @lang('site.'.$map) @lang('site.'.$model.(($map != 'read' ) ? '-single' : ''))
                                                 </label>
+                                               
+
                                             </div>
 
                                         @endforeach

@@ -8,9 +8,10 @@
 3.  >> delete product images ....................................... [X]
         . in products.edit.blade only one form works either delete or update
         . using javascript without form is not responding
-4. migration bug in category_translation table when making client model
+4. 
+5. 
 
-## Site and  Admin panel Features:
+## Site and  Admin panel Features: [16 DONE :)]
     - Multi lang ..........................................................  [Done]
     - Admin Guard Auth ....................................................  [Done]
     - Admin model, migrations, ............................................  [Done]
@@ -34,11 +35,19 @@
         - multi imagaes for one product insert and show in index ........... [Done] 
             >> edit, show .................................................. [Done]
             >> delete product images ....................................... [X]
-            >> id admin has permission to crud product then give hime the same permission to images
+            >> if admin has permission to crud product then give hime the same permission to images
         - edit and update products ......................................... [Done]
         - delete proucts ................................................... [Done]
-    _____________________________________Git Push product model___________________________________
-    - client model
+    - client model ......................................................... [Done]
+    - orders model ......................................................... [Done]
+        - create order from cient index
+        - add new order page
+            - show all categories and product 
+            - show the order card 
+                - increase and decrese quentity
+                - automatic count totals
+
+    _____________________________________Git Push order model___________________________________
 
 
 ## Application Database Structure:
