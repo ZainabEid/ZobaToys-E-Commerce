@@ -13,7 +13,7 @@ class CreateClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+    Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('phone');
@@ -23,11 +23,11 @@ class CreateClientsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
+   public function getNameAttribute($value)
+   {
+       return ucfirst($value);
+   }
+    
     public function down()
     {
         Schema::dropIfExists('clients');

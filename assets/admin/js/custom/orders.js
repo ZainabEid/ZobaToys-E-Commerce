@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     $('.add-product-btn').on('click', function (e) {
         e.preventDefault();
@@ -13,7 +14,7 @@ $(document).ready(function () {
         //add new product row
         var html = `<tr>
                         <td>${name}</td>
-                        <td><input type="number" data-price="${price}" name="quantities[]" class="form-control product-quentity" value="1" min="1" max="${stock}"></td>
+                        <td><input type="number" data-price="${price}" name="products[${id}][quantity]" class="form-control product-quentity" value="1" min="1" max="${stock}"></td>
                         <td class="product-price">${price}</td>
                         <td>
                             <a href="#" class="btn btn-danger btn-sm remove-product-btn"  data-id="${id}">
@@ -23,9 +24,9 @@ $(document).ready(function () {
                     </tr>`;
         $('.order-list').append(html);
         // calculate total price after append new produc row
-        calculate_total()
+        calculate_total();
 
-    });// end of ADD product clicked
+    });// end of ADD product clicke
 
 
     //disabled btn
@@ -49,17 +50,48 @@ $(document).ready(function () {
     // on change product quantity
     $('body').on('keyup change','.product-quentity', function () {
         
-        var productPrice = $(this).data('price');
+        var productPrice = parseFloat( $(this).data('price').replace(/,/g,'')  );
         var quantity = Number($(this).val());
         var totalPrice = $.number(productPrice * quantity , 2);
         $(this).closest('tr').find('.product-price').html(totalPrice);
 
         // calculate total price after changing product quentity
-        calculate_total()
+        calculate_total();
 
     })//end of product-quentity
 
+    //list a ll order products
+    $('.order-products').on('click', function(e){
+        
+        e.preventDefault();
+
+        $('#loading').css('display','flex');
+
+        var url = $(this).data('url');
+        var method = $(this).data('method');        
+
+        $.ajax({
+            url: url,
+            method: method,
+            success: function(data){
+                $('#loading').css('display', 'none')
+                $('#order-product-list').empty();
+                $('#order-product-list').append(data);
+            }
+        });
+    });//end of order product
+
+
+    // print order
+   $(document).on('click' ,'.print-btn' ,function(){
+
+        $('#print-area').printThis();
+
+   });//end click function for print
+
 });// end of document ready
+
+
 
 // calculate total price
 function calculate_total() {
@@ -77,4 +109,6 @@ function calculate_total() {
         $('#add-order-form-button').addClass('disabled');
         
     }
+
+
 }// end of calculate total price

@@ -12,7 +12,7 @@
             {{-- row of two cards --}}
             <div class="row">
 
-                {{-- categories and products --}}
+                {{-- list of categories and products --}}
                 <div class="col-md-6">
                     <div class="card ">
 
@@ -20,7 +20,7 @@
                             <h4 class="mt-4"> @lang('site.categories')
                                 <small>( {{ $categories->first()->products_total }}
                                     @lang('site.products'))
-                                  </small>
+                                </small>
                             </h4>
                         </div>
 
@@ -65,8 +65,9 @@
                                                                     <tr>
                                                                         <td>{{ $product->name }}</td>
                                                                         <td>{{ $product->stock }}</td>
-                                                                        <td>{{ $product->sale_price }}</td>
-                                                                        <td><a href="#" {{  $product->stock ==  0 ? 'disabled' : '' }}
+                                                                        <td>{{ number_format($product->sale_price,2) }}</td>
+                                                                        <td><a href="#"
+                                                                                {{ $product->stock == 0 ? 'disabled' : '' }}
                                                                                 class="btn btn-success btn-sm add-product-btn"
                                                                                 id="product-{{ $product->id }}"
                                                                                 data-name="{{ $product->name }}"
@@ -93,72 +94,156 @@
 
                                 @endforeach
 
-                                {{-- end of collaps {{ $category->name }}
-                                --}}
-                            </div>
+                               
+                            </div> {{-- end of category collaps  --}}
 
                         @else
                             <h2> @lang('site.data-not-found')</h2>
                         @endif
 
-                    </div>{{-- end of card --}}
-                </div>{{-- end oc col-md-6 --}}
-
-
-                {{-- order data --}}
+                    </div>{{-- end of Categories card --}}
+                </div>{{-- end of right col-md-6 --}}
+                
+                
+                {{-- order data and order history --}}
                 <div class="col-md-6">
+
+                    {{-- order  data --}}
                     <div class="card card-solid">
 
                         <div class="card-header with-border">
                             <h3> @lang('site.order')</h3>
                         </div>
 
-                        <div class="card-body table-responsive p-0">
-                            <table class="table table-head-fixed text-nowrap">
-                                <thead>
-                                    <tr>
-                                        <th>@lang('site.product')</th>
-                                        <th>@lang('site.quentity')</th>
-                                        <th>@lang('site.price')</th>
-                                        <th>@lang('site.delete')</th>
-                                    </tr>
-                                </thead>
+                        <form action="{{ route('adminDashboard.clients.orders.store' , $client->id) }}" method="POST">
+                            @csrf
+                            @method('post')
+
+                            @include('adminDashboard.includes.errors')
 
 
-                                <tbody class="order-list">
+                            <div class="card-body table-responsive p-0">
 
-                                    
+                                <table class="table table-head-fixed text-nowrap">
+
+                                    <thead>
+                                        <tr>
+                                            <th>@lang('site.product')</th>
+                                            <th>@lang('site.quentity')</th>
+                                            <th>@lang('site.price')</th>
+                                            <th>@lang('site.delete')</th>
+                                        </tr>
+                                    </thead>
 
 
-                                </tbody>
+                                    <tbody class="order-list">
+                                        {{-- managed in js --}}
+                                    </tbody>
 
-                                <tfoot>
-                                    <div class="table-foot ">
-                                        <div class="">
-                                            <td colspan="3">
-                                                <h3> @lang('site.total')</h3>
-                                            </td>
-                                            <td colspan="1" class="total-price"></td>
+                                    {{-- table footer : total price --}}
+                                    <tfoot>
+                                        <div class="table-foot ">
+                                            <div class="">
+                                                <td colspan="3">
+                                                    <h3> @lang('site.total')</h3>
+                                                </td>
+                                                <td colspan="1" class="total-price"></td>
+                                            </div>
+
                                         </div>
+                                    </tfoot>
 
-                                    </div>
-                                </tfoot>
+                                    <h2> @lang('site.data-not-found')</h2>
+
+                                </table>{{-- end of table --}}
+
+                                {{-- card footer: add order button --}}
+                                <div class="card-footer">
+                                    <button type="submit"  class="btn btn-info w-100 disabled" id="add-order-form-button">
+                                        <i class="fa fa-plus"></i> @lang('site.add-order')
+                                    </button>
+                                </div>{{-- end of card footer --}}
+
+                            </div>{{-- end of card body --}}
+                            
+                        </form>
 
 
-                                <h2> @lang('site.data-not-found')</h2>
+                    </div> {{-- end of order data card --}}
 
-                            </table>
+                    
+                    {{-- if there is previous orders show them --}}
+                    @if ($client->order()->count() > 0)
+                    
+                        {{-- order history --}}
+                        <div class="card ">
 
-                            <div class="card-footer">
-                                <button class="btn btn-info w-100 disabled" id="add-order-form-button">
-                                    <i class="fa fa-plus"></i> @lang('site.add-order')
-                                </button>
-                            </div>
-                        </div>
+                            <div class="card-header with-border">
+                                <h4 class="mt-4"> @lang('site.previous-orders')
+                                    <small>( {{ $orders->total() }}
+                                        @lang('site.orders'))
+                                    </small>
+                                </h4>
+                            </div> {{--  end of card header --}}
 
-                    </div>
-                </div>
-            </div>
+                            
+                            @foreach ($orders as $index => $order)
+                            
+                            <div id="{{ $order->created_at->format('d-m-y-s') }}">
+
+                                    <div class="card mb-0 accordion collapse-icon accordion-icon-rotate">
+
+                                        {{-- card title--}}
+                                        <h4 class="card-title">
+                                            <a class="card-header primary collapsed" href="#order-history{{ $order->created_at->format('d-m-y-s') }}" 
+                                                data-toggle="collapse" aria-expanded="false" id=" heading{{ $order->id }}" >
+                                               
+                                                <div class="card-title lead">
+                                                    {{ $order->created_at->toFormattedDateString() }}
+                                                </div>
+                                            </a>
+                                        </h4>
+                                        
+                                       
+                                      
+                                        {{-- card table --}}
+                                        <div class="collapse" id="order-history{{ $order->created_at->format('d-m-y-s') }}" role="tabpanel"
+                                            data-parent="#{{ $order->created_at->format('d-m-y-s') }}"  aria-labelledby=" heading{{ $order->created_at->format('d-m-y-s') }}">
+
+                                            <div class="card-content">
+
+                                                <ul class="list-group">
+
+                                                    @foreach ( $order->product as $product )
+                                                        <li class="list-group-item">{{ $product->name }}</li>
+                                                    @endforeach
+
+                                                </ul>
+                                            
+                                            </div>{{-- end of card content
+                                            --}}
+
+                                        </div>{{-- end of collaps tab panel
+                                        --}}
+                                    </div> {{-- end of card --}}
+
+                                </div>
+                                @endforeach
+
+                                {{-- end of collaps of order
+                                --}}
+                       
+                    </div>{{-- end of order history card --}}
+
+                    @else
+                        <h2> @lang('site.data-not-found')</h2>
+                    @endif
+               
+               
+                </div> {{-- end of left col-md-6 --}}
+                
+
+            </div>{{-- end of row --}}
 
             {{ $client->name }}
 

@@ -132,10 +132,21 @@ return [
    'orders' => 'الطلبات',
    'add-order' => 'أضف طلب',
    'add-new-order' => 'أضف طلب جديد',
-   'quentity' => 'الكمية',
+   'quantity' => 'الكمية',
    'price' => 'سعر المنتج',
    'total' => 'الاجمالي ',
    
+   /** Orders */
+   'show-orders' => 'عرض الطلبات',
+   'show-all-orders' => 'عرض جميع الطلبات',
+   'client-name' => 'اسم العميل',
+   'total-price' => 'السعرا لإجمالي',
+   'created_at' => 'وقت الاضافة',
+   'edit-order' => 'تعديل الطلب',
+   'status' => 'الحالة',
+   'loading' => 'جاري التحميل',
+   'print' => 'طباعة',
+
 
    /** Localization  */
    'ar' => [

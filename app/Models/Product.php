@@ -17,15 +17,27 @@ class Product extends Model
 
 
 
+    ############## relationships ###################
+    
+    // one to many --> a category has many products
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-
+    
+    // one to many --> a product has many images
     public function productimage()
     {
         return $this->hasMany(Productimage::class);
     }
+    
+    // many to many --> orders has many products , products belongs to may orders
+    public function order()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+    
+    ############## Getting Attributes ###################
 
     public function getProfitPercentageAttribute()
     {

@@ -69,7 +69,7 @@
                               <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $client->name }}</td>
-                                <td>{{ implode( $client->phone,'-') }}</td>
+                                <td>{{ is_array($client->phone) ? implode( $client->phone,'-') : $client->phone }}</td>
                                  
                                 <td>{{ $client->address}}</td>
                                 <td>

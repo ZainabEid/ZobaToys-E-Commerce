@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\LoginController;
+use App\Role;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -52,6 +53,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 ##########   [clients] , [clients.orders] Routes   ##########
                 Route::resource('clients', 'ClientController');
                 Route::resource('clients.orders', 'Client\OrderController');
+                
+                ##########   [orders] Routes   ##########
+                Route::resource('orders', 'OrderController');
+                Route::get('/orders/{order}/products', 'OrderController@products')->name('orders.products');
+
                 
                
 

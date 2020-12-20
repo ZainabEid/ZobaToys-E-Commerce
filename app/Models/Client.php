@@ -7,10 +7,24 @@ use PhpParser\Node\Expr\Cast;
 
 class Client extends Model
 {
+    
     protected $fillable = [
         'name', 'phone', 'address',
     ]; 
     protected $casts = [
         'phone' => 'array',
     ];
-}
+
+
+
+
+
+    ############## relationships ###################
+    
+    // one to many --> a client has many orders
+    public function order()
+    {
+        return $this->hasMany(Order::class);
+    }
+
+}//end of model

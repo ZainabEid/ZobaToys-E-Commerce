@@ -15,6 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('client_id')->unsigned();
+            $table->double('total_price', 8 ,2)->nullable();
+
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +30,8 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
+       // Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('orders');
+       // Schema::enableForeignKeyConstraints();
     }
 }

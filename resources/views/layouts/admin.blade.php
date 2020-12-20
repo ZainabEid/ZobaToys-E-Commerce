@@ -30,6 +30,21 @@
     @else
 
     @endif
+    <style>
+        .loader {
+          border: 16px solid #f3f3f3; /* Light grey */
+          border-top: 16px solid #3498db; /* Blue */
+          border-radius: 50%;
+          width: 120px;
+          height: 120px;
+          animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+}
+      </style>
     {{-- font-awsom --}}
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/fontawesome.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/brands.css') }}" rel="stylesheet">
@@ -228,9 +243,12 @@
     <script src="{{ asset('assets/admin/plugins/ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js"></script>
     
+    
     <!-- jqurey number JS-->
     <script src="{{ asset('assets/admin/plugins/jquery-number-master/jquery.number.min.js') }}"></script>
-
+    
+    <!-- print this plugin -->
+    <script src="{{ asset('assets/admin/plugins/jasonday-printThis-f73ca19/printThis.js') }}"></script>
 
     
     

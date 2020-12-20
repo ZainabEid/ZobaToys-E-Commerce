@@ -1,6 +1,7 @@
 # ZobaToys-E-Commerce:
     E-commerce web application with mutli-languages and Admin Control pannel with POS system made with php/laravel by me [Zainab Eid]. the site is specialized in providing fun educational toys and services in different categuaries and for different ages with admin control pannel and POS system made with php/laravel by me [Zainab Eid]
 
+_______________________________________________________________________________________________
 
 ## Bugs-To-Fix:
 1. create category doesnt see traslatable trait and locales : __php artisan config:cache__
@@ -8,8 +9,17 @@
 3.  >> delete product images ....................................... [X]
         . in products.edit.blade only one form works either delete or update
         . using javascript without form is not responding
-4. 
-5. 
+4.  General error: 3780 Referencing column 'product_id' and referenced column 'id' in foreign key constraint  order_product_product_id_foreign' are incompatible.
+    sol... 
+    1. spelling check
+    2. $table->bigInteger('product_id')->unsigned();
+    3. in function down ():  
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('order_product');
+        Schema::enableForeignKeyConstraints();
+    4.  $table->id(); in the parent table && $table->bigInteger('product_id')->unsigned() in child table __works__
+5. changing js is not working : __in browser: ctrl + shift + R__
+_______________________________________________________________________________________________
 
 ## Site and  Admin panel Features: [16 DONE :)]
     - Multi lang ..........................................................  [Done]
@@ -17,7 +27,7 @@
     - Admin model, migrations, ............................................  [Done]
     - Admins rules and permissions ........................................  [Done]
     - laratrust:seeder(master_admin) ......................................  [Done]
-    - admins/index & adminController@index and Delete:....................   [Done]
+    - admins/index & adminController@index and Delete:.....................  [Done]
         - show all admins
         - search admins by name or email
         - add, edit, delete buttons and function

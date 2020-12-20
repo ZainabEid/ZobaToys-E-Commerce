@@ -29,7 +29,7 @@
                                 value="{{ old('name') }}">
                         </div>
 
-                        {{-- phone --}}
+                        {{-- phone --}}     
                         @for ($i = 0; $i < 2; $i++)
                             <div class="form-group">
                                 <label for="phone">@lang('site.phone')</label>
