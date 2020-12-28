@@ -13,11 +13,16 @@ return [
 
     'roles_structure' => [
         'super_admin' => [
+            'purchases' => 'c,r,u,d',
+            'groups' => 'c,r,u,d',
+            'suppliers' => 'c,r,u,d',
+            'supplies' => 'c,r,u,d',
             'categories' => 'c,r,u,d',
             'products' => 'c,r,u,d',
             'clients' => 'c,r,u,d',
             'orders' => 'c,r,u,d',
             'admins' => 'c,r,u,d',
+           
             
         ],
         'admin' => [],

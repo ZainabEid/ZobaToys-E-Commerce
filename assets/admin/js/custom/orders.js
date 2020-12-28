@@ -96,6 +96,7 @@ $(document).ready(function () {
 // calculate total price
 function calculate_total() {
     var total = 0;
+    alert('hi');
     
     $('.order-list .product-price').each(function (index) {
         total += parseFloat($(this).html().replace(/,/g, ''));

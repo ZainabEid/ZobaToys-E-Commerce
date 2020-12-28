@@ -73,8 +73,10 @@
                                                                                 data-name="{{ $product->name }}"
                                                                                 data-stock="{{ $product->stock }}"
                                                                                 data-id="{{ $product->id }}"
-                                                                                data-price="{{ $product->sale_price }}"><i
-                                                                                    class="fa fa-plus"></i></a></td>
+                                                                                data-price="{{ $product->sale_price }}">
+                                                                                <i class="fa fa-plus"></i>
+                                                                            </a>
+                                                                        </td>
                                                                     </tr>
                                                                 @endforeach
                                                             </tbody>
@@ -82,7 +84,8 @@
                                                         </table>
                                                     </div>
                                                 @else
-                                                    <h2> @lang('site.data-not-found')</h2>
+                                                <h2> @lang('site.data-not-found')</h2>
+
                                                 @endif
 
                                             </div>{{-- end of card content
@@ -129,7 +132,7 @@
                                     <thead>
                                         <tr>
                                             <th>@lang('site.product')</th>
-                                            <th>@lang('site.quentity')</th>
+                                            <th>@lang('site.quantity')</th>
                                             <th>@lang('site.price')</th>
                                             <th>@lang('site.delete')</th>
                                         </tr>
@@ -153,7 +156,6 @@
                                         </div>
                                     </tfoot>
 
-                                    <h2> @lang('site.data-not-found')</h2>
 
                                 </table>{{-- end of table --}}
 
@@ -173,19 +175,19 @@
 
                     
                     {{-- if there is previous orders show them --}}
-                    @if ($client->order()->count() > 0)
                     
-                        {{-- order history --}}
-                        <div class="card ">
-
-                            <div class="card-header with-border">
-                                <h4 class="mt-4"> @lang('site.previous-orders')
-                                    <small>( {{ $orders->total() }}
-                                        @lang('site.orders'))
-                                    </small>
-                                </h4>
-                            </div> {{--  end of card header --}}
-
+                    {{-- order history --}}
+                    <div class="card ">
+                        
+                        <div class="card-header with-border">
+                            <h4 class="mt-4"> @lang('site.previous-orders')
+                                <small>( {{ $orders->total() }}
+                                    @lang('site.orders'))
+                                </small>
+                            </h4>
+                        </div> {{--  end of card header --}}
+                        
+                        @if ($client->order()->count() > 0)
                             
                             @foreach ($orders as $index => $order)
                             
@@ -233,11 +235,11 @@
                                 {{-- end of collaps of order
                                 --}}
                        
+                                @else
+                                    <h2> @lang('site.data-not-found')</h2>
+                                @endif
                     </div>{{-- end of order history card --}}
 
-                    @else
-                        <h2> @lang('site.data-not-found')</h2>
-                    @endif
                
                
                 </div> {{-- end of left col-md-6 --}}

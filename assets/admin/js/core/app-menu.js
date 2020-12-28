@@ -282,7 +282,7 @@
               if( searchFilter.parent().hasClass('has-sub') ){
                 searchFilter.show()
                 .parents('li').show()
-                //.addClass('open')
+                .addClass('open')
                 .closest('li')
                 .children('a').show()
                 .children('li').show();
@@ -294,7 +294,7 @@
 
               }
               else{
-                searchFilter.show().parents('li').show().closest('li').children('a').show();
+                searchFilter.show().parents('li').show().addClass('open').closest('li').children('a').show();
               }
             } else {
               // return to default
@@ -738,7 +738,7 @@
       }).on('open.app.menu', 'li', function(e) {
 
         var $listItem = $(this);
-       // $listItem.addClass('open');
+        $listItem.addClass('open');
 
         menuObj.expand($listItem);
 

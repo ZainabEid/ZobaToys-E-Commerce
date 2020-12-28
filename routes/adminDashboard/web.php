@@ -42,7 +42,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 ##########   [Home] Routes   ##########
                 Route::get('/', 'AdminDashboardController@index')->name('index');
                 
-                
                 ##########   [Categories] Routes   ##########
                 Route::resource('categories', 'CategoryController')->except(['show']);
 
@@ -57,9 +56,21 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 ##########   [orders] Routes   ##########
                 Route::resource('orders', 'OrderController');
                 Route::get('/orders/{order}/products', 'OrderController@products')->name('orders.products');
-
                 
-               
+                ##########   [groups] Routes   ##########
+                Route::resource('groups', 'GroupController')->except(['show']);
+                
+                ##########   [Supplies] Routes   ##########
+                Route::resource('supplies', 'SupplyController')->except(['show']);
+                
+                ##########   [Suppliers] Routes   ##########
+                Route::resource('suppliers', 'Supplier\SupplierController')->except(['show']);
+                Route::resource('suppliers.purchases', 'Supplier\PurchaseController');
+                
+                ##########   [Purchase] Routes   ##########
+                Route::resource('purchases', 'PurchaseController')->except(['show']);
+                Route::get('/purchases/{purchase}/supplies', 'PurchaseController@supplies')->name('purchases.supplies');
+                
 
             });//end of auth:admin
 

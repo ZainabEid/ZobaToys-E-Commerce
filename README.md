@@ -56,6 +56,19 @@ ________________________________________________________________________________
             - show the order card 
                 - increase and decrese quentity
                 - automatic count totals
+    - Home Page: ......................................................... [Working]
+        - short links to navs [Done]
+        - sell orders summery ...
+        - Buy orders summery ...
+        - active order table ...
+    - Materials Model : .................................................... [Working]
+        - index page (show all materials)
+        - create new material file
+        - edit 
+    - Buying Orders:
+        - buy new order
+        - show all buying orders
+        - edit orders
 
     _____________________________________Git Push order model___________________________________
 

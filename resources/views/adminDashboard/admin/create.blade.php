@@ -79,7 +79,7 @@
 
                             @php
 
-                            $models = ['admins','categories','products', 'clients', 'orders','suppliers', 'production_cycles',
+                            $models = ['admins','categories','products', 'clients', 'orders','suppliers', 'supplies', 'groups',  'production_cycles',
                             ];
                             $maps = ['read','create','update','delete', ];
 

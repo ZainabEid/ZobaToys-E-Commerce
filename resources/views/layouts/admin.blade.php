@@ -45,19 +45,24 @@
           100% { transform: rotate(360deg); }
 }
       </style>
+    {{-- line-awsom --}}
+    <link type="text/css" rel="stylesheet" href="assets/line-awesome-1.3.0/1.3.0/css/line-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="assets/line-awesome-1.3.0/1.3.0/css/line-awesome.css">
+
     {{-- font-awsom --}}
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/fontawesome.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/brands.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/solid.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/all.css') }}" rel="stylesheet">
+    
 
     <link rel="apple-touch-icon" href="{{ asset('assets/admin/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('asstes/admin/images/ico/favicon.ico') }}">
     <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-        rel="stylesheet">
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
+    rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
-
+    
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css-rtl/plugins/animate/animate.css') }}">
 
 
@@ -254,6 +259,7 @@
     
    <!-- CUSTOM JS-->
     <script src="{{ asset('assets/admin/js/custom/orders.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/purchases.js') }}"></script>
 
 
 </body>

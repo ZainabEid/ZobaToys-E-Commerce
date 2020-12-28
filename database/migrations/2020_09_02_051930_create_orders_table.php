@@ -17,6 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->bigInteger('client_id')->unsigned();
             $table->double('total_price', 8 ,2)->nullable();
+            $table->boolean('paid_trigger')->default(false);
+            $table->string('status')->default('created');
 
             $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();

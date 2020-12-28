@@ -7,22 +7,29 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'client_id', 'total_price'
+        'client_id', 'total_price', 'paid_trigger', 'status'
     ];
 
 
-    ############## relationships ###################
+
+    ############## Start Relations ###################
     
     // one to many --> a client has many orders
     public function client()
     {
         return $this->belongsTo(Client::class);
     }
-
+    
     // many to many --> orders has many products , products belongs to may orders
-    public function product()
+    public function products()
     {
         return $this->belongsToMany(Product::class)->withPivot('quantity');
     }
+    ############## End Relations ###################
+
+  public function paid_trigger()
+  {
+      return ($this->paid_trigger ? true : false);
+  }//end of paid_trigger function
 
 }// end of model

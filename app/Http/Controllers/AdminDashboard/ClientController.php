@@ -46,12 +46,6 @@ class ClientController extends Controller
         return redirect()->route('adminDashboard.clients.index');
     }
 
-   
-    public function show(Client $client)
-    {
-        //
-    }
-
     
     public function edit(Client $client)
     {
