@@ -42,6 +42,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 ##########   [Home] Routes   ##########
                 Route::get('/', 'AdminDashboardController@index')->name('index');
                 
+               
+                
                 ##########   [Categories] Routes   ##########
                 Route::resource('categories', 'CategoryController')->except(['show']);
 
@@ -54,8 +56,11 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::resource('clients.orders', 'Client\OrderController');
                 
                 ##########   [orders] Routes   ##########
+                Route::get('/orders/approve_all', 'OrderController@approve_all')->name('orders.approve_all');
                 Route::resource('orders', 'OrderController');
                 Route::get('/orders/{order}/products', 'OrderController@products')->name('orders.products');
+                Route::get('/orders/{status}{order}/change_status', 'OrderController@change_status')->name('orders.change_status');
+                Route::get('/orders/{order}/paid', 'OrderController@paid')->name('orders.paid');
                 
                 ##########   [groups] Routes   ##########
                 Route::resource('groups', 'GroupController')->except(['show']);
@@ -66,7 +71,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 ##########   [Suppliers] Routes   ##########
                 Route::resource('suppliers', 'Supplier\SupplierController')->except(['show']);
                 Route::resource('suppliers.purchases', 'Supplier\PurchaseController');
-                
+                           
                 ##########   [Purchase] Routes   ##########
                 Route::resource('purchases', 'PurchaseController')->except(['show']);
                 Route::get('/purchases/{purchase}/supplies', 'PurchaseController@supplies')->name('purchases.supplies');
@@ -94,6 +99,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 Route::get('/{admin}/edit', 'AdminController@edit')->name('edit');
                 Route::put('/{admin}', 'AdminController@update')->name('update');
                 Route::delete('/{admin}', 'AdminController@destroy')->name('destroy');
+                Route::get('/{admin}', 'AdminController@show')->name('show');
 
             }); //auth: admin, namespace: Admin
 

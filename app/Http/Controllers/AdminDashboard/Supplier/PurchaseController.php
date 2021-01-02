@@ -97,5 +97,28 @@ class PurchaseController extends Controller
         }// end of foreach
 
         $purchase->delete();
-    }// end of detac purchase
+    }// end of detach purchase
+
+
+    public function cancel(Supplier $supplier, Purchase $purchase)
+    {
+        
+    }// end of cancel
+
+    public function approve(Supplier $supplier, Purchase $purchase)
+    {
+        
+    }// end of approve
+
+    public function ship(Supplier $supplier, Purchase $purchase)
+    {
+        
+    }// end of ship
+
+    public function deliverd(Supplier $supplier, Purchase $purchase)
+    {
+        
+    }// end of deliverd
+    
+
 }// end of supplier/purchase contrller

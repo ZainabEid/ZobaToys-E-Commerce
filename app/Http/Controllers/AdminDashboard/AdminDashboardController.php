@@ -23,8 +23,21 @@ class AdminDashboardController extends Controller
         $clients_count = Client::count(); 
         $suppliers_count = Supplier::count(); 
         $supplies_count = Supply::count(); 
-        $orders = Order::all(); 
-        $purchases = Purchase::all(); 
-        return view('adminDashboard.index', compact('admins_count','categories_count','products_count', 'clients_count','suppliers_count', 'supplies_count','orders', 'purchases'));
+
+        // get latest paid delivered orders
+        $paid_orders = Order::where('paid_trigger', true)
+                            ->where('status','delivered')
+                            ->latest()->take(5)->get();
+
+        // get latest paid deliverd purchases 
+        $purchases = Purchase::latest()->take(5)->get();
+
+        // get latest un delivered and un canceled orders and purchases
+        $active_orders = Order::where('status', 'NOT LIKE','delivered')
+                                ->where('status', 'NOT LIKE','canceled')
+                                ->latest()->take(10)->get();
+       
+
+        return view('adminDashboard.index', compact('admins_count','categories_count','products_count', 'clients_count','suppliers_count', 'supplies_count','paid_orders', 'purchases','active_orders'));
     }
 }

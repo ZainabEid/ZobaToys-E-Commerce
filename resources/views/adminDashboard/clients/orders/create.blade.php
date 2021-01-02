@@ -150,20 +150,54 @@
                                                 <td colspan="3">
                                                     <h3> @lang('site.total')</h3>
                                                 </td>
-                                                <td colspan="1" class="total-price"></td>
+                                                <td colspan="1" class="total-price">{{-- managed in js --}}</td>
                                             </div>
-
                                         </div>
                                     </tfoot>
-
 
                                 </table>{{-- end of table --}}
 
                                 {{-- card footer: add order button --}}
                                 <div class="card-footer">
-                                    <button type="submit"  class="btn btn-info w-100 disabled" id="add-order-form-button">
-                                        <i class="fa fa-plus"></i> @lang('site.add-order')
-                                    </button>
+                                    <div class="row ">
+                                        <div class="col-6">
+                                            <label for="paid_trigger"> @lang('site.payment-method')</label>
+                                            <div >
+                                                <label>
+                                                    <input type="radio" name="paid_trigger"  value="cash" checked >
+                                                    @lang('site.cash')
+                                                </label>
+                                                <label >
+                                                    <input type="radio" name="paid_trigger" value="credit">
+                                                @lang('site.not-paid')
+                                                </label>
+                                            
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <label for="ship_trigger"> @lang('site.deliver-method')</label>
+                                            <div >
+                                                <label>
+                                                    <input type="radio" name="ship_trigger" value="shipment" checked>
+                                                    @lang('site.shipment')
+                                                </label>
+                                                <label >
+                                                    <input type="radio" name="ship_trigger" value="warehouse" >
+                                                @lang('site.warehouse')
+                                                </label>
+                                            
+                                            </div>
+                                        </div>
+                                        
+                                    </div> {{--  end of row --}}
+                                    
+                                    <div class="row">
+                                        <button type="submit"  class="btn btn-info w-100 disabled" id="add-order-form-button">
+                                            <i class="fa fa-plus"></i> @lang('site.add-order')
+                                        </button>
+                                    </div>
+                                    
                                 </div>{{-- end of card footer --}}
 
                             </div>{{-- end of card body --}}
@@ -216,7 +250,7 @@
 
                                                 <ul class="list-group">
 
-                                                    @foreach ( $order->product as $product )
+                                                    @foreach ( $order->products as $product )
                                                         <li class="list-group-item">{{ $product->name }}</li>
                                                     @endforeach
 

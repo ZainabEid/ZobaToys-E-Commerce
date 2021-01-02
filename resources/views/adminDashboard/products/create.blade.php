@@ -66,7 +66,7 @@
                         <div class="form-group">
                             <h5>@lang('site.image')</h5>
                             <div class="custom-file">
-                                <input type="file" multiple="multiple" class="custom-file-input photo" name="image[]" >
+                                <input type="file" multiple="multiple" class="custom-file-input photo" name="images[]" >
                                 <label class="custom-file-label" for="image" > @lang('site.choose-image') </label>
                             </div>
                             

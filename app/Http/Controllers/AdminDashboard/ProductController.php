@@ -60,7 +60,7 @@ class ProductController extends Controller
 
             $product_image = new Productimage();
             $product_image->image = $image->hashName();
-            $product->productimage()->save($product_image);
+            $product->productimages()->save($product_image);
         }
 
          
@@ -93,14 +93,14 @@ class ProductController extends Controller
         $request->validate($rules);
         
         
-        $requested_data = $request->except(['_token','image']);
+        $requested_data = $request->except(['_token','images']);
         $product = Product::create($requested_data);
 
         
         ########## if it is images add them to the product ##########
         if ($request->image) {
 
-            $this->handelingImages($request->image , $product);
+            $this->handelingImages($request->images , $product);
             
         }else{
             $product_image = new Productimage();

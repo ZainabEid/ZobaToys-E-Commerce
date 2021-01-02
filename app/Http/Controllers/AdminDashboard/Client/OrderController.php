@@ -21,7 +21,7 @@ class OrderController extends Controller
     public function create(Client $client)
     {
         $categories = Category::all();
-        $orders = $client->order()->with('product')->paginate(5);
+        $orders = $client->order()->with('products')->paginate(5);
         return view('adminDashboard.clients.orders.create', compact('client','categories','orders'));
     }// end of create
 
@@ -30,6 +30,7 @@ class OrderController extends Controller
     {
        $request->validate([
            'products'=>'required|array',
+          
        ]);
 
        $this->attach_order($request,$client);
@@ -73,8 +74,13 @@ class OrderController extends Controller
 
     private function attach_order($request,$client)      
     {
-        $order = $client->order()->create([]);
-       $order->product()->attach($request->products);
+        $paid_trigger = $request->paid_trigger == 'cash' ?  true : false;
+        $ship_trigger = $request->ship_trigger == 'shipment' ?  true : false;
+        $order = $client->order()->create([
+            'paid_trigger' => $paid_trigger,
+            'ship_trigger' =>  $ship_trigger ,
+        ]);
+       $order->products()->attach($request->products);
 
 
        $total_price = 0;
@@ -96,7 +102,7 @@ class OrderController extends Controller
     private function detach_order($order)
     {
         
-        foreach ($order->product as $product) {
+        foreach ($order->products as $product) {
             
             $product->update([
                 'stock' => $product->stock + $product->pivot->quantity,
@@ -106,4 +112,8 @@ class OrderController extends Controller
 
         $order->delete();
     }
-}
+
+    
+   
+    
+}//end of client order controller

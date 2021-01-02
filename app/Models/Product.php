@@ -26,7 +26,7 @@ class Product extends Model
     }
     
     // one to many --> a product has many images
-    public function productimage()
+    public function productimages()
     {
         return $this->hasMany(Productimage::class);
     }
@@ -35,7 +35,8 @@ class Product extends Model
     public function order()
     {
         return $this->belongsToMany(Order::class);
-    }
+    }// end of order
+
     
     ############## Getting Attributes ###################
 

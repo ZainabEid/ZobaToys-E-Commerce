@@ -40,6 +40,9 @@ class PurchaseController extends Controller
     public function store(Request $request)
     {//redirect to supplier.purchase.create
 
+        $request->validate([
+            'supplier_id' => 'required',
+        ]);
         $supplier = Supplier::findOrFail($request->supplier_id);
         return redirect()->route('adminDashboard.suppliers.purchases.create' , $supplier );
    

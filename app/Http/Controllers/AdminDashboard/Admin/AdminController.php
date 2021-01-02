@@ -35,6 +35,11 @@ class AdminController extends Controller
         
 
         return view('adminDashboard.admin.index', compact('admins'));
+    }// end of admin index
+
+    public function show(Admin $admin)
+    {
+        return view('adminDashboard.admin.show', compact('admin'));
     }
     
     /** create: create new admin,  */ 

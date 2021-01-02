@@ -32,7 +32,7 @@
 
                         {{-- slides indecators --}}
                         <ol class="carousel-indicators">
-                            @foreach ($product->productimage as $index => $image)
+                            @foreach ($product->productimages as $index => $image)
 
                                 <li data-target="#product_photo" data-slide-to="{{ $index }}"
                                     class="{{ $index == 0 ? 'active' : '' }}"></li>
@@ -40,11 +40,11 @@
                             @endforeach
 
                         </ol>
-
+                        
                         {{-- slider images --}}
                         <div class="carousel-inner">
 
-                            @foreach ($product->productimage as $index => $image)
+                            @foreach ($product->productimages as $index => $image)
                                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                     <img class="d-block w-100" src="{{ $image->image_path }}">
                                 </div>

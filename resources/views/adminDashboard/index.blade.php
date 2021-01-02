@@ -228,10 +228,10 @@
                     <div class="col-12 col-xl-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">@lang('site.clients-orders')  ({{ count(App\Models\Order::all()) }})</h4>
+                                <h4 class="card-title">@lang('site.clients-orders')  ({{ $paid_orders->count() }})</h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
-                                    <p class="text-muted">@lang('site.total-income'): {{ App\Models\Order::sum('total_price') }}</p>
+                                    <p class="text-muted">@lang('site.total-income'): {{ $paid_orders->sum('total_price') }}</p>
                                 </div>
                             </div>
                             <div class="card-content">
@@ -246,7 +246,7 @@
                                         </thead>
                                         <tbody>
 
-                                            @foreach ($orders as $index=>$order)
+                                            @foreach ($paid_orders as $index=>$order)
                                                 <tr class="@if($index==0) bg-success @endif bg-lighten-5">
                                                     <td>{{ $order->client->name }}</td>
                                                     <td> ({{ $order->products->count()}})
@@ -266,10 +266,10 @@
                     <div class="col-12 col-xl-6">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">@lang('site.purchases') : ({{ count(App\Models\Purchase::all()) }})</h4>
+                                <h4 class="card-title">@lang('site.purchases') : ({{ $purchases->count() }})</h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
-                                    <p class="text-muted">@lang('site.total-expenses'): {{  App\Models\Purchase::sum('total_price')}}</p>
+                                    <p class="text-muted">@lang('site.total-expenses'): {{  $purchases->sum('total_price')  }}</p>
                                 </div>
                             </div>
                             <div class="card-content">
@@ -301,18 +301,20 @@
                         </div>
                     </div>
                 </div>
-                <!--/ Sell Orders & Buy Order -->
                 <!-- Active Orders -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4 class="card-title">@lang('site.active-order')</h4>
+                                <h4 class="card-title">@lang('site.active-order') : ({{ $active_orders->count() }})</h4>
                                 <a class="heading-elements-toggle"><i class="la la-ellipsis-v font-medium-3"></i></a>
                                 <div class="heading-elements">
                                     <td>
-                                        <button class="btn btn-sm round btn-danger btn-glow"><i
-                                                class="la la-close font-medium-1"></i> Cancel all</button>
+                                        <a class="btn btn-sm round btn-info btn-glow" 
+                                                href="{{ route('adminDashboard.orders.approve_all') }}" >
+                                            <i class="la la-close font-medium-1"></i>
+                                             @lang('site.approve-all')
+                                        </a>
                                     </td>
                                 </div>
                             </div>
@@ -331,33 +333,54 @@
                                                 <th>@lang('site.action')</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            @foreach ($orders as $order)
-                                            <tr class="{{ ($order->paid) ?  'bg-success'  : 'bg-danger'}} bg-lighten-5">
+                                        <tbody id="active-orders">
+                                            @foreach ($active_orders as $order)
+                                            <tr class="{{ ($order->paid_trigger) ?  ''  : 'bg-danger'}} bg-lighten-5">
                                                 <td>{{ $order->created_at->toFormattedDateString() }}</td>
                                                 <td class="{{ (($order->status=='created') ?  'danger' : 'success') }}">{{ $order->status }}</td>
-                                                <td> {{ $order->client->name }}</td>
+                                                <td> {{ ($order->client) ? $order->client->name : $order->supplier->name  }}</td>
                                                 <td>
-                                                     @foreach ($order->products as $product)
+                                                    @foreach ($order->products as $product)
                                                     {{ $product->name }},
                                                     @endforeach
                                                 </td>
                                                 <td>{{  number_format($order->total_price , 2) }} </td>
                                                 <td>% 0 </td>
-                                                <td>{{ $order->paid_trigger() ? 'paid' : 'not paid' }}</td>
-                                                <td>
-                                                    @if ($order->status=='created')
-                                                        <button class="btn btn-sm round btn-outline-danger"> @lang('site.cancel')</button>
-                                                        <button class="btn btn-sm round btn-outline-success"> @lang('site.approve')</button>
-                                                        
-                                                    @elseif ($order->status == 'approved')
-                                                    <button class="btn btn-sm round btn-outline-info"> @lang('site.ship')</button>
-                                                   
-                                                    @elseif ($order->status == 'shipped')
-                                                    <button class="btn btn-sm round btn-outline-danger"> @lang('site.delivered')</button>
-                                                    
+                                                <td >
+                                                    @if ($order->paid_trigger)
+                                                            @lang('site.paid')
+                                                    @else
+                                                            @lang('site.not-paid')
+                                                        <a href="{{ route('adminDashboard.orders.paid',[ $order->id]) }}" class="btn btn-sm round btn-outline-success "> @lang('site.paid')</a >
+
                                                     @endif
                                                     
+                                                    
+                                                </td>
+                                                <td>
+                                                   {{-- change status buttons --}}
+                                                    @if (auth()->user()->hasPermission('update_orders'))
+                                                    @switch($order->status)
+                                                    @case('created')
+                                                        <a href="{{ route('adminDashboard.orders.change_status',[ "canceled", $order->id]) }}" class="btn btn-sm round btn-outline-danger  {{ $order->paid_trigger ? 'disabled'  : ''}} "> @lang('site.cancel')</a >
+                                                        <a href="{{ route('adminDashboard.orders.change_status',[ "approved", $order->id]) }}" class="btn btn-sm round btn-outline-info "> @lang('site.approve')</a >
+                                                    @break  
+                                                    @case('approved')
+                                                        @if ($order->ship_trigger)
+                                                            <a href="{{ route('adminDashboard.orders.change_status',[ "shipped", $order->id]) }}" class="btn btn-sm round btn-outline-warning "> @lang('site.ship')</a >
+                                                        @else
+                                                        <a href="{{ route('adminDashboard.orders.change_status',[ "delivered", $order->id]) }}" class="btn btn-sm round btn-outline-success {{ $order->paid_trigger ? '' : 'disabled' }} "> @lang('site.delivered')</a >
+                                                        @endif
+                                                    @break
+
+                                                    @case('shipped')
+                                                        <a href="{{ route('adminDashboard.orders.change_status',[ "delivered", $order->id]) }}" class="btn btn-sm round btn-outline-success {{ $order->paid_trigger ? '' : 'disabled' }} "> @lang('site.delivered')</a >
+                                                    @break
+
+                                                    @endswitch
+                                                    
+                                                @endif
+
                                                 </td>
                                             </tr>
                                             @endforeach

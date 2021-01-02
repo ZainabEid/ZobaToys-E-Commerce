@@ -100,7 +100,7 @@
                                                     <td>
                                                         <div class="d-flex flex-column">
                                                             <img class="rounded img-thumbnail" style="width: 100px" 
-                                                            src="{{ $product->productimage()->first()->image_path ?? '' }}" alt="{{ $product->name }}">
+                                                            src="{{ $product->productimages()->first()->image_path ?? '' }}" alt="{{ $product->name }}">
                                                             <a href="{{ route('adminDashboard.products.show',$product->id   ) }}" class="btn btn-info">
                                                                  @lang('site.show-product-images')
                                                             </a>

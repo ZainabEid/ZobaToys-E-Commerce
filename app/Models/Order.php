@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $fillable = [
-        'client_id', 'total_price', 'paid_trigger', 'status'
+        'client_id', 'total_price', 'paid_trigger', 'status','ship_trigger'
     ];
 
 
@@ -29,7 +29,13 @@ class Order extends Model
 
   public function paid_trigger()
   {
-      return ($this->paid_trigger ? true : false);
+      return ($this->paid_trigger ? 'cash' : 'credit');
   }//end of paid_trigger function
+
+  public function ship_trigger()
+  {
+      return ($this->paid_trigger ? 'shipment' : 'warehouse');
+  }//end of paid_trigger function
+
 
 }// end of model

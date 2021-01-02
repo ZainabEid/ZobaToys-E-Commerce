@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Purchase extends Model
 {
     protected $fillable = [
-        'supplier_id', 'total_price'
+        'supplier_id', 'total_price',   
     ];
 
 
@@ -27,5 +27,7 @@ class Purchase extends Model
 
     ######### End Relations #########
 
+   
+  
 
 }//end of model

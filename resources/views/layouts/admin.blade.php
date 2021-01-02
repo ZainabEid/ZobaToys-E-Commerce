@@ -289,7 +289,7 @@
                 }
             });
         }
-    }
+    });
 
     //image preview
     $(".photo").change(function() { // .image : input field class name

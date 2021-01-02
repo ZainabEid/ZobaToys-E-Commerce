@@ -12,11 +12,7 @@ class Admin extends Authenticatable
     use LaratrustUserTrait;
     //use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+   
     protected $fillable = [
         'name', 'email', 'phone', 'photo', 'password', 'created_at', 'updated_at',
     ];
@@ -32,5 +28,9 @@ class Admin extends Authenticatable
     public function getImagePathAttribute()
     {
         return asset('public/uploads/admin_images/'.$this->photo);
-    }
+    }// end of get image path attribute
+
+    ############ Start Relations #############    
+   
+    ############ End  Relations #############    
 }

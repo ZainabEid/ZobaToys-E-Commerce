@@ -11,9 +11,42 @@ return [
     */
 
    /* header */
-   'hellow' => 'مرجبا',
+   'hello' => 'مرجبا',
    'edit-profile' => 'تعديل الملف الشحصي ',
    'logout' => 'تسجيل الخروج ',
+   'ZobaToys' => 'Zoba Toys  ',
+   'new' => 'جديد',
+   
+   /* notifications */
+   'hour' => 'ساعة',
+   'ago' => 'منذ',
+   'minutes' => 'دقائق',
+   'today' => 'اليوم',
+   'last' => 'السابق ',
+   'week' => 'الاسبوع ',
+   'month' => 'الشهر ',
+   'read-all-notifications' => 'اقرأ جميع الاشعارات',
+   'you-have-new-order' => 'لديك طلبية جديدة ',
+   'new-order-message' => 'العميل "حضانة المستقبل" قام بطلب جديد ينتظر التأكيد ',
+   'inventory-empty' => 'المخزن فارغ ',
+   'inventory-empty-message' => 'انتهى مخزون المنتج  - وتم ايقاف عرضه لحين اعادة ملؤه',
+   'inventory-empty-worning' => 'تنبيه - المخزن اوشك على النفاذ ',
+   'inventory-empty-worning-message' => 'المخزن اوشك على النفاذ  للمنتج برجاء اعادة ملؤه قبل انتهاؤه تماما',
+   'complete-task' => 'اكتملت المهمة ',
+   'complete-task-message' => 'شكرا لك .. لقد اتممت قائمة مهامك اليوم ',
+   'generate-monthly-report' => 'اصدار التقرير الشهري',
+   'generate-monthly-report-message' => 'تم اصدار التقرير الشهري للمبيعات يمكنك الاطلاع عليه وطباعته',
+   
+   /* messages */
+   'Tuesday' => 'الثلاثاء',
+   'Friday' => 'الجمعة',
+   'read-all-messages' => 'اقرأ جميع الرسائل',
+   'message' => 'رسالة',
+   'messages' => 'رسائل',
+   'message1' => 'تم تسليم الموارد الاتية للمخزن',
+   'message2' => 'خطة التسويق والدعايا والاعلان جاهزة',
+   'message3' => 'هل يمكن تنظيم اجتماع هذا الاسبوع؟',
+   'message4' => 'يوجد عطل في المصنع, سيتم تأخير الانتاج لمدة اسبوع',
 
    /* side bar */
    'dashboard' => "الرئيسية",
@@ -52,6 +85,8 @@ return [
 
    /* Edit Admin Form  */
    'edit-admin-data' => 'تعديل بيانات مشرف',
+   'show-profile' => '  عرض الصفحة الشخصية ',
+   'profile' => '  الصفحة الشخصية',
 
 
 
@@ -71,6 +106,7 @@ return [
    'submit' => " أضف",
    'description' => " الوصف ",
    'permissions' => "الصلاحيات",
+   'job' => "الوظيفة",
 
    /*  Admin Controller  */
    'added-successfuly' => 'تم اضافة البيانات بنجاح',
@@ -104,6 +140,7 @@ return [
    'product-name' => 'اسم المنتج',
    'product-description' => 'وصف المنتج',
    'next' => 'التالي',
+   'change-status' => 'تغير الحالة  ',
 
 
    'add-new-product' => 'اضف منتج جديد',
@@ -127,6 +164,8 @@ return [
    'enter-address' => 'ادخل العنوان',
    'enter-phone' => 'ادخل رقم الهاتف',
    'edit-client' => 'تعديل بيانات العميل',
+   'choose-client' => 'اختر العميل',
+   'client' => 'العميل',
    
    /** Clients Orders */
    'order' => 'الطلب',
@@ -148,6 +187,11 @@ return [
    'loading' => 'جاري التحميل',
    'print' => 'طباعة ',
    'previous-orders' => 'الطلبات السابقة ',
+   'payment-method' => 'طرق الدفع  ',
+   'cash' => ' كاش ',
+   'deliver-method' => 'طرق الاستلام  ',
+   'shipment' => ' شحن ',
+   'warehouse' => 'في المكتب  ',
    
    // Supplyers
    'supplies' => 'الموارد ',
@@ -212,10 +256,20 @@ return [
    'total-expenses' => 'اجمالي المصروف',
    'total-income' => 'اجمالي الدخل',
    'clients-orders' => 'طلبات العملاء',
-   'active-order' => 'الطلبات النشطة',
+   'active-order' => 'طلبات العملاء النشطة',
    'discount' => 'نسبة الخصم',
    'check-if-paid' => 'مدفوع',
    'date' => 'التاريخ',
+   'cancel' => 'الغاء',
+   'canceled' => 'ملغي',
+   'approve' => 'تأكيد',
+   'approve-all' => ' تأكيد الكل',
+   'approved' => 'تم التأكيد',
+   'delivered' => 'تم التسليم',
+   'ship' => 'شحن',
+   'shipped' => 'تم الشحن',
+   'not-paid' => 'آجل ',
+   'paid' => 'مدفوع ',
 
    /** Localization  */
    'ar' => [

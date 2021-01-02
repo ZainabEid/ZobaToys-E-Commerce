@@ -3,7 +3,7 @@
     <div class="main-menu-content">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-            <li class="nav-item active" ><a href=""><i class="la la-mouse-pointer"></i><span class="menu-title"
+            <li class="nav-item active" ><a href="{{ route('adminDashboard.index') }}"><i class="la la-mouse-pointer"></i><span class="menu-title"
                         data-i18n="nav.add_on_drag_drop.main">@lang('site.dashboard') </span></a>
             </li>
 
@@ -93,7 +93,7 @@
              <li class="nav-item  @if(Request::is('adminDashboard/products*')) open @endif">
                 <a href=""><i class="la la-television"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.products') </span>
-                    <span class="badge badge badge-success badge-pill float-right mr-2"> {{ count(App\Models\Product::all()) > 0  ? count(App\Models\Product::all()) : 0 }}</span>
+                    <span class="badge badge bg-yellow badge-pill float-right mr-2"> {{ count(App\Models\Product::all()) > 0  ? count(App\Models\Product::all()) : 0 }}</span>
                 </a>
                 <ul class="menu-content">
 
@@ -120,7 +120,7 @@
              <li class="nav-item  @if(Request::is('adminDashboard/clients*')) open @endif">
                 <a href=""><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.clients') </span>
-                    <span class="badge badge badge-info badge-pill float-right mr-2"> {{ count(App\Models\Client::all()) > 0  ? count(App\Models\Client::all()) : 0 }}</span>
+                    <span class="badge badge badge-success badge-pill float-right mr-2"> {{ count(App\Models\Client::all()) > 0  ? count(App\Models\Client::all()) : 0 }}</span>
                 </a>
                 <ul class="menu-content">
 
@@ -147,7 +147,7 @@
              <li class="nav-item  @if(Request::is('adminDashboard/orders*')) open @endif">
                 <a href=""><i class="la la-shopping-cart"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.orders') </span>
-                    <span class="badge badge badge-warning badge-pill float-right mr-2"> {{ count(App\Models\Order::all()) > 0  ? count(App\Models\Order::all()) : 0 }}</span>
+                    <span class="badge badge bg-cyan badge-pill float-right mr-2"> {{ count(App\Models\Order::all()) > 0  ? count(App\Models\Order::all()) : 0 }}</span>
                 </a>
                 <ul class="menu-content">
 
@@ -186,7 +186,7 @@
             <li class="nav-item  @if(Request::is('adminDashboard/groups*')) open @endif">
                 <a href=""><i class="la la-map"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.groups') </span>
-                    <span class="badge badge badge-success badge-pill float-right mr-2"> {{ count(App\Models\Group::all()) > 0  ? count(App\Models\Group::all()) : 0 }} </span>
+                    <span class="badge badge badge-warning badge-pill float-right mr-2"> {{ count(App\Models\Group::all()) > 0  ? count(App\Models\Group::all()) : 0 }} </span>
                 </a>
                 <ul class="menu-content">
 
@@ -214,7 +214,7 @@
                 <li class="nav-item  @if(Request::is('adminDashboard/supplies*')) open @endif">
                     <a href=""><i class="la la-truck"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">@lang('site.supplies') </span>
-                        <span class="badge badge badge-warning badge-pill float-right mr-2"> {{ count(App\Models\Supply::all()) > 0  ? count(App\Models\Supply::all()) : 0 }}</span>
+                        <span class="badge badge bg-yellow badge-pill float-right mr-2"> {{ count(App\Models\Supply::all()) > 0  ? count(App\Models\Supply::all()) : 0 }}</span>
                     </a>
                     <ul class="menu-content">
 
@@ -270,7 +270,7 @@
                  <li class="nav-item  @if(Request::is('adminDashboard/purchases*')) open @endif">
                     <a href=""><i class="fas fa-hand-holding-usd"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">@lang('site.purchases') </span>
-                        <span class="badge badge badge-warning badge-pill float-right mr-2"> {{ count(App\Models\Purchase::all()) > 0  ? count(App\Models\Purchase::all()) : 0 }}</span>
+                        <span class="badge badge bg-cyan badge-pill float-right mr-2"> {{ count(App\Models\Purchase::all()) > 0  ? count(App\Models\Purchase::all()) : 0 }}</span>
                     </a>
                     <ul class="menu-content">
 
