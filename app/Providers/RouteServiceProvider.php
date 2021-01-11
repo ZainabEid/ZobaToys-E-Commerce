@@ -17,6 +17,7 @@ class RouteServiceProvider extends ServiceProvider
     protected $namespace = 'App\Http\Controllers';
     protected $adminDashboard_namespace = 'App\Http\Controllers\AdminDashboard';
     protected $admin_namespace = 'App\Http\Controllers\AdminDashboard\Admin';
+    protected $shop_namespace = 'App\Http\Controllers\Shop';
 
     /**
      * The path to the "home" route for your application.
@@ -24,6 +25,7 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/home';
+    public const SHOP = '/shop';
     public const DASHBOARD = '/adminDashboard';
 
     /**
@@ -50,7 +52,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapWebRoutes();
 
         $this->mapAdminDashboardRoutes();
-
+        
+        $this->mapShopRoutes();
         
         //
     }
@@ -94,6 +97,18 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->adminDashboard_namespace)
             ->group(base_path('routes/adminDashboard/web.php'));
+    }
+
+     /**
+     * Define the "shop" routes for the application.
+     *
+     * @return void
+     */
+    protected function mapShopRoutes()
+    {
+        Route::middleware('web')
+            ->namespace($this->shop_namespace)
+            ->group(base_path('routes/shop/web.php'));
     }
 
 

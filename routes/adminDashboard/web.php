@@ -34,7 +34,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
             /*
             |--------------------------------------------------------------------------
-            | [Home - Categories] Routes - Auth:admin
+            | [Home - Categories - ...] Routes - Auth:admin
             |--------------------------------------------------------------------------
             */
             Route::group(['middleware' => 'auth:admin'], function () {

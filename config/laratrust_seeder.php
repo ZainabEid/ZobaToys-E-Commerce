@@ -25,6 +25,12 @@ return [
            
             
         ],
+        
+        'client' => [
+            'clients' => 'c,r,u,d',
+            'orders' => 'c,r,u,d',
+        ],
+
         'admin' => [],
     ],
 

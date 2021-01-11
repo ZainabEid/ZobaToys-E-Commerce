@@ -1,12 +1,12 @@
-@extends('layouts.site')
+@extends('layouts.shop')
 
 @section('content')
 <div id="main">
-
     <section id="content" class="page-home pagehome-three">
         <div class="container">
-
             <div class="row">
+
+                {{-- banner images --}}
                 <div class="nov-row spacing-30 mt-15 col-lg-12 col-xs-12">
                     <div class="nov-row-wrap row">
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
@@ -55,8 +55,12 @@
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
                     </div>
                 </div>
+
+                {{-- FLASH DEALS & NEW ARRIVALS --}}
                 <div class="nov-row  col-lg-12 col-xs-12">
                     <div class="nov-row-wrap row">
+
+                        {{-- FLASH DEALS --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/countdown_product.tpl -->
                         <div
                             class="nov-productlist nov-countdown-productlist col-xl-4 col-lg-4 col-md-4  col-xs-12 col-md-12">
@@ -71,10 +75,12 @@
                                         data-loop="false" data-margin="30" data-dots="false"
                                         data-nav="true" data-items="1" data-items_large="1"
                                         data-items_tablet="2" data-items_mobile="1">
+
                                         <div class="item item-list">
                                             <div class="product-miniature js-product-miniature first_item"
                                                 data-id-product="12" data-id-product-attribute="232"
                                                 itemscope itemtype="http://schema.org/Product">
+
                                                 <div class="thumbnail-container">
 
                                                     <a href="http://demo.bestprestashoptheme.com/savemart/ar/home-appliance/12-232-nam-volutpat-justo-a-vehicula.html#/1-الحجم-ص/11-اللون_-اسود"
@@ -98,6 +104,7 @@
 
 
                                                 </div>
+
                                                 <div class="product-description">
                                                     <div class="product-groups">
 
@@ -195,6 +202,7 @@
 
                                             </div>
                                         </div>
+
                                         <div class="item item-list">
                                             <div class="product-miniature js-product-miniature first_item"
                                                 data-id-product="15" data-id-product-attribute="303"
@@ -319,6 +327,7 @@
 
                                             </div>
                                         </div>
+
                                         <div class="item item-list">
                                             <div class="product-miniature js-product-miniature first_item"
                                                 data-id-product="16" data-id-product-attribute="323"
@@ -443,6 +452,7 @@
 
                                             </div>
                                         </div>
+                                        
                                         <div class="item item-list">
                                             <div class="product-miniature js-product-miniature first_item"
                                                 data-id-product="21" data-id-product-attribute="391"
@@ -567,15 +577,15 @@
 
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/countdown_product.tpl -->
 
+                        {{-- NEW ARRIVALS --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
-
                         <div
                             class="nov-productlist  productlist-rows     col-xl-8 col-lg-8 col-md-8 col-xs-12 col-md-12">
                             <div class="block block-product clearfix">
@@ -589,6 +599,7 @@
                                         data-loop="false" data-margin="30" data-dots="false"
                                         data-nav="true" data-items="2" data-items_large="2"
                                         data-items_tablet="3" data-items_mobile="1">
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-center product-miniature js-product-miniature item-row first_item"
                                                 data-id-product="1" data-id-product-attribute="40"
@@ -918,6 +929,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-center product-miniature js-product-miniature item-row first_item"
                                                 data-id-product="4" data-id-product-attribute="112"
@@ -1247,6 +1259,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-center product-miniature js-product-miniature item-row first_item"
                                                 data-id-product="7" data-id-product-attribute="155"
@@ -1576,6 +1589,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-center product-miniature js-product-miniature item-row first_item"
                                                 data-id-product="10" data-id-product-attribute="192"
@@ -1909,6 +1923,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-center product-miniature js-product-miniature item-row first_item"
                                                 data-id-product="14" data-id-product-attribute="270"
@@ -2246,6 +2261,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-center product-miniature js-product-miniature item-row first_item"
                                                 data-id-product="17" data-id-product-attribute="328"
@@ -2576,6 +2592,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -2584,23 +2601,26 @@
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
                     </div>
                 </div>
+
+                {{-- banner (4) & banner (5) --}}
                 <div class="nov-row spacing-30 col-lg-12 col-xs-12">
                     <div class="nov-row-wrap row">
+                        {{-- banner 4 --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
                         <div class="nov-image col-lg-6 col-md-6">
                             <div class="block">
                                 <div class="block_content">
                                     <div class="effect">
                                         <a href="#"> <img class="img-fluid"
-                                                src="/savemart/modules/novpagemanage/img/7fdfbf16d6ffe0c99cd109bd3a886527.jpg"
+                                            src="/savemart/modules/novpagemanage/img/7fdfbf16d6ffe0c99cd109bd3a886527.jpg"
                                                 alt="banner-4" title="banner-4"></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
-
+                        
+                        {{-- banner 5 --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
                         <div class="nov-image col-lg-6 col-md-6">
                             <div class="block">
@@ -2613,14 +2633,16 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/image.tpl -->
                     </div>
                 </div>
+
+                {{-- TRENDING NOW & BEST SELLERS --}}
                 <div class="nov-row  col-lg-12 col-xs-12">
                     <div class="nov-row-wrap row">
+                        
+                        {{-- TRENDING NOW --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
-
                         <div
                             class="nov-productlist   productlist-slider      col-xl-9 col-lg-9 col-md-9 col-xs-12 col-md-12 col-lg-12">
                             <div class="block block-product clearfix">
@@ -2634,6 +2656,7 @@
                                         data-loop="false" data-margin="0" data-dots="false"
                                         data-nav="true" data-items="3" data-items_large="3"
                                         data-items_tablet="3" data-items_mobile="2">
+
                                         <div class="item  text-center">
                                             <div class="product-miniature js-product-miniature item-one first_item"
                                                 data-id-product="1" data-id-product-attribute="40"
@@ -2862,6 +2885,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="product-miniature js-product-miniature item-one first_item"
                                                 data-id-product="3" data-id-product-attribute="95"
@@ -3090,6 +3114,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="product-miniature js-product-miniature item-one first_item"
                                                 data-id-product="5" data-id-product-attribute="134"
@@ -3318,6 +3343,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="product-miniature js-product-miniature item-one first_item"
                                                 data-id-product="7" data-id-product-attribute="155"
@@ -3546,6 +3572,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="product-miniature js-product-miniature item-one first_item"
                                                 data-id-product="9" data-id-product-attribute="179"
@@ -3774,6 +3801,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="product-miniature js-product-miniature item-one first_item"
                                                 data-id-product="12" data-id-product-attribute="232"
@@ -4007,15 +4035,15 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
 
+                        {{-- BEST SELLERS --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
-
                         <div
                             class="nov-productlist     productlist-liststyle-2  col-xl-3 col-lg-3 col-md-3 col-xs-12 col-md-12 col-lg-12">
                             <div class="block block-product clearfix">
@@ -4029,6 +4057,7 @@
                                         data-loop="false" data-margin="0" data-dots="false"
                                         data-nav="true" data-items="1" data-items_large="3"
                                         data-items_tablet="2" data-items_mobile="1">
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-start product-miniature js-product-miniature  first_item"
                                                 data-id-product="1" data-id-product-attribute="40"
@@ -4493,6 +4522,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-start product-miniature js-product-miniature  first_item"
                                                 data-id-product="7" data-id-product-attribute="155"
@@ -4961,6 +4991,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-start product-miniature js-product-miniature  first_item"
                                                 data-id-product="14" data-id-product-attribute="270"
@@ -5434,6 +5465,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-start product-miniature js-product-miniature  first_item"
                                                 data-id-product="21" data-id-product-attribute="391"
@@ -5823,6 +5855,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -5831,8 +5864,12 @@
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
                     </div>
                 </div>
+
+                {{-- Free Delivery & Money Back & Authenticity --}}
                 <div class="nov-row policy-home col-lg-12 col-xs-12">
                     <div class="nov-row-wrap row">
+
+                        {{-- Free Delivery --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/html.tpl -->
                         <div class="nov-html col-xl-4 col-lg-4 col-md-4">
                             <div class="block">
@@ -5848,9 +5885,9 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/html.tpl -->
 
+                        {{-- Money Back  --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/html.tpl -->
                         <div class="nov-html col-xl-4 col-lg-4 col-md-4">
                             <div class="block">
@@ -5866,9 +5903,9 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/html.tpl -->
 
+                        {{-- Authenticity --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/html.tpl -->
                         <div class="nov-html col-xl-4 col-lg-4 col-md-4">
                             <div class="block">
@@ -5888,10 +5925,13 @@
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/html.tpl -->
                     </div>
                 </div>
+
+                {{-- 3 Categories : [SMARTPHONE - GAMING GEAR - AUDIO] --}}
                 <div class="nov-row  col-lg-12 col-xs-12">
                     <div class="nov-row-wrap row">
+                        
+                        {{-- SMARTPHONE --}}
                         <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
-
                         <div
                             class="nov-productlist   productlist-liststyle    col-xl-4 col-lg-4 col-md-4 col-xs-12 col-md-12">
                             <div class="block block-product clearfix">
@@ -5905,6 +5945,7 @@
                                         data-loop="false" data-margin="0" data-dots="false"
                                         data-nav="true" data-items="1" data-items_large="1"
                                         data-items_tablet="2" data-items_mobile="1">
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-start product-miniature js-product-miniature  first_item"
                                                 data-id-product="1" data-id-product-attribute="40"
@@ -6138,6 +6179,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="item  text-center">
                                             <div class="d-flex flex-wrap align-items-start product-miniature js-product-miniature  first_item"
                                                 data-id-product="4" data-id-product-attribute="112"
@@ -6371,15 +6413,16 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
                         </div>
-
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
 
-                        <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
 
+                        {{-- GAMING GEAR --}}
+                        <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
                         <div
                             class="nov-productlist   productlist-liststyle    col-xl-4 col-lg-4 col-md-4 col-xs-12 col-md-12">
                             <div class="block block-product clearfix">
@@ -6863,11 +6906,11 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
 
-                        <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
 
+                        {{-- AUDIO --}}
+                        <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
                         <div
                             class="nov-productlist   productlist-liststyle    col-xl-4 col-lg-4 col-md-4 col-xs-12 col-md-12">
                             <div class="block block-product clearfix">
@@ -7596,14 +7639,13 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/novpagemanage/views/source/productlist.tpl -->
+
                     </div>
                 </div>
-            </div>
-            
-        </div>
-    </section>
-
-</div>
+                
+            </div>{{-- end of row --}}
+        </div>{{-- end of container --}}
+    </section>{{-- end of content section --}}
+</div> {{-- end of main div --}}
 @endsection

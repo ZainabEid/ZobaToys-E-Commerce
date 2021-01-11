@@ -20,8 +20,19 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             
-            return ($guard=='admin') ?  redirect(RouteServiceProvider::DASHBOARD) : 
-                    redirect(RouteServiceProvider::HOME) ;
+            if ($guard == 'client') {
+
+                return redirect(RouteServiceProvider::SHOP);
+
+            }elseif($guard=='admin'){
+
+                return redirect(RouteServiceProvider::DASHBOARD);
+
+            }else {
+                
+                redirect(RouteServiceProvider::HOME) ;
+            }
+                    
         }
 
         return $next($request);

@@ -9,7 +9,7 @@ class Client extends Model
 {
     
     protected $fillable = [
-        'name', 'phone', 'address',
+        'name', 'phone', 'address','email', 'username', 'password' 
     ]; 
     protected $casts = [
         'phone' => 'array',

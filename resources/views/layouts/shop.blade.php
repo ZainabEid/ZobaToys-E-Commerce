@@ -337,13 +337,13 @@
         {{-- HEADERS --}}
         <header id="header" class="header-3 sticky-menu">
 
-            @include('front.includes.header-mobile')
+            @include('shop.includes.header-mobile')
 
-            @include('front.includes.header-top')
+            @include('shop.includes.header-top')
 
-            @include('front.includes.header-center')
+            @include('shop.includes.header-center')
 
-            @include('front.includes.header-bottom')
+            @include('shop.includes.header-bottom')
 
         </header>
 
@@ -478,7 +478,7 @@
 
 
         {{-- FOOTER --}}
-        @include('front.includes.footer')
+        @include('shop.includes.footer')
         
 
         <div class="canvas-overlay"></div>
