@@ -23,7 +23,8 @@ class CreateClientsTable extends Migration
             $table->string('password');
 
 
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable() ;
         });
     }
 

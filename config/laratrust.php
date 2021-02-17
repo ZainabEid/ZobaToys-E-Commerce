@@ -64,7 +64,7 @@ return [
     | Laratrust User Models
     |--------------------------------------------------------------------------
     |
-    | This is the array that contains the information of the user models.
+    | This is the array that contai ns the information of the user models.
     | This information is used in the add-trait command, for the roles and
     | permissions relationships with the possible user models, and the
     | administration panel to attach roles and permissions to the users.

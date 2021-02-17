@@ -11,8 +11,8 @@ class AdminTableSeeder extends Seeder
     {
         // Super_Admin
         $super_admin = App\Models\Admin::create([
-            'name' => 'Super Admin',
-            'email' => 'zainabeid2012@gmail.com',
+            'name' => 'Master Admin',
+            'email' => 'master_admin@gmail.com',
             'photo' => 'super_admin.jpg',
             'phone' => '1155554444',
             'password' => bcrypt('qwertyuiop'),

@@ -1,9 +1,4 @@
-@extends('layouts.
-
-
-
-.
-login')
+@extends('layouts.login')
 
 @section('title', 'تسجيل دخول لوحة تحكم' )
     
