@@ -30,15 +30,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
 
             /*
             |--------------------------------------------------------------------------
-            | [Home - ...] Routes - Auth:user
+            | [Home - ...] Routes - no auth
             |--------------------------------------------------------------------------
             */
-            Route::group(['middleware' => 'auth:client'], function () {
 
-                 ##########   [Home] Routes   ##########
-                 Route::get('/', 'ShopController@index')->name('shop');
+            ##########   [Home] Routes   ##########
+            Route::get('/', 'ShopController@index')->name('shop');
 
-            }); // end of shop entire routes [Home - ...]
 
         });// end of shop name
     });// end of shop prefix
