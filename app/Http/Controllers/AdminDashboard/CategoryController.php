@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AdminDashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Wrap;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -24,13 +25,16 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('adminDashboard.categories.create');
+        $wraps = Wrap::all(); 
+        return view('adminDashboard.categories.create', compact('wraps'));
     } //end of ceate
 
     //Store ()
     public function store(Request $request)
     { 
-        $rules = [];
+        //dd($request->wrap_id);
+
+        $rules = ['wrap_id'=>'required'];
 
         foreach(config('translatable.locales') as $locale){
             $rules += [$locale.'.name' => ['required', Rule::unique('category_translations','name')] ]; 
@@ -51,12 +55,13 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
-        return view('adminDashboard.categories.edit', compact('category'));
+        $wraps = Wrap::all(); 
+        return view('adminDashboard.categories.edit', compact('category','wraps'));
     }
 
     public function update(Request $request, Category $category)
     {
-        $rules = [];
+        $rules = ['wrap_id'=>'required'];
 
         foreach(config('translatable.locales') as $locale){
             $rules += [$locale.'.name' => ['required', Rule::unique('category_translations','name')->ignore($category->id,'category_id')] ]; 

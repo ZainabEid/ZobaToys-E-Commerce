@@ -94,7 +94,14 @@
                                             @foreach ($products as $index => $product)
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
-                                                    <td>{{ $product->category->name }}</td>
+                                                    <td>
+                                                        @foreach ($product->category as $index=>$category)
+                                                            @if ($index>0)
+                                                            ,
+                                                            @endif
+                                                            {{ $category->name }}
+                                                        @endforeach
+                                                       </td>
                                                     <td>{{ $product->translate($locale)->name ?? $product->name }}</td>
                                                     <td>{!! $product->translate($locale)->description ?? $product->description !!}</td>
                                                     <td>

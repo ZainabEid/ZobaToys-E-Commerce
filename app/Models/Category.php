@@ -8,16 +8,27 @@ use Astrotomic\Translatable\Translatable;
 class Category extends Model
 {
     use Translatable;
+    
+    protected $fillable = ['wrap_id'];
 
     public $translatedAttributes = ['name'];
     // protected $guarded = [];
 
     protected $appends = ['products_total' ];
 
+
+    ############### relations ################
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->belongsToMany(Product::class);
     }
+    public function wrap()
+    {
+        return $this->belongsTo(Wrap::class);
+    }
+
+
+    ################ get attributes #################
 
     public function getProductsTotalAttribute()
     {

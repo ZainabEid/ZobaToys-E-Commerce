@@ -11,7 +11,7 @@ class Product extends Model
 
     public $translatedAttributes = ['name','description'];
     protected $fillable = [
-       'category_id', 'perchase_price', 'sale_price', 'stock',
+       'perchase_price', 'sale_price', 'stock',
     ];
     protected $appends = ['profit_percentage' ];
 
@@ -22,7 +22,7 @@ class Product extends Model
     // one to many --> a category has many products
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsToMany(Category::class);
     }
     
     // one to many --> a product has many images

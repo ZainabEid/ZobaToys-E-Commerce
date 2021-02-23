@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('tilte', 'Edit Ctegories')
+@section('tilte', 'Edit wraps')
 
 @section('content')
     {{-- content --}}
@@ -11,38 +11,31 @@
             <div class="card card-primary">
 
                 <div class="card-header with-border ">
-                    <h3 class="card-title">@lang('site.edit-category')</h3>
+                    <h3 class="card-title">@lang('site.edit-wrap')</h3>
                 </div>
                 <!-- end of card-header -->
 
                 @include('adminDashboard.includes.errors')
 
                 <!-- form start -->
-                <form method="POST" action="{{ route('adminDashboard.categories.update', $category->id) }}" >
+                <form method="POST" action="{{ route('adminDashboard.wraps.update', $wrap->id) }}" >
                     @csrf
                     @method('put')
                     <div class="card-body">
 
-                          {{-- wrap select --}}
-                      <div class="form-group">
-                        <label>@lang('site.category-wrap')</label>
-                        <select name="wrap_id" class="form-control">
-                            
-                            <option value="">@lang('site.choose-category-wrap')</option>
-
-                            @foreach ($wraps as $wrap)
-                            <option value="{{ $wrap->id }}" {{ $category->wrap->id == $wrap->id ?  'selected' : '' }}>{{ $wrap->name }}</option>
-                            @endforeach
-                          
-                        </select>
-                      </div>
 
                         {{-- name --}}
                         @foreach ( config('translatable.locales') as $locale )
                             <div class="form-group">
+                                {{-- name --}}
                                 <label for="name">@lang('site.'.$locale.'.name')</label>
-                                <input type="name" class="form-control" name="{{ $locale }}[name]"
-                                    placeholder=" @lang('site.enter-name')" value="{{ $category->translate($locale)->name }}">
+                                <input type="text" class="form-control" name="{{ $locale }}[name]"
+                                    placeholder=" @lang('site.enter-name')" value="{{ $wrap->translate($locale)->name }}">
+                               {{-- description --}}
+                                <label for="description">@lang('site.'.$locale.'.description')</label>
+                                <input type="text" class="form-control" name="{{ $locale }}[description]"
+                                    placeholder=" @lang('site.enter-description')" value="{{ $wrap->translate($locale)->description }}">
+                            
                             </div>
                         @endforeach
 
@@ -53,7 +46,7 @@
                     </div>
                 </form>
             </div>
-            <!--end of create new category card -->
+            <!--end of create new wrap card -->
 
         </div><!--end of content wrapper -->
     </div><!--end of content -->

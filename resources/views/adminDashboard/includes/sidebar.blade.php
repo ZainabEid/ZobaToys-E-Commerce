@@ -70,6 +70,23 @@
                 </a>
                 <ul class="menu-content">
 
+                    {{-- wraps --}}
+                @if (auth()->user()->hasPermission('read_wraps'))
+                    <li class="@if(Request::is(app()->getLocale().'/adminDashboard/wraps')) active @endif ">
+                        <a class="menu-item" href=" {{ route('adminDashboard.wraps.index') }}" data-i18n="nav.dash.ecommerce">
+                            @lang('site.show-all-wraps')
+                        </a>
+                    </li>
+                @endif
+
+                @if (auth()->user()->hasPermission('create_wraps'))
+                    <li class="@if(Request::is(app()->getLocale().'/adminDashboard/wraps/create')) active @endif ">
+                        <a class="menu-item" href="{{ route('adminDashboard.wraps.create') }}" data-i18n="nav.dash.crypto">
+                            @lang('site.add-new-wrap')
+                        </a>
+                    </li>
+                @endif 
+
                     @if (auth()->user()->hasPermission('read_categories'))
                         <li class="@if(Request::is(app()->getLocale().'/adminDashboard/categories')) active @endif ">
                             <a class="menu-item" href=" {{ route('adminDashboard.categories.index') }}" data-i18n="nav.dash.ecommerce">
@@ -85,6 +102,8 @@
                             </a>
                         </li>
                     @endif
+
+
 
                 </ul>
             </li>

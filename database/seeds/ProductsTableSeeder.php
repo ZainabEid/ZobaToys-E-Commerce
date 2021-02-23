@@ -20,10 +20,12 @@ class ProductsTableSeeder extends Seeder
                 'tr' => ['name' => 'Ayi boody',
                         'description' => 'conusabilicek kucuk ayi',
                     ],
-                'category_id' => 1, // toys
                 'perchase_price' => 150,
                 'sale_price' => 400,
                 'stock' => 2000,
+                'category_ids' => [
+                    4, // boys
+                ],
                 'productimages' => [
                     'boody1.jpg',
                     'boody2.jpg',
@@ -40,10 +42,12 @@ class ProductsTableSeeder extends Seeder
                 'tr' => ['name' => 'sakin kitapı',
                         'description' => '14 chalisma sayfa dahil',
                     ],
-                'category_id' => 1, // toys
                 'perchase_price' => 150,
                 'sale_price' => 400,
                 'stock' => 2000,
+                'category_ids' => [
+                    5, // girls
+                ], 
                 'productimages' => [
                     'activity-book1.jpg',
                     'activity-book2.jpg',
@@ -62,10 +66,12 @@ class ProductsTableSeeder extends Seeder
             'tr' => ['name' => 'parmak ouyncak',
                     'description' => 'hayvan oyuncak',
                 ],
-            'category_id' => 1, // toys
             'perchase_price' => 15,
             'sale_price' => 30,
             'stock' => 90,
+            'category_ids' => [
+                1, // infant
+            ],
             'productimages' => [
                 'fingerPuupets1.jpeg',
                 'fingerPuupets2.jpeg',
@@ -78,12 +84,13 @@ class ProductsTableSeeder extends Seeder
 
         foreach ($products as $index =>$product) {
             
-            $product_except_images = Arr::except($product, ['productimages']);
-            $new_product = Product::create( $product_except_images);
+            $product_except_images_category_ids = Arr::except($product, ['productimages','category_ids']);
+            $new_product = Product::create( $product_except_images_category_ids);
 
             foreach ($product['productimages'] as $image) {
                 $new_product->productimages()->create(['image'=>$image]);
             }// end of productimages foreach
+            $new_product->category()->attach($product['category_ids']);
            
         }//end of product foreach
         

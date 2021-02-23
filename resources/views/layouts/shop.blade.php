@@ -6,8 +6,8 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-    <title>Prestashop_Savemart</title>
-    <meta name="description" content="المتجر مدعوم من طرف بريستاشوب">
+    <title>ZobaToys Shop</title>
+    <meta name="description" content="zoba toys shop">
     <meta name="keywords" content="">
 
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=yes">

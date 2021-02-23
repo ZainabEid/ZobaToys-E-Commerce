@@ -17,6 +17,7 @@ return [
             'groups' => 'c,r,u,d',
             'suppliers' => 'c,r,u,d',
             'supplies' => 'c,r,u,d',
+            'wraps' => 'c,r,u,d',
             'categories' => 'c,r,u,d',
             'products' => 'c,r,u,d',
             'clients' => 'c,r,u,d',

@@ -27,21 +27,28 @@
                     <div class="card-body">
 
                         <!-- category select -->
-                        <div class="form-group">
-                            <label>@lang('site.category')</label>
-                            <select name="category_id" class="form-control">
-
-                                <option value="">@lang('site.choose-category')</option>
-
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category->id }}"
-                                        {{ old('category_id') == $category->id || $product->category_id == $category->id ? 'selected' : '' }}>
-                                        {{ $category->translate(app()->getLocale())->name }}
-                                    </option>
-                                @endforeach
-
-                            </select>
+                      <div class="form-group">
+                        <label>@lang('site.category')</label>
+                        <div class="row">
+                          @foreach ($wraps as $wrap)
+                          <div class="col">
+                              <label>{{ $wrap->name }}</label>
+                              <select name="category_ids[]" class="form-control">
+                                  
+                                  <option value="">@lang('site.choose-category')</option>
+      
+                                  @foreach ($wrap->categories as $category)
+                                  <option value="{{ $category->id }}" {{ $product->category->contains($category->id)  ?  'selected' : '' }}>
+                                    {{ $category->translate(app()->getLocale())->name }}
+                                  </option>
+                                  @endforeach
+                                
+                              </select>
+                          </div>
+                              @endforeach
                         </div>
+                     
+                       
 
 
 
@@ -82,12 +89,12 @@
 
                             {{-- if the image is default just show that else loop  and show all
                             --}}
-                            @if ($product->productimage()->first()->image == 'default.png')
+                            @if ($product->productimages()->first()->image == 'default.png')
 
                                 <img class="rounded float-left img-thumbnail photo-preview" style="width: 100px"
-                                    src="{{ $product->productimage()->first()->image_path }}">
+                                    src="{{ $product->productimages()->first()->image_path }}">
                             @else
-                                @foreach ($product->productimage as $productimage)
+                                @foreach ($product->productimages as $productimage)
                                     <div class="position-relative mr-1">
                                         {{-- delete image --}}
                                         {{-- <button class="btn btn-danger btn-sm position-absolute mr-1" formaction="{{ route('adminDashboard.productimages.destroy', $productimage->id) }}" onclick="event.preventDefault();

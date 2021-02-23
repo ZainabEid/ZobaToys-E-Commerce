@@ -46,6 +46,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 
                 ##########   [Categories] Routes   ##########
                 Route::resource('categories', 'CategoryController')->except(['show']);
+               
+                ##########   [Wrap] Routes   ##########
+                Route::resource('wraps', 'WrapController')->except(['show']);
 
                 ##########   [products] Routes   ##########
                 Route::resource('products', 'ProductController');

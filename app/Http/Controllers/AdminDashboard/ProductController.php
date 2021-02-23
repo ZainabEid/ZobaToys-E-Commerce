@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Productimage;
+use App\Models\Wrap;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Storage;
@@ -38,7 +39,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('adminDashboard.products.create', compact('categories'));
+        $wraps = Wrap::all();
+        return view('adminDashboard.products.create', compact('wraps'));
     }
 
 
@@ -69,11 +71,13 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        
+        //dd($request);
+        $request['category_ids'] = array_filter($request['category_ids']);
+
         ########## start validation rules ##########
         //   [nun localized fields]
         $rules = [
-            'category_id' => 'required',
+            'category_ids' => 'required|array|min:1',
             'images' => 'image',
             'perchase_price' => 'required',
             'sale_price' => 'required',
@@ -91,11 +95,9 @@ class ProductController extends Controller
         
         //submit validation and create a product
         $request->validate($rules);
-        
-        
-        $requested_data = $request->except(['_token','images']);
+        $requested_data = $request->except(['_token','images','category_ids']);
         $product = Product::create($requested_data);
-
+        $product->category()->attach($request['category_ids']);
         
         ########## if it is images add them to the product ##########
         if ($request->image) {
@@ -104,7 +106,7 @@ class ProductController extends Controller
             
         }else{
             $product_image = new Productimage();
-            $product->productimage()->save($product_image);
+            $product->productimages()->save($product_image);
         }
         ########## end of image handling ##########
         
@@ -124,16 +126,19 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::all();  
-        return view('adminDashboard.products.edit', compact('categories' , 'product'));
+        $wraps = Wrap::all();
+
+        return view('adminDashboard.products.edit', compact('categories' , 'product','wraps'));
     }// end of edit
 
     public function update(Request $request, Product $product)
     {
+        $request['category_ids'] = array_filter($request['category_ids']);
       
          ########## start validation rules ##########
         //   [nun localized fields]
         $rules = [
-            'category_id' => 'required',
+            'category_ids' => 'required|array|min:1',
             'images' => 'image',
             'perchase_price' => 'required',
             'sale_price' => 'required',
@@ -153,14 +158,14 @@ class ProductController extends Controller
         
         //submit validation and create a product
         $request->validate($rules);
-        $requested_data = $request->except(['_token','_method','image']);
+        $requested_data = $request->except(['_token','_method','image','category_ids']);
         
        
         if ($request->image) {
 
             // remove the default image from database
-            if( $product->productimage()->first()->image == 'default.png' ){
-                $product->productimage()->first()->delete();
+            if( $product->productimages()->first()->image == 'default.png' ){
+                $product->productimages()->first()->delete();
             }
 
              $this->handelingImages($request->image , $product);
@@ -168,6 +173,7 @@ class ProductController extends Controller
         
         
         $product->update($requested_data);
+        $product->category()->attach($request['category_ids']);
         session()->flash('success', __('site.edited-successfuly'));
 
         return redirect()->route('adminDashboard.products.index');

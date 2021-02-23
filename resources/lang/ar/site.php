@@ -114,6 +114,17 @@ return [
    'updated-successfuly' => 'تم تعديل البيانات بنجاح',
    'deleted-successfuly' => 'تم حذف البيانات بنجاح',
 
+   /** Wraps */
+   'wrap'=>'التخصص',
+   'show-all-wraps' =>'عرض جميع التخصصات',
+   'show-wraps-data' =>'عرض بيانات التخصصات',
+   'categories-count' =>'عدد الاقسام',
+   'related-categories' =>'الاقسام',
+   'add-new-wrap' =>'اضافة تخصص جديد',
+   'edit-wrap' =>'تعديل التخصص',
+   'category-wrap' =>'التخصص',
+   'choose-category-wrap' =>'اختر تخصص القسم',
+
    /** Categories  */
    'category' => 'القسم',
    'categories' => 'الأقسام',
@@ -296,6 +307,18 @@ return [
       'enter-description' => 'ادخل الوصف باللغة التركية',
    ],
 
+
+   
+   /*
+    |--------------------------------------------------------------------------
+    | shop | Index
+    |--------------------------------------------------------------------------
+    | The following language lines are the default lines 
+    | in the shop website header, sidebar,footer
+    */
+    
+    'shop-by-categories' => 'تصفح من خلال الاقسام',
+   
 
 
 
