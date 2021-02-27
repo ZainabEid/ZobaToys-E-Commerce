@@ -57,6 +57,7 @@ return [
    'show' => 'عرض',
    'production' => 'الانتاج',
    'purchases' => 'طلبات الشراء',
+   'vendors' => 'التجار',
 
    /** Models */
    'admins-single' => 'مشرف',
@@ -124,6 +125,18 @@ return [
    'edit-wrap' =>'تعديل التخصص',
    'category-wrap' =>'التخصص',
    'choose-category-wrap' =>'اختر تخصص القسم',
+   
+   /** Vendors  */
+   'show-all-vendors' => 'عرض جميع التجار',
+   'add-new-vendor' => 'اضافة تاجر جديد',
+   'about' => 'الوصف',
+   'logo' => 'لوجو',
+   'choose-logo' => 'اختر لوجو',
+   'address' => 'العنوان',
+   'contact-person' => 'المشرف المسؤول',
+   'choose-contact-person' => 'اختر مشرف',
+   'show-vendors-data' => 'عرض بيانات التجار',
+   'edit-vendor' => 'تعديل التاجر',
 
    /** Categories  */
    'category' => 'القسم',
@@ -136,6 +149,7 @@ return [
    'products-count' => 'عدد المنتجات',
    'related-products' => 'المنتجات المرتبطة',
    'show-products' => 'عرض المنتجات',
+
    
    /** Products  */
    'product' => 'منتج',
@@ -152,6 +166,9 @@ return [
    'product-description' => 'وصف المنتج',
    'next' => 'التالي',
    'change-status' => 'تغير الحالة  ',
+   'sale' => 'خصم  ',
+   'in-sale' => 'داخل الخصم ',
+   'not-in-sale' => 'خارج الخصم',
 
 
    'add-new-product' => 'اضف منتج جديد',
@@ -318,6 +335,27 @@ return [
     */
     
     'shop-by-categories' => 'تصفح من خلال الاقسام',
+    'homepage' => 'الصفحة الرئيسية',
+    'articls' => 'المقالات',
+    'show-all' => 'عرض الكل',
+    'kids-development' => 'تنمية الأطفال',
+    'toy-choosing' => 'اختيار الالعاب',
+    'home-schooling' => 'التعليم المنزلي',
+    'pages' => 'الصفحات',
+    'contact-us' => 'طرق الاتصال',
+    'send-email' => 'ارسل بريد',
+    'call-us' => 'اتصل بنا',
+    'whatsapp' => 'واتس اب',
+    'contact-us-page' => 'صفحة اتصل بنا',
+    'about-us' => 'عننا',
+    'history' => 'قصتنا',
+    'partners' => 'شركاءنا',
+    'team' => 'فريق العمل',
+    'about-us-page' => 'عن الشركة',
+    'join-our-team' => 'انضم الينا',
+    'active-job-oportunities' => 'فرص عمل',
+    'flash-deals' => 'عروض وخصومات',
+    'new-arrivals' => 'وصل حديثا',
    
 
 

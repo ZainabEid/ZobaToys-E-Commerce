@@ -31,6 +31,9 @@ class Admin extends Authenticatable
     }// end of get image path attribute
 
     ############ Start Relations #############    
-   
+   public function vendor()
+   {
+       return $this->hasOne(Vendor::class); 
+   }
     ############ End  Relations #############    
 }

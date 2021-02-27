@@ -68,7 +68,7 @@
                                                                         <td>{{ number_format($product->sale_price,2) }}</td>
                                                                         <td><a href="#"
                                                                                 {{ $product->stock == 0 ? 'disabled' : '' }}
-                                                                                class="btn btn-sm  {{ in_array($product->id, $order->product()->pluck('product_id')->toArray()) ? 'btn-default disabled' : 'btn-success add-product-btn'  }} "
+                                                                                class="btn btn-sm  {{ in_array($product->id, $order->products()->pluck('product_id')->toArray()) ? 'btn-default disabled' : 'btn-success add-product-btn'  }} "
                                                                                 id="product-{{ $product->id }}"
                                                                                 data-id="{{ $product->id }}"
                                                                                 data-name="{{ $product->name }}"
@@ -140,7 +140,7 @@
                                     <tbody class="order-list">
 
                                         
-                                        @foreach ($order->product as $product)
+                                        @foreach ($order->products as $product)
                                             
                                         <tr>
                                             <td>{{ $product->name }}</td>

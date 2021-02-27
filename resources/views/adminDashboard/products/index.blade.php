@@ -38,6 +38,12 @@
                                                 @endforeach
                                             </select>
 
+                                            {{-- Select By in_sale --}}
+                                            <select name="in_sale" id="" class="form-control">
+                                                <option value="true" {{ request()->in_sale_id == 'true' ? 'selected' : '' }}>@lang('site.in-sale')</option>
+                                                <option value="false" {{ request()->in_sale_id == 'false' ? 'selected' : '' }}> @lang('site.not-in-sale')</option>
+                                            </select>
+
                                             {{-- Search button--}}
                                             <div class="input-group-append">
                                                 <button type="submit" class="btn btn-default"><i class="fas fa-search">
@@ -78,6 +84,8 @@
                                             <th>@lang('site.description')</th>
                                             <th>@lang('site.image')</th>
                                             <th>@lang('site.perchase-price')</th>
+                                            <th>@lang('site.in-sale')</th>
+                                            <th>@lang('site.sale')</th>
                                             <th>@lang('site.sale-price')</th>
                                             <th>@lang('site.profit-percentage')</th>
                                             <th>@lang('site.stock')</th>
@@ -114,6 +122,46 @@
                                                         </div>
                                                     </td>
                                                     <td>{{ $product->perchase_price }}</td>
+                                                    <td>
+                                                        @if ($product->in_sale)
+                                                            <a href="{{ route('adminDashboard.products.change_in_sale',[ 'false', $product->id]) }}" 
+                                                                class="in-sale btn btn-sm round btn-success">
+                                                                @lang('site.in-sale')
+                                                            </a >
+                                                        @else
+                                                            <a href="{{ route('adminDashboard.products.change_in_sale',[ 'true', $product->id]) }}" 
+                                                                class="btn btn-sm round btn-outline-success">
+                                                                @lang('site.not-in-sale')
+                                                            </a >
+                                                        @endif
+                                                    </td>
+                                                    <td>
+                                                        {{ $product->sale }}
+                                                        @if ($product->in_sale)
+                                                            <a href="#"
+                                                            class="show-change-sale"
+                                                            data-id="{{ $product->id }}"
+                                                            data-sale="{{ $product->sale}}"
+                                                            {{-- data-url="{{ route('adminDashboard.products.show_change_sale', $product->id) }}" --}}
+                                                            {{-- data-method="get" --}}
+                                                            >
+                                                            <i class="fa fa-pen"></i>
+                                                        </a>
+                                                        @endif
+                                                        
+                                                        <div  class="change-sale"
+                                                              style="display:none; flex-direction: column; align-items: center;" >
+                                                          {{-- managed in js: when click in the link show input field --}}
+                                                            <form class="change-sale-form"  method="POST"action="{{ route('adminDashboard.products.change_sale',$product) }}">
+                                                                @method('PUT')
+                                                                @csrf
+                                                                <input type="number" name="sale" value="{{  old('sale') ?? $product->sale }}" min="10" max="90">
+                                                                <button type="submit">change sale</button>
+                                                            </form>
+                                                            
+                                                        </div>
+                                                        
+                                                    </td>
                                                     <td>{{ $product->sale_price }}</td>
                                                     <td>{{ $product->profit_percentage }} %</td>
                                                     <td>{{ $product->stock }}</td>

@@ -11,6 +11,7 @@ class ProductsTableSeeder extends Seeder
     {
         $products = [
             1 => [
+                'vendor_id' => 1,
                 'ar' => ['name' => 'بودي الدبدوب',
                         'description' => 'دبدوب صغير يتكلم',
                     ],
@@ -21,7 +22,9 @@ class ProductsTableSeeder extends Seeder
                         'description' => 'conusabilicek kucuk ayi',
                     ],
                 'perchase_price' => 150,
-                'sale_price' => 400,
+                'in_sale' => true,
+                'sale' => 50,
+                'price' => 400,
                 'stock' => 2000,
                 'category_ids' => [
                     4, // boys
@@ -33,17 +36,20 @@ class ProductsTableSeeder extends Seeder
             ],
 
            2 => [
+                'vendor_id' => 1,
                 'ar' => ['name' => 'كتاب الانشطة',
                         'description' => '  كتاب يشمل 14 نشاط',
                     ],
                 'en' => ['name' => 'quite book',
                         'description' => 'contains 14 activity',
-                    ],
+                ],
                 'tr' => ['name' => 'sakin kitapı',
                         'description' => '14 chalisma sayfa dahil',
                     ],
                 'perchase_price' => 150,
-                'sale_price' => 400,
+                'in_sale' => true,
+                'sale' => 50,
+                'price' => 400,
                 'stock' => 2000,
                 'category_ids' => [
                     5, // girls
@@ -56,30 +62,34 @@ class ProductsTableSeeder extends Seeder
                 ],
             ],
             
-           3 => [
-            'ar' => ['name' => 'حيوانات الاصابع',
-                    'description' => '  عرايس للأصابع',
+            3 => [
+                
+                'vendor_id' => 1,
+                'ar' => ['name' => 'حيوانات الاصابع',
+                        'description' => '  عرايس للأصابع',
                 ],
-            'en' => ['name' => 'finger Pupets',
-                    'description' => 'animals pupets',
+                'en' => ['name' => 'finger Pupets',
+                        'description' => 'animals pupets',
+                        ],
+                'tr' => ['name' => 'parmak ouyncak',
+                        'description' => 'hayvan oyuncak',
+                        ],
+                'perchase_price' => 15,
+                'in_sale' => true,
+                'sale' => 50,
+                'price' => 30,
+                'stock' => 90,
+                'category_ids' => [
+                    1, // infant
                 ],
-            'tr' => ['name' => 'parmak ouyncak',
-                    'description' => 'hayvan oyuncak',
+                'productimages' => [
+                    'fingerPuupets1.jpeg',
+                    'fingerPuupets2.jpeg',
+                    'fingerPuupets3.jpeg',
+                    'fingerPuupets4.jpeg',
                 ],
-            'perchase_price' => 15,
-            'sale_price' => 30,
-            'stock' => 90,
-            'category_ids' => [
-                1, // infant
             ],
-            'productimages' => [
-                'fingerPuupets1.jpeg',
-                'fingerPuupets2.jpeg',
-                'fingerPuupets3.jpeg',
-                'fingerPuupets4.jpeg',
-            ],
-        ],
-
+            
         ];
 
         foreach ($products as $index =>$product) {

@@ -42,7 +42,8 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 ##########   [Home] Routes   ##########
                 Route::get('/', 'AdminDashboardController@index')->name('index');
                 
-               
+               ##########   [Vendors] Routes   ##########
+               Route::resource('vendors', 'VendorController');
                 
                 ##########   [Categories] Routes   ##########
                 Route::resource('categories', 'CategoryController')->except(['show']);
@@ -53,6 +54,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 ##########   [products] Routes   ##########
                 Route::resource('products', 'ProductController');
                 Route::resource('productimages', 'ProductimageController');
+                Route::get('/products/{in_sale}{product}/change_in_sale', 'ProductController@change_in_sale')->name('products.change_in_sale');
+                Route::get('/products/{product}/show_change_sale', 'ProductController@show_change_sale')->name('products.show_change_sale');
+                Route::put('/products/{product}/change_sale', 'ProductController@change_sale')->name('products.change_sale');
                 
                 ##########   [clients] , [clients.orders] Routes   ##########
                 Route::resource('clients', 'ClientController');

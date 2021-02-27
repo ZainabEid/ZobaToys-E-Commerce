@@ -37,7 +37,7 @@ class OrderController extends Controller
     {//redirect to client.purchase.create
         
         $request->validate([
-            'client_id' => 'required' ,
+            'client_id' => 'required',
         ]);
 
         $client = Client::findOrFail($request->client_id);

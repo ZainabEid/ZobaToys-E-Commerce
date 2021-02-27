@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Purchase;
 use App\Models\Supplier;
 use App\Models\Supply;
+use App\Models\Vendor;
 use Illuminate\Http\Request;
 
 class AdminDashboardController extends Controller
@@ -23,6 +24,7 @@ class AdminDashboardController extends Controller
         $clients_count = Client::count(); 
         $suppliers_count = Supplier::count(); 
         $supplies_count = Supply::count(); 
+        $vendors_count = Vendor::count(); 
 
         // get latest paid delivered orders
         $paid_orders = Order::where('paid_trigger', true)
@@ -38,6 +40,6 @@ class AdminDashboardController extends Controller
                                 ->latest()->take(10)->get();
        
 
-        return view('adminDashboard.index', compact('admins_count','categories_count','products_count', 'clients_count','suppliers_count', 'supplies_count','paid_orders', 'purchases','active_orders'));
+        return view('adminDashboard.index', compact('admins_count','categories_count','products_count', 'clients_count','suppliers_count', 'supplies_count','paid_orders', 'purchases','active_orders', 'vendors_count'));
     }
 }

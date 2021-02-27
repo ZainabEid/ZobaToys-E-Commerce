@@ -8,7 +8,7 @@
                          class="nav-link nav-menu-main menu-toggle hidden-xs" href="{{ route('adminDashboard.index') }}"><i
                              class="ft-menu font-large-1"></i></a></li>
                  <li class="nav-item">
-                     <a class="navbar-brand" href="{{ route('home') }}">
+                     <a class="navbar-brand" href="{{ route('adminDashboard.index') }}">
                          <img class="height-50" alt="Zoba Toys logo"
                              src="{{ asset('assets/admin/images/logo/Zoba-toys-logo.jpg') }}">
                          <h3 class="brand-text">@lang('site.ZobaToys')</h3>

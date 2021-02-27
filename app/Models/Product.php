@@ -11,9 +11,9 @@ class Product extends Model
 
     public $translatedAttributes = ['name','description'];
     protected $fillable = [
-       'perchase_price', 'sale_price', 'stock',
+       'perchase_price','price','in_sale' ,'sale' ,  'stock', 'vendor_id'
     ];
-    protected $appends = ['profit_percentage' ];
+    protected $appends = ['profit_percentage', 'sale_price' ];
 
 
 
@@ -37,6 +37,11 @@ class Product extends Model
         return $this->belongsToMany(Order::class);
     }// end of order
 
+    public function vendor()
+    {
+        return $this->belongsTo(Vendor::class);
+    }
+
     
     ############## Getting Attributes ###################
 
@@ -45,8 +50,17 @@ class Product extends Model
         $profit = $this->sale_price - $this->perchase_price ;
         $profit_percentage = $profit * 100 / $this->perchase_price ;
         return number_format( $profit_percentage,2);
-    }
+    }// end of get profit percent
 
+    public function getSalePriceAttribute()
+    {
+        $sale_price = $this->price;
+
+        if ($this->in_sale == true) {
+            $sale_price =  $this->price - ($this->price * $this->sale / 100); 
+        }
+        return $sale_price;
+    }
    
 
   

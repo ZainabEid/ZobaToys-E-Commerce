@@ -64,7 +64,7 @@
                             <label>@lang('site.permissions')</label>
 
                             @php
-                             $models = ['admins','categories','products', 'clients', 'orders','suppliers', 'supplies',  'production_cycles',
+                            $models = ['admins','vendors','wraps','categories','products', 'clients', 'orders','suppliers','purchases', 'supplies', 'groups',  'production_cycles',
                             ];
                              $maps = ['read','create','update','delete', ];  
                             @endphp

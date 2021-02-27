@@ -6,6 +6,8 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
 
+     ##########   [Home] Routes   ##########
+     Route::get('/', 'ShopController@index')->name('shop');
     /*
     |--------------------------------------------------------------------------
     | [shop] Routes - prefix: shop - name: shop.

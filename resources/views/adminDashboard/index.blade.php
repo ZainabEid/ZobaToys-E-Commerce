@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('tilte')
-    Admin Dashboard
+    @lang('site.Admindashboard')
 
 @endsection
 
@@ -209,6 +209,40 @@
                                 <div class="row">
                                     <div class="col-12 text-center  ">
                                         <div class="bg-blue-grey text-white w-100 float-end">
+                                        <h4 class="text-white">@lang('site.show') <i class="la la-arrow-right"></i></h4>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+
+                     {{-- vendors count --}}
+                     <div class="col-xl-3 col-8">
+                        <div class="card crypto-card-3 pull-up">
+                            <div class="card-content">
+                                <a  href="{{ route('adminDashboard.vendors.index') }}">
+                                <div class="card-body pb-0">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <h1><i class=" success lighten-1 font-large-2 la la-map"></i></h1>
+                                        </div>
+                                        <div class="col-6">
+                                            <h4>@lang('site.vendors')</h4>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center">
+                                        <h4>{{ $vendors_count }}</h4>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 text-center  ">
+                                        <div class="bg-success text-white w-100 float-end">
                                         <h4 class="text-white">@lang('site.show') <i class="la la-arrow-right"></i></h4>
 
                                         </div>

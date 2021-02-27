@@ -15,6 +15,7 @@ return [
         'super_admin' => [
             'purchases' => 'c,r,u,d',
             'groups' => 'c,r,u,d',
+            'vendors' => 'c,r,u,d',
             'suppliers' => 'c,r,u,d',
             'supplies' => 'c,r,u,d',
             'wraps' => 'c,r,u,d',
@@ -23,8 +24,6 @@ return [
             'clients' => 'c,r,u,d',
             'orders' => 'c,r,u,d',
             'admins' => 'c,r,u,d',
-           
-            
         ],
         
         'client' => [

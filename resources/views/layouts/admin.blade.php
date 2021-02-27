@@ -54,7 +54,7 @@
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/brands.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/solid.css') }}" rel="stylesheet">
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/all.css') }}" rel="stylesheet">
-    
+
 
     <link rel="apple-touch-icon" href="{{ asset('assets/admin/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('asstes/admin/images/ico/favicon.ico') }}">
@@ -62,7 +62,7 @@
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
     rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
-    
+
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css-rtl/plugins/animate/animate.css') }}">
 
 
@@ -247,23 +247,30 @@
     <!-- ck editor JS-->
     <script src="{{ asset('assets/admin/plugins/ckeditor/ckeditor.js') }}"></script>
     <script src="https://cdn.ckeditor.com/4.14.1/standard-all/ckeditor.js"></script>
-    
-    
+
+
     <!-- jqurey number JS-->
     <script src="{{ asset('assets/admin/plugins/jquery-number-master/jquery.number.min.js') }}"></script>
-    
+
     <!-- print this plugin -->
     <script src="{{ asset('assets/admin/plugins/jasonday-printThis-f73ca19/printThis.js') }}"></script>
 
-    
-    
+
+
    <!-- CUSTOM JS-->
     <script src="{{ asset('assets/admin/js/custom/orders.js') }}"></script>
     <script src="{{ asset('assets/admin/js/custom/purchases.js') }}"></script>
+    <script src="{{ asset('assets/admin/js/custom/sale.js') }}"></script>
 
 
 </body>
 <script>
+
+    // show the quick change sale form in show products page
+    $('.show-change-sale').on('click', function(e){
+        e.preventDefault();
+        $(this).next('.change-sale').css('display','flex');
+    });
 
     // show the file name
     $('#photo').on('change', function() {
@@ -271,7 +278,7 @@
         var fileName = $(this).val();
         //replace the "Choose a file" label
         $(this).next('.custom-file-label').html(fileName);
-    })
+    });
 
     // delete
     $(".delete").on("submit", function() {

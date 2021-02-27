@@ -31,9 +31,6 @@
 
             </li>
 
-          
-
-            
             {{-- sidbar Admins --}}
             <li class="nav-item @if(Request::is('adminDashboard/admin') || Request::is('adminDashboard/admin/*') ) open @endif">
                 <a href=""><i class="la la-group"></i>
@@ -61,8 +58,34 @@
                 </ul>
             </li>
 
+              {{-- sidbar vendors --}}
+              <li class="nav-item @if(Request::is('adminDashboard/vendors') || Request::is('vendorDashboard/vendors/*') ) open @endif">
+                <a href=""><i class="la la-group"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">@lang('site.vendors') </span>
+                    <span class="badge badge badge-success badge-pill float-right mr-2">{{ count(App\Models\Vendor::all()) >1  ? count(App\Models\Vendor::all()) : 0 }} </span>
+                </a>
+                <ul class="menu-content ">
 
-            {{-- sidbar Categories --}}
+                    @if (auth()->user()->hasPermission('read_vendors'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/vendor')) active @endif ">
+                            <a class="menu-item" href=" {{ route('adminDashboard.vendors.index') }}" data-i18n="nav.dash.ecommerce">
+                                @lang('site.show-all-vendors')
+                            </a>
+                        </li>
+                    @endif
+
+                    @if (auth()->user()->hasPermission('create_vendors'))
+                        <li class="@if(Request::is(app()->getLocale().'/adminDashboard/vendor/create')) active @endif ">
+                            <a class="menu-item" href="{{ route('adminDashboard.vendors.create') }}" data-i18n="nav.dash.crypto">
+                                @lang('site.add-new-vendor')
+                            </a>
+                        </li>
+                    @endif
+
+                </ul>
+            </li>
+
+            {{-- sidbar wraps & Categories --}}
             <li class="nav-item  @if(Request::is('adminDashboard/categories*')) open @endif">
                 <a href=""><i class="la la-map"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.categories') </span>

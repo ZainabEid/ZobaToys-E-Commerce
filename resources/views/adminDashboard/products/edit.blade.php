@@ -117,21 +117,54 @@
                             @endif
                         </div>
 
-                        {{-- perchase_price --}}
-                        <div class="form-group">
-                            <label for="perchase_price">@lang('site.perchase-price')</label>
-                            <input type="number" step="00.01" class="form-control" name="perchase_price"
-                                placeholder=" @lang('site.enter-perchase-price')"
-                                value="{{ old('perchase_price') ?? $product->perchase_price }}">
-                        </div>
+                        {{-- price management --}}
+                        <div class="row">
+                            {{-- perchase_price --}}
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="perchase_price">@lang('site.perchase-price')</label>
+                                    <input type="number" step="00.01" class="form-control" name="perchase_price"
+                                        placeholder=" @lang('site.enter-perchase-price')"
+                                        value="{{ old('perchase_price') ?? $product->perchase_price }}">
+                                </div>
+                            </div>
 
-                        {{-- sale_price --}}
-                        <div class="form-group">
-                            <label for="sale_price">@lang('site.sale-price')</label>
-                            <input type="number" step="00.01" class="form-control" name="sale_price"
-                                placeholder=" @lang('site.enter-sale-price')"
-                                value="{{ old('sale_price') ?? $product->sale_price }}">
+                            {{-- Price --}}
+                            <div class="col-4">
+                                <div class="form-group">
+                                    <label for="price">@lang('site.price')</label>
+                                    <input type="number" step="00.01" class="form-control" name="price"
+                                        placeholder=" @lang('site.enter-price')"  
+                                        value="{{ old('price') ?? $product->price }}">
+                                </div>
+                            </div>
+
+                            {{-- in_sale --}}
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label>@lang('site.in-sale')</label>
+                                            <select name="in_sale" class="form-control">
+                                                <option value="true" {{ (old('in_sale') == true | $product->in_sale == true) ?  'selected' : '' }}>@lang('site.in-sale')</option>
+                                                <option value="false" {{( old('in_sale') == false | $product->in_sale == true)?  'selected' : '' }}>@lang('site.not-in-sale')</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            {{-- sale --}}
+                            <div class="col-2">
+                                <div class="form-group">
+                                    <label for="sale">@lang('site.sale')</label>
+                                    <input type="number" step="01" class="form-control" name="sale"
+                                        placeholder=" @lang('site.enter-sale-percentage')" 
+                                        value="{{ old('sale') ?? $product->sale }}">
+                                </div>
+                            </div>
                         </div>
+                      
 
                         {{-- Stock --}}
                         <div class="form-group">
