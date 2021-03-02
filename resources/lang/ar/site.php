@@ -356,6 +356,13 @@ return [
     'active-job-oportunities' => 'فرص عمل',
     'flash-deals' => 'عروض وخصومات',
     'new-arrivals' => 'وصل حديثا',
+
+   //  login page
+   'show-password' => 'إظهار',
+   'forget-password' => 'هل نسيت كلمة المرور؟',
+   'login' => 'تسجيل الدخول',
+   'you-dont-have-account?-register-now' => 'ليس لديك حساب ؟ تسجيل حساب جديد',
+
    
 
 

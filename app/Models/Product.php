@@ -4,6 +4,7 @@ namespace App\Models ;
 
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Product extends Model
 {
@@ -11,7 +12,7 @@ class Product extends Model
 
     public $translatedAttributes = ['name','description'];
     protected $fillable = [
-       'perchase_price','price','in_sale' ,'sale' ,  'stock', 'vendor_id'
+       'perchase_price','price','in_sale' ,'sale' ,  'stock', 'vendor_id' ,'avg_star'
     ];
     protected $appends = ['profit_percentage', 'sale_price' ];
 
@@ -40,8 +41,12 @@ class Product extends Model
     public function vendor()
     {
         return $this->belongsTo(Vendor::class);
-    }
+    } //end  of vendor
 
+    
+   
+
+ 
     
     ############## Getting Attributes ###################
 

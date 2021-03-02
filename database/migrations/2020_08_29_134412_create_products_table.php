@@ -13,6 +13,7 @@ class CreateProductsTable extends Migration
             $table->id();
 
             $table->bigInteger('vendor_id')->unsigned();
+            $table->bigInteger('avg_star')->default(0);
             $table->double('perchase_price',8,2);
             $table->double('price',8,2);
             $table->double('sale',8,2)->default(10);

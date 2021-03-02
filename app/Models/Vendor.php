@@ -3,18 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Vendor extends Model
 {
     protected $fillable = [
-        'name','logo', 'phone', 'address', 'about','admin_id',
+        'name','logo', 'phone', 'address', 'about','admin_id','avg_star',
     ];
     protected $appends = ['image_path'];
 
 
     public function getImagePathAttribute()
     {
-        return asset('public/uploads/vendor_logos/'.$this->logo);
+        return asset('assets/uploads/vendor_logos/'.$this->logo);
     }// end of get image path attribute
 
     ################## start relaion #################
@@ -27,6 +28,9 @@ class Vendor extends Model
     {
         return $this->belongsTo(Admin::class);
     }// end of admin
+
+   
+    
 
     ################## end relaion #################
 }

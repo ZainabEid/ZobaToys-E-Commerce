@@ -21,13 +21,13 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
             | [UserLogin] Routes - in controller middleware :(guest:user) 
             |--------------------------------------------------------------------------
             */
-            Route::group(['namespace' => 'shop'], function () {
+                Route::group(['namespace' => 'User'], function () {
 
                 Route::post('login', 'UserLoginController@login')->name('login.submit');
                 Route::get('login', 'UserLoginController@showLoginForm')->name('login');
                 Route::post('logout', 'UserLoginController@logout')->name('logout');
           
-            });// end of user login routes
+                });// end of user login routes
 
 
             /*

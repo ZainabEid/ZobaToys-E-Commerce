@@ -48,7 +48,7 @@ class SupplyController extends Controller
     {
         // manage image uploading: fit, compress, hash, move to public/uploads
         $supply_image = Image::make($image)
-            ->fit(300,300)->Save(public_path('uploads/supply_images/'.$image->hashName()));
+            ->fit(300,300)->Save(base_path('assets/uploads/supply_images/'.$image->hashName()));
 
         return $supply_image->basename;
 
@@ -125,7 +125,7 @@ class SupplyController extends Controller
         if ($request->image) {
             // remove old image from starage 
             if($supply->image != 'default.png' || $request->image != $supply->image){
-                Storage::disk('public_uploads')->delete('supply_images/'.$supply->image);
+                Storage::disk('assets_uploads')->delete('supply_images/'.$supply->image);
             }
             $requested_data['image'] = $this->handelingImages($request->image);
         }
@@ -144,7 +144,7 @@ class SupplyController extends Controller
     {
          // remove old image from starage 
          if($supply->image != 'default.png'){
-            Storage::disk('public_uploads')->delete('supply_images/'.$supply->image);
+            Storage::disk('assets_uploads')->delete('supply_images/'.$supply->image);
         }
 
         $supply->delete();

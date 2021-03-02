@@ -1,7 +1,7 @@
 <?php
 
 use App\Models\Product;
-
+use App\Models\Star;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Arr;
 
@@ -33,6 +33,8 @@ class ProductsTableSeeder extends Seeder
                     'boody1.jpg',
                     'boody2.jpg',
                 ],
+                 'avg_star' => 5,
+
             ],
 
            2 => [
@@ -60,6 +62,8 @@ class ProductsTableSeeder extends Seeder
                     'activity-book3.jpg',
                     'activity-book4.jpg',
                 ],
+                 'avg_star' => 5,
+
             ],
             
             3 => [
@@ -67,7 +71,7 @@ class ProductsTableSeeder extends Seeder
                 'vendor_id' => 1,
                 'ar' => ['name' => 'حيوانات الاصابع',
                         'description' => '  عرايس للأصابع',
-                ],
+                    ],
                 'en' => ['name' => 'finger Pupets',
                         'description' => 'animals pupets',
                         ],
@@ -88,6 +92,8 @@ class ProductsTableSeeder extends Seeder
                     'fingerPuupets3.jpeg',
                     'fingerPuupets4.jpeg',
                 ],
+                'avg_star' => 5,
+
             ],
             
         ];

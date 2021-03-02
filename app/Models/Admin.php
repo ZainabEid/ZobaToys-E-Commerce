@@ -27,7 +27,7 @@ class Admin extends Authenticatable
     // there is an error here
     public function getImagePathAttribute()
     {
-        return asset('public/uploads/admin_images/'.$this->photo);
+        return asset('assets/uploads/admin_images/'.$this->photo);
     }// end of get image path attribute
 
     ############ Start Relations #############    

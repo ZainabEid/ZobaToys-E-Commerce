@@ -16,6 +16,7 @@ class CreateVendorsTable extends Migration
         Schema::create('vendors', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('admin_id')->unsigned();
+            $table->bigInteger('avg_star')->default(0);
             $table->string('name');
             $table->string('logo')->default('default.png');
             $table->bigInteger('phone')->unique();

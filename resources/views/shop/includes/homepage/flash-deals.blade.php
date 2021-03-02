@@ -56,12 +56,51 @@
                                                         <!-- begin modules/novproductcomments/novproductcomments_reviews.tpl -->
                                                         <div class="product-comments">
                                                             <div class="star_content">
-                                                                <div class="star"></div>
-                                                                <div class="star"></div>
-                                                                <div class="star"></div>
-                                                                <div class="star"></div>
-                                                                <div class="star"></div>
-                                                            </div>
+                                                                @switch($product->avg_star)
+                                                                    @case(1)
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                    @break
+                                                                    @case(2)
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                    @break
+                                                                    @case(3)
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                    @break
+                                                                    @case(4)
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star"></div>
+                                                                    @break
+                                                                    @case(5)
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                        <div class="star star_on"></div>
+                                                                    @break
+                                                                    @default
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                        <div class="star"></div>
+                                                                    @endswitch
+                                                                        
+                                                                </div>
                                                             <span>0 review</span>
                                                         </div>
                                                         <!-- end modules/novproductcomments/novproductcomments_reviews.tpl -->

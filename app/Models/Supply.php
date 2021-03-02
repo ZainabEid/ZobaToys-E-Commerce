@@ -37,7 +37,7 @@ class Supply extends Model
 
     public function getImagePathAttribute()
     {
-        return asset('public/uploads/supply_images/'.$this->image);
+        return asset('assets/uploads/supply_images/'.$this->image);
     }// end of get image path
 
 }//end of model

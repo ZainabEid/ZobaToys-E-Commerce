@@ -70,7 +70,7 @@ class AdminController extends Controller
         // manage image uploading
         if ($request->photo) {
             $img = Image::make($request->photo)
-                ->fit(300,300)->Save(public_path('uploads/admin_images/'.$request->photo->hashName()));
+                ->fit(300,300)->Save(base_path('assets/uploads/admin_images/'.$request->photo->hashName()));
             $request_data['photo'] = $request->photo->hashName();
         }
 
@@ -96,7 +96,6 @@ class AdminController extends Controller
     public function update(Request $request, Admin $admin)
     {
         // ther is no data in the request :()
-
         $request->validate([
             'name' => 'required',
             'email' => [
@@ -106,7 +105,6 @@ class AdminController extends Controller
             'phone' => 'required | min:10 | max:13',
             'photo' => 'image',
             'permissions' => 'required | min:1',
-
         ]);
 
         $request_data = $request->except(['permissions', 'photo']);
@@ -115,10 +113,10 @@ class AdminController extends Controller
         // manage image uploading
         if ($request->photo) {
             if($admin->photo != 'default.jpg' ){
-                Storage::disk('public_uploads')->delete('admin_images/'.$admin->photo);
+                Storage::disk('assets_uploads')->delete('admin_images/'.$admin->photo);
             }
             Image::make($request->photo)
-                ->fit(300,300)->Save(public_path('uploads/admin_images/'.$request->photo->hashName()));
+                ->fit(300,300)->Save(base_path('assets/uploads/admin_images/'.$request->photo->hashName()));
             $request_data['photo'] = $request->photo->hashName();
         }
 
@@ -136,7 +134,7 @@ class AdminController extends Controller
     public function destroy(Admin $admin)
     {
         if($admin->photo != 'default.jpg' ){
-            Storage::disk('public_uploads')->delete('admin_images/'.$admin->photo);
+            Storage::disk('assets_uploads')->delete('admin_images/'.$admin->photo);
         }
         $admin->delete();
         session()->flash('success',__('site.deleted-successfuly'));

@@ -46,8 +46,8 @@
 }
       </style>
     {{-- line-awsom --}}
-    <link type="text/css" rel="stylesheet" href="assets/line-awesome-1.3.0/1.3.0/css/line-awesome.min.css">
-    <link type="text/css" rel="stylesheet" href="assets/line-awesome-1.3.0/1.3.0/css/line-awesome.css">
+    <link type="text/css" rel="stylesheet" href="{{asset('assets/line-awesome/css/line-awesome.min.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/line-awesome/css/line-awesome.css') }}">
 
     {{-- font-awsom --}}
     <link type="text/css" href="{{ asset('assets/fontawesome-free/css/fontawesome.css') }}" rel="stylesheet">

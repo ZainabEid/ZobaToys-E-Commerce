@@ -21,7 +21,7 @@ class Productimage extends Model
 
      public function getImagePathAttribute()
      {
-         return asset('public/uploads/product_images/'.$this->image);
+         return asset('assets/uploads/product_images/'.$this->image);
      }
 
      

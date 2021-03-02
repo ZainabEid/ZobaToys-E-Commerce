@@ -63,7 +63,9 @@
                         </div>{{-- end of image slider --}}
 
                     </div><!-- end of carousel slide -->
-
+                    @php
+                    $locale = app()->getLocale();
+                    @endphp
                     <div class="card-footer">
 
                         {{-- name --}}
@@ -74,7 +76,7 @@
                             </div>
                             <div class="col-md-10">
                                 <p class="card-text">
-                                    {{ $product->translate(app()->getLocale())->name ?? $product->name }}
+                                    {{ $product->translate($locale)->name ?? $product->name }}
     
                                 </p>
                             </div>
@@ -90,7 +92,7 @@
                             </div>
                             <div class="col-md-10">
                                 <p class="card-text">
-                                    {!! $product->translate(app()->getLocale())->description ?? $product->description !!}
+                                    {!! $product->translate($locale)->description ?? $product->description !!}
     
                                 </p>
                             </div>
@@ -102,7 +104,7 @@
                             {{-- category --}}
                             <div class="col-md-3">
                                 @lang('site.category'):
-                                {{ $product->category->translate(app()->getLocale())->name ?? $product->category }}
+                                {{ $product->category->translate($locale)->name ?? $product->category }}
                             </div>
 
                             {{-- perchase price --}}

@@ -76,6 +76,12 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+         
+        'assets_uploads' => [
+            'driver' => 'local',
+            'root' => base_path('assets/uploads'),
+            'url' => env('APP_URL').'/assets',
+        ],
 
     ],
 

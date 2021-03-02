@@ -62,7 +62,7 @@ class ProductController extends Controller
 
             // manage image uploading: fit, compress, hash, move to public/uploads
             $img = Image::make($image)
-                ->fit(300,300)->Save(public_path('uploads/product_images/'.$image->hashName()));
+                ->fit(300,300)->Save(base_path('assets/uploads/product_images/'.$image->hashName()));
 
             $product_image = new Productimage();
             $product_image->image = $image->hashName();
@@ -202,7 +202,7 @@ class ProductController extends Controller
 
             
             foreach ($product->productimage as $product_image) {
-                Storage::disk('public_uploads')->delete('product_images/'.$product_image->image);
+                Storage::disk('assets_uploads')->delete('product_images/'.$product_image->image);
                 //$product_image->delete();
             }
             

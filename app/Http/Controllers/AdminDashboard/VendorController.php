@@ -50,7 +50,7 @@ class VendorController extends Controller
          // manage logo uploading
          if ($request->logo) {
             $img = Image::make($request->logo)
-                ->fit(300,300)->Save(public_path('uploads/vendor_logos/'.$request->logo->hashName()));
+                ->fit(300,300)->Save(base_path('assets/uploads/vendor_logos/'.$request->logo->hashName()));
             $request_data['logo'] = $request->logo->hashName();
         }
 
@@ -96,10 +96,10 @@ class VendorController extends Controller
          // manage logo uploading
          if ($request->logo) {
              if ($vendor->logo != 'default.png') {
-                Storage::disk('public_uploads')->delete('vendor_logos/'.$vendor->logo);
+                Storage::disk('assets_uploads')->delete('vendor_logos/'.$vendor->logo);
              }
             $img = Image::make($request->logo)
-                ->fit(300,300)->Save(public_path('uploads/vendor_logos/'.$request->logo->hashName()));
+                ->fit(300,300)->Save(base_path('assets/uploads/vendor_logos/'.$request->logo->hashName()));
             $request_data['logo'] = $request->logo->hashName();
         }
 
@@ -118,7 +118,7 @@ class VendorController extends Controller
     {
        
         if($vendor->logo != 'default.png' ){
-            Storage::disk('public_uploads')->delete('vendor_logos/'.$vendor->logo);
+            Storage::disk('assets_uploads')->delete('vendor_logos/'.$vendor->logo);
         }
         $vendor->delete();
         session()->flash('success',__('site.deleted-successfuly'));
