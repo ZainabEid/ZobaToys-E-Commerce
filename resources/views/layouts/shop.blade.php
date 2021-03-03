@@ -280,6 +280,12 @@
 
     </script>
 
+    <script type="text/javascript">
+        var baseDir = "/savemart/";
+        var static_token = "28add935523ef131c8432825597b9928";
+
+    </script>
+
     <style type="text/css">
         #main-site {
             background-color: #ffffff;

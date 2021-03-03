@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminDashboard\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\AdminRequest;
 use App\Models\Admin;
 use Intervention\Image\Facades\Image;
 use Illuminate\Http\Request;
@@ -49,19 +50,8 @@ class AdminController extends Controller
     }
     
     /** store: validate , permition , store new admin in db,  */ 
-    public function store(Request $request)
+    public function store(AdminRequest $request)
     {
-        // data validation
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required | email | unique:admins',
-            'phone' => 'required | min:10 | max:13',
-            'photo' => 'image',
-            'password' => 'required | min:6 | confirmed',
-            'permissions' => 'required | min:1',
-
-
-        ]);
 
         // password encryption
         $request_data = $request->except(['password', 'password_confirmation', 'permissions', 'photo']);
@@ -69,8 +59,7 @@ class AdminController extends Controller
         
         // manage image uploading
         if ($request->photo) {
-            $img = Image::make($request->photo)
-                ->fit(300,300)->Save(base_path('assets/uploads/admin_images/'.$request->photo->hashName()));
+            save_image('admin_images', $request->photo);
             $request_data['photo'] = $request->photo->hashName();
         }
 
@@ -95,6 +84,7 @@ class AdminController extends Controller
 
     public function update(Request $request, Admin $admin)
     {
+        
         // ther is no data in the request :()
         $request->validate([
             'name' => 'required',
@@ -115,8 +105,7 @@ class AdminController extends Controller
             if($admin->photo != 'default.jpg' ){
                 Storage::disk('assets_uploads')->delete('admin_images/'.$admin->photo);
             }
-            Image::make($request->photo)
-                ->fit(300,300)->Save(base_path('assets/uploads/admin_images/'.$request->photo->hashName()));
+            save_image('admin_images', $request->photo);
             $request_data['photo'] = $request->photo->hashName();
         }
 

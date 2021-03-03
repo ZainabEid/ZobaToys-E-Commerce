@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\AdminDashboard\Supplier;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\PurchaseRequest;
+use App\Http\Requests\AdminDashboard\SupplyRequest;
 use App\Models\Group;
 use App\Models\Purchase;
 use App\Models\Supplier;
@@ -18,15 +20,10 @@ class PurchaseController extends Controller
     }// end of create
 
    
-    public function store(Request $request, Supplier $supplier)
+    public function store(PurchaseRequest $request, Supplier $supplier)
     {
-       $request->validate([
-           'supplies'=>'required|array',
-       ]);
-
        $this->attach_purchase($request,$supplier);
 
-      
        session()->flash('success', __('site.added_successfully'));
        return redirect()->route('adminDashboard.purchases.index');
 
@@ -42,14 +39,11 @@ class PurchaseController extends Controller
     }// end of edit
 
     
-    public function update(  Supplier $supplier, Purchase $purchase,Request $request)
+    public function update(  Supplier $supplier, Purchase $purchase,PurchaseRequest $request)
     {
-        $request->validate([
-            'supplies'=>'required|array',
-        ]);
 
         $this->detach_purchase($purchase);
-        // dd('purchase is deleted');
+        
         $this->attach_purchase($request,$supplier);
 
         session()->flash('success',__('site.updated-successfuly'));

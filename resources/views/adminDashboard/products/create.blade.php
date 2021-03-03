@@ -115,10 +115,8 @@
                                     <div class="row">
                                         <div class="col">
                                             <label>@lang('site.in-sale')</label>
-                                            <select name="in_sale" class="form-control">
-                                                <option value="true" {{ old('in_sale') == true ?  'selected' : '' }}>@lang('site.in-sale')</option>
-                                                <option value="false" {{ old('in_sale') == false ?  'selected' : '' }}>@lang('site.not-in-sale')</option>
-                                            </select>
+                                            <input type="checkbox" value="1" name="in_sale"  class="form-control" {{ old('in_sale') ?  'checked' : '' }}>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -128,7 +126,7 @@
                             <div class="col-2">
                                 <div class="form-group">
                                     <label for="sale">@lang('site.sale')</label>
-                                    <input type="number" step="01" class="form-control" name="sale"
+                                    <input type="number" step="01" class="form-control" name="sale" min="10" max="100"
                                         placeholder=" @lang('site.enter-sale-percentage')" value="{{ old('sale') }}">
                                 </div>
                             </div>

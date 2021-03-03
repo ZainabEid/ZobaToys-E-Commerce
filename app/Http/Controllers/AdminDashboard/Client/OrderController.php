@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\adminDashboard\Client;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\ClientRequest;
+use App\Http\Requests\AdminDashboard\OrderRequest;
 use App\Models\Category;
 use App\Models\Client;
 use App\Models\Order;
@@ -26,13 +28,8 @@ class OrderController extends Controller
     }// end of create
 
    
-    public function store(Request $request, Client $client)
+    public function store(OrderRequest $request, Client $client)
     {
-       $request->validate([
-           'products'=>'required|array',
-          
-       ]);
-
        $this->attach_order($request,$client);
 
       
@@ -51,12 +48,8 @@ class OrderController extends Controller
     }// end of edit
 
     
-    public function update(  Client $client, Order $order,Request $request)
+    public function update(  Client $client, Order $order,OrderRequest $request)
     {
-        $request->validate([
-            'products'=>'required|array',
-        ]);
-
         $this->detach_order($order);
         // dd('order is deleted');
         $this->attach_order($request,$client);
@@ -74,11 +67,11 @@ class OrderController extends Controller
 
     private function attach_order($request,$client)      
     {
-        $paid_trigger = $request->paid_trigger == 'cash' ?  true : false;
-        $ship_trigger = $request->ship_trigger == 'shipment' ?  true : false;
+        // paid_trigger  (1):cash , (0):credit 
+        // paid_trigger  (1):shipment , (0):werehouse 
         $order = $client->order()->create([
-            'paid_trigger' => $paid_trigger,
-            'ship_trigger' =>  $ship_trigger ,
+            'paid_trigger' => $request->paid_trigger,
+            'ship_trigger' =>  $request->ship_trigger ,
         ]);
        $order->products()->attach($request->products);
 

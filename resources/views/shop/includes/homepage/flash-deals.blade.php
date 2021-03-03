@@ -52,8 +52,7 @@
                                                             </a>
                                                         </div>
 
-
-                                                        <!-- begin modules/novproductcomments/novproductcomments_reviews.tpl -->
+                                                        {{-- stars reviews --}} 
                                                         <div class="product-comments">
                                                             <div class="star_content">
                                                                 @switch($product->avg_star)
@@ -103,18 +102,16 @@
                                                                 </div>
                                                             <span>0 review</span>
                                                         </div>
-                                                        <!-- end modules/novproductcomments/novproductcomments_reviews.tpl -->
 
-                                                        <!-- begin /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/jmarketplace/views/templates/hook/product-list.tpl -->
+                                                        {{-- vendor name --}}
                                                         <p class="seller_name">
                                                             <a title="@lang('site.view-seller-profile')"
-                                                                href="http://demo.bestprestashoptheme.com/savemart/ar/jmarketplace/3_harry-makle/">
+                                                                href="{{ route('shop.vendors.show', $product->vendor->id) }}">
                                                                 <i class="fa fa-user"></i>
                                                                 {{ $product->vendor->name }}
                                                             </a>
                                                         </p>
 
-                                                        <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/jmarketplace/views/templates/hook/product-list.tpl -->
 
                                                         <div class="product-group-price">
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminDashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\CategoryRequest;
 use App\Models\Category;
 use App\Models\Wrap;
 use Illuminate\Http\Request;
@@ -30,18 +31,8 @@ class CategoryController extends Controller
     } //end of ceate
 
     //Store ()
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     { 
-        //dd($request->wrap_id);
-
-        $rules = ['wrap_id'=>'required'];
-
-        foreach(config('translatable.locales') as $locale){
-            $rules += [$locale.'.name' => ['required', Rule::unique('category_translations','name')] ]; 
-        }
-
-        $request->validate($rules);
-
         $requested_data = $request->except(['_token']);
         Category::create($requested_data);
 

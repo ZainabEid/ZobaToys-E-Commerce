@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminDashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\SupplyRequest;
 use App\Models\Group;
 use App\Models\Supplier;
 use App\Models\Supply;
@@ -46,31 +47,18 @@ class SupplyController extends Controller
 
     public function handelingImages($image)
     {
-        // manage image uploading: fit, compress, hash, move to public/uploads
-        $supply_image = Image::make($image)
-            ->fit(300,300)->Save(base_path('assets/uploads/supply_images/'.$image->hashName()));
+        // manage image uploading: fit(300,300), compress, hash, move to uploads/supply_images folder
+        $supply_image = save_image('supply_images', $image);
+       
 
         return $supply_image->basename;
 
     }//end of handling image function
 
   
-    public function store(Request $request)
+    public function store(SupplyRequest $request)
     {
-       
-        $request->validate([
-            'supplier_id'=>'required',
-            'group_id'=>'required',
-            'name'=>'required',
-            'color'=>'required',
-            'purchase_price'=>'required',
-            'image'=>'image',
-            'stock'=>'required',
-            'stock_unit'=>'required',
-        ]);
-
-        
-        $requested_data = $request->except(['_token','image']);
+          $requested_data = $request->except(['_token','image']);
         
         
         ########## if it is images add them to the supply ##########
@@ -105,19 +93,8 @@ class SupplyController extends Controller
     }// end of edit
 
     
-    public function update(Request $request, Supply $supply)
+    public function update(SupplyRequest $request, Supply $supply)
     {
-        $request->validate([
-            'supplier_id'=>'required',
-            'group_id'=>'required',
-            'name'=>'required',
-            'color'=>'required',
-            'purchase_price'=>'required',
-            'image'=>'image',
-            'stock'=>'required',
-            'stock_unit'=>'required',
-        ]);
-        
         $requested_data = $request->except(['_token','_method','image']);
 
         

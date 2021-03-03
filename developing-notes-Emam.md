@@ -159,4 +159,39 @@ __note__ : very annoying error about multi routing [too many redirects] :
 
         $this->middleware('guest:crm', ['only' => ['login']);
     
-9. 
+
+## HELPER FUNCTIONS:
+1. make a new directory in root or app or anywhare calded helpers and create the new php file
+2. write in side it function only function functionname(){return 'name';}
+3. activate auto-load: // any function can be called publically 
+    1. vendor/composer.json: inside "autoload" : {} make "files" array that include the helper files path
+4. run >> composer dumb-autoload
+
+
+## MAKE:REQUEST for validations
+1. php artisan make:request AdminRequest
+2. turn the authorisation to true
+3. in the rules (){return [ 'name' => 'required|string|max:100' , 'state' => 'in:0,1'] }: 
+4. messages(){return ['name.required' => 'please enter your name', 'name.string' => 'name must be in letters only', 'name.max' =>'maximum letteris 100 letter', 'in': entered value is not correct];}
+5. in controller store(AdminRequest $request)
+
+## TRY and Catch 
+1. put try catch in database createing or updating 
+2. reirect()->route()->with(['success'=>'entered_successfully']);
+3. catch(/Exception $ex){ reirect()->route()->with(['error'=>'error_message ']);}
+
+## error messages in alert
+
+
+## locale_lang helper function:
+1. return config::get(app.locale
+
+## save_image helper function:
+save_image($folder, $image){
+    $image->store('/',$folder);
+    $filename= $$image->hashName();
+    $path = 'images/'.$folder.'/'.$filename;
+    return $path;
+}
+
+  

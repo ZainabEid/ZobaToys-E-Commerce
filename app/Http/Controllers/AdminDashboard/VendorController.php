@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminDashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\VendorRequest;
 use App\Models\Admin;
 use App\Models\Vendor;
 use Intervention\Image\Facades\Image;
@@ -33,18 +34,8 @@ class VendorController extends Controller
     }//end of create
 
    
-    public function store(Request $request)
+    public function store(VendorRequest $request)
     {
-          // data validation
-          $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'about' => 'required',
-            'phone' => 'required | min:10 | max:13',
-            'logo' => 'image',
-            'admin_id'=>'required',
-        ]);
-
         $request_data = $request->except(['logo']);
 
          // manage logo uploading
@@ -78,19 +69,8 @@ class VendorController extends Controller
     }
 
    
-    public function update(Request $request, Vendor $vendor)
+    public function update(VendorRequest $request, Vendor $vendor)
     {
-        
-          // data validation
-          $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'about' => 'required',
-            'phone' => 'required | min:10 | max:13',
-            'logo' => 'image',
-            'admin_id'=>'required',
-        ]);
-
         $request_data = $request->except(['logo']);
 
          // manage logo uploading
@@ -98,8 +78,9 @@ class VendorController extends Controller
              if ($vendor->logo != 'default.png') {
                 Storage::disk('assets_uploads')->delete('vendor_logos/'.$vendor->logo);
              }
-            $img = Image::make($request->logo)
-                ->fit(300,300)->Save(base_path('assets/uploads/vendor_logos/'.$request->logo->hashName()));
+             // manage image uploading: fit(300,300), compress, hash, move to uploads/vendor_logos folder
+            save_image('vendor_logos', $request->logo);
+           
             $request_data['logo'] = $request->logo->hashName();
         }
 

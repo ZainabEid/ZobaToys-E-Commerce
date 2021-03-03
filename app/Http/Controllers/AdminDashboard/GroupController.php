@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminDashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\GroupRequest;
 use App\Models\Group;
 use Illuminate\Http\Request;
 
@@ -27,14 +28,9 @@ class GroupController extends Controller
         return view('adminDashboard.groups.create');
     } //end of ceate
 
-    public function store(Request $request)
+    public function store(GroupRequest $request)
     { 
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-
-        ]);
-
+     
         $requested_data = $request->except(['_token']);
         Group::create($requested_data);
 
@@ -51,14 +47,8 @@ class GroupController extends Controller
         return view('adminDashboard.groups.edit', compact('group'));
     }
 
-    public function update(Request $request, Group $group)
+    public function update(GroupRequest $request, Group $group)
     {
-        $request->validate([
-            'name' => 'required',
-            'description' => 'required',
-
-        ]);
-
         $group->update($request->except(['_token','_method']));
         session()->flash('success', __('site.updated-successfuly'));
         return redirect()->route('adminDashboard.groups.index');

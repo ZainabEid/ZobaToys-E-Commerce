@@ -40,6 +40,10 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
             Route::get('/', 'ShopController@index')->name('shop');
 
 
+            ##########   [vendors] Routes   ##########
+            Route::resource('vendors', 'VendorController');
+
+
         });// end of shop name
     });// end of shop prefix
 

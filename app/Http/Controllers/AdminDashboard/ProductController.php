@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\adminDashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\ProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Productimage;
@@ -51,18 +52,17 @@ class ProductController extends Controller
     public function handelingImages($images , $product)
     {
         /*
-        steps to save default product images 
+        {steps to save default product images 
         1. $product_image = new Productimage();
         2. $product = Product::find(3);
         3. $product->productimage();
-        4. $product->productimage()->save($product_image);
+        4. $product->productimage()->save($product_image);}
         */
 
         foreach($images as $image){
 
-            // manage image uploading: fit, compress, hash, move to public/uploads
-            $img = Image::make($image)
-                ->fit(300,300)->Save(base_path('assets/uploads/product_images/'.$image->hashName()));
+            // manage image uploading: fit(300,300), compress, hash, move to uploads/product_images folder
+            save_image('product_images', $image);
 
             $product_image = new Productimage();
             $product_image->image = $image->hashName();
@@ -73,43 +73,27 @@ class ProductController extends Controller
     }//end of handling image function
 
 
-    public function store(Request $request)
+    public function store(ProductRequest $request)
     {
+        //remove empty values
         $request['category_ids'] = array_filter($request['category_ids']);
 
-        ########## start validation rules ##########
-        //   [nun localized fields]
-        $rules = [
-            'category_ids' => 'required|array|min:1',
-            'images' => 'image',
-            'perchase_price' => 'required',
-            'price' => 'required',
-            'in_sale' => '',
-            'sale' => '',
-            'stock' => 'required',
-        ];
-
-        //   [localized fields]
-        foreach (config('translatable.locales') as $locale) {
-            $rules += [$locale.'.name' => ['required', Rule::unique('product_translations', 'name')]];
-            //$rules += [$locale.'.description' => 'required'];
-        }
-        ########## end validation rules ##########
-
-
+        //except will be attached fields
+        $requested_data = $request->except(['_token','images','category_ids']);
         
-        //submit validation and create a product
-        $request->validate($rules);
-        $requested_data = $request->except(['_token','images','category_ids','in_sale']);
-        $requested_data['in_sale'] = ($request->in_sale === 'true') ? true : false; 
+        // logged in admin is the vendor
         $requested_data += [
             'vendor_id' => Auth::guard('admin')->user()->vendor->id,
         ];
+        
+        // if sale is null make it 10
+        $requested_data['sale'] = !($request->sale) ? 10 : $requested_data['sale'];
+
         $product = Product::create($requested_data);
         $product->category()->attach($request['category_ids']);
         
         ########## if it is images add them to the product ##########
-        if ($request->image) {
+        if ($request->images) {
 
             $this->handelingImages($request->images , $product);
             
@@ -148,7 +132,8 @@ class ProductController extends Controller
         //   [nun localized fields]
         $rules = [
             'category_ids' => 'required|array|min:1',
-            'images' => 'image',
+            'images' => 'array|min:1',
+            'images.*' => 'image',
             'perchase_price' => 'required',
             'price' => 'required',
             'in_sale' => '',

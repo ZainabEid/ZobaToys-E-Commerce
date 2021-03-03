@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminDashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\WrapRequest;
 use App\Models\Wrap;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -26,20 +27,8 @@ class WrapController extends Controller
     } //end of ceate
 
     //Store ()
-    public function store(Request $request)
+    public function store(WrapRequest $request)
     { 
-
-        $rules = [];
-
-        foreach(config('translatable.locales') as $locale){
-            $rules += [
-                $locale.'.name' => ['required', Rule::unique('wrap_translations','name')],
-                $locale.'.description' => ['required', Rule::unique('wrap_translations','description')]
-        ]; 
-        }
-
-        $request->validate($rules);
-
         $requested_data = $request->except(['_token']);
         Wrap::create($requested_data);
 

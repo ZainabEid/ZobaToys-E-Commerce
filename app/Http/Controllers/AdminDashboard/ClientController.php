@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\AdminDashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminDashboard\ClientRequest;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -29,15 +30,8 @@ class ClientController extends Controller
     }
 
     
-    public function store(Request $request)
+    public function store(ClientRequest $request)
     {
-        $request->validate([
-            'name' =>'required',
-            'phone' =>'required|array|min:1',
-            'phone.0' =>'required',
-            'address' =>'required',
-        ]);
-
         $request_data = $request->all();
         $request_data['phone'] = array_filter($request->phone);
 
@@ -54,15 +48,8 @@ class ClientController extends Controller
     }
 
    
-    public function update(Request $request, Client $client)
+    public function update(ClientRequest $request, Client $client)
     {
-        $request->validate([
-            'name' =>'required',
-            'phone' =>'required|array|min:1',
-            'phone.0' =>'required',
-            'address' =>'required',
-        ]);
-
         $request_data = $request->all();
         $request_data['phone'] = array_filter($request->phone);
 

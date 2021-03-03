@@ -164,11 +164,11 @@
                                             <label for="paid_trigger"> @lang('site.payment-method')</label>
                                             <div >
                                                 <label>
-                                                    <input type="radio" name="paid_trigger"  value="cash" checked >
+                                                    <input type="radio" name="paid_trigger"  value="1" checked >
                                                     @lang('site.cash')
                                                 </label>
                                                 <label >
-                                                    <input type="radio" name="paid_trigger" value="credit">
+                                                    <input type="radio" name="paid_trigger" value="0">
                                                 @lang('site.not-paid')
                                                 </label>
                                             
@@ -179,11 +179,11 @@
                                             <label for="ship_trigger"> @lang('site.deliver-method')</label>
                                             <div >
                                                 <label>
-                                                    <input type="radio" name="ship_trigger" value="shipment" checked>
+                                                    <input type="radio" name="ship_trigger" value="1" checked>
                                                     @lang('site.shipment')
                                                 </label>
                                                 <label >
-                                                    <input type="radio" name="ship_trigger" value="warehouse" >
+                                                    <input type="radio" name="ship_trigger" value="0" >
                                                 @lang('site.warehouse')
                                                 </label>
                                             
