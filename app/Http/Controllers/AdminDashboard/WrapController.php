@@ -46,18 +46,8 @@ class WrapController extends Controller
         return view('adminDashboard.wraps.edit', compact('wrap','wraps'));
     }
 
-    public function update(Request $request, Wrap $wrap)
+    public function update(WrapRequest $request, Wrap $wrap)
     {
-        $rules = [];
-
-        foreach(config('translatable.locales') as $locale){
-            $rules += [
-                $locale.'.name' => ['required', Rule::unique('wrap_translations','name')->ignore($wrap->id,'wrap_id')],
-                $locale.'.description' => ['required', Rule::unique('wrap_translations','description')->ignore($wrap->id,'wrap_id')]
-             ]; 
-        }
-
-        $request->validate($rules);
 
         $wrap->update($request->except(['_token','_method']));
         session()->flash('success', __('site.updated-successfuly'));

@@ -75,9 +75,6 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        //remove empty values
-        $request['category_ids'] = array_filter($request['category_ids']);
-
         //except will be attached fields
         $requested_data = $request->except(['_token','images','category_ids']);
         
@@ -121,39 +118,14 @@ class ProductController extends Controller
         $categories = Category::all();  
         $wraps = Wrap::all();
 
+        //dd($product->categories[0]->id);
+       //dd( $product->categories->contains(0));
         return view('adminDashboard.products.edit', compact('categories' , 'product','wraps'));
     }// end of edit
 
-    public function update(Request $request, Product $product)
+    public function update(ProductRequest $request, Product $product)
     {
-        $request['category_ids'] = array_filter($request['category_ids']);
       
-         ########## start validation rules ##########
-        //   [nun localized fields]
-        $rules = [
-            'category_ids' => 'required|array|min:1',
-            'images' => 'array|min:1',
-            'images.*' => 'image',
-            'perchase_price' => 'required',
-            'price' => 'required',
-            'in_sale' => '',
-            'sale' => '',
-            'stock' => 'required',
-        ];
-
-        //   [localized fields]
-        foreach (config('translatable.locales') as $locale) {
-            $rules += [
-                $locale.'.name' => ['required', Rule::unique('product_translations', 'name')->ignore($product->id,'product_id')]
-            ];
-            //$rules += [$locale.'.description' => 'required'];
-        }
-         ########## end validation rules ##########
-
-
-        
-        //submit validation and create a product
-        $request->validate($rules);
         $requested_data = $request->except(['_token','_method','image','category_ids,in_sale']);
         
         $requested_data['in_sale'] = ($request->in_sale === 'true') ? true : false; 
@@ -170,8 +142,8 @@ class ProductController extends Controller
         
         
         $product->update($requested_data);
-        $product->category()->detach();
-        $product->category()->attach($request['category_ids']);
+        $product->categories()->detach();
+        $product->categories()->attach($request['category_ids']);
         session()->flash('success', __('site.edited-successfuly'));
 
         return redirect()->route('adminDashboard.products.index');

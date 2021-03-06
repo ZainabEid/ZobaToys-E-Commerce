@@ -5,7 +5,7 @@
 <div class="wrapper-site " >
 
     <nav aria-label="breadcrumb">
-        <div class="container" style="background-color: lightgray">
+        <div class="container" >
                 <ol   class="breadcrumb">
                 <li itemprop="itemListElement"  >
                     <a  itemprop="item" href="{{ route("shop") }}">

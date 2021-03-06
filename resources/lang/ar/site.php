@@ -334,6 +334,19 @@ return [
     | in the shop website header, sidebar,footer
     */
     
+    //header
+    'today-deals' => 'عروض اليوم',
+    'register' => "اشتراك",
+    'sign-in' => 'تسجيل دخول',
+    'or' => 'أو',
+    'EGP' => 'جنيه مصري',
+    'USD' => 'دولار امريكي',
+    'call-customer-service' => ' التواصل مع العملاء',
+    'buying-basket' => 'سلة الشراء',
+    'items' => 'المشتروات',
+    'no-products-in-the-cart' => 'لا يوجد منتجات',
+
+    //index
     'shop-by-categories' => 'تصفح من خلال الاقسام',
     'homepage' => 'الصفحة الرئيسية',
     'articls' => 'المقالات',
@@ -362,6 +375,24 @@ return [
    'forget-password' => 'هل نسيت كلمة المرور؟',
    'login' => 'تسجيل الدخول',
    'you-dont-have-account?-register-now' => 'ليس لديك حساب ؟ تسجيل حساب جديد',
+
+   //show vendor page
+   'seller-shop' => 'اسم المتجر',
+   'followers' => 'المتابعين',
+   'average-rating' => 'متوسط التقييم',
+   'show-products-of' => 'عرض منتجات',
+   'add-to-favourite-seller' => 'اضف الى التجار المفضلين',
+   'contact' => 'التواصل',
+   'vendor-address' => 'عنوان المتجر',
+   'vendor-phone' => 'هاتف المتجر',
+   'vendor-fax' => 'فاكس المتجر',
+   'view-seller-profile' => 'عرض صفحة المتجر',
+   'in-stock' => 'يوجد مخزون',
+   'out-of-stock' => 'المخزون انتهى',
+   'go-back' => 'عودة',
+   'home' => 'الرئيسية',
+
+
 
    
 

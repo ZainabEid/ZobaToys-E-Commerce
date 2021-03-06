@@ -13,10 +13,18 @@ class ProductRequest extends FormRequest
         return true;
     }//end of authorize
 
+    protected function prepareForValidation() :void
+    {
+       // array_filter(): removes null valued items, array_values(): resets index
+
+        $this->merge([
+            'category_ids' => array_values(array_filter($this['category_ids'])),
+        ]);
+    }//end prepare for vlaidation()
+
     
     public function rules()
     {
-        ########## start validation rules ##########
         //   [nun localized fields]
         $rules = [
             'category_ids' => 'required|array|min:1',
@@ -24,17 +32,17 @@ class ProductRequest extends FormRequest
             'images.*' => 'image',
             'perchase_price' => 'required',
             'price' => 'required',
-            'in_sale' => 'in:0,1',
-            'sale' => '',
+            'in_sale' => 'required|in:0,1',
+            'sale' => 'nullable|min:10|max:90',
             'stock' => 'required',
         ];
 
         //   [localized fields]
         foreach (config('translatable.locales') as $locale) {
-            $rules += [$locale.'.name' => ['required', Rule::unique('product_translations', 'name')]];
+            $rules += [$locale.'.name' => ['required', Rule::unique('product_translations', 'name')->ignore($this->product->id ?? '','product_id')]];
             //$rules += [$locale.'.description' => 'required'];
         }
-        ########## end validation rules ##########
+
         return $rules;
     }//end of rules
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\AdminDashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class AdminRequest extends FormRequest
 {
@@ -17,10 +18,13 @@ class AdminRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'email' => ['required' , 'email' , 'unique:admins'],
+            'email' => [
+                'required',
+                Rule::unique('admins')->ignore($this->admin),
+            ],
             'phone' => ['required' , 'min:10' , 'max:13'],
             'photo' => ['image'],
-            'password' => ['required' ,  'min:6' ,  'confirmed'],
+            'password' => ['sometimes','required' ,  'min:6' ,  'confirmed'],
             'permissions' => ['required' ,  'min:1'],
         ];
     } //end of rules

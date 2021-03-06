@@ -20,9 +20,10 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         $rules = ['wrap_id'=>'required'];
-
+        // dd( Rule::unique('category_translations','name')->ignore($this->category->id ?? 0));
+        // dd( Rule::unique('category_translations','name')->ignore($this->category->id,'category_id'));
         foreach(config('translatable.locales') as $locale){
-            $rules += [$locale.'.name' => ['required', Rule::unique('category_translations','name')] ]; 
+            $rules += [$locale.'.name' => ['required', Rule::unique('category_translations','name')->ignore($this->category->id ?? '','category_id')] ]; 
         }
         return $rules;
     } //end of rules

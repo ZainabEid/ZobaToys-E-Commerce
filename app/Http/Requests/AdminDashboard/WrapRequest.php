@@ -3,6 +3,8 @@
 namespace App\Http\Requests\AdminDashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+
 
 class WrapRequest extends FormRequest
 {
@@ -22,8 +24,8 @@ class WrapRequest extends FormRequest
 
         foreach(config('translatable.locales') as $locale){
             $rules += [
-                $locale.'.name' => ['required', Rule::unique('wrap_translations','name')],
-                $locale.'.description' => ['required', Rule::unique('wrap_translations','description')]
+                $locale.'.name' => ['required', Rule::unique('wrap_translations','name')->ignore($this->wrap->id ?? '','wrap_id')],
+                $locale.'.description' => ['required', Rule::unique('wrap_translations','description')->ignore($this->wrap->id ?? '','wrap_id')]
         ]; 
         }
         return $rules;

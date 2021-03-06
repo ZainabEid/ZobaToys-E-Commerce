@@ -25,4 +25,10 @@ class ShopController extends Controller
         return view('shop.index',compact('flash_deals_products','new_arrivals_products'));
     }// rnd of index
 
+    public function change_currency($currencey)
+    {
+        
+        return redirect()->back();
+    }
+
 }// end of shop controller

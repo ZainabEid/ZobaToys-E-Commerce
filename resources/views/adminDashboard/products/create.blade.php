@@ -27,7 +27,8 @@
                       <div class="form-group">
                           <label>@lang('site.category')</label>
                           <div class="row">
-                            @foreach ($wraps as $wrap)
+                            
+                            @foreach ($wraps as  $index => $wrap)
                             <div class="col">
                                 <label>{{ $wrap->name }}</label>
                                 <select name="category_ids[]" class="form-control">
@@ -35,9 +36,10 @@
                                     <option value="">@lang('site.choose-category')</option>
         
                                     @foreach ($wrap->categories as $category)
-                                    <option value="{{ $category->id }}" {{ old('category_id') == $category->id ?  'selected' : '' }}>{{ $category->translate(app()->getLocale())->name }}</option>
-                                    @endforeach
+                                    <option value="{{ $category->id }}" {{ old('category_ids.'.$index) == $category->id ?  'selected' : '' }}>{{ $category->translate(app()->getLocale())->name }}</option>
                                   
+                                    @endforeach
+                                    
                                 </select>
                             </div>
                                 @endforeach

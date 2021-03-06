@@ -174,6 +174,8 @@ __note__ : very annoying error about multi routing [too many redirects] :
 3. in the rules (){return [ 'name' => 'required|string|max:100' , 'state' => 'in:0,1'] }: 
 4. messages(){return ['name.required' => 'please enter your name', 'name.string' => 'name must be in letters only', 'name.max' =>'maximum letteris 100 letter', 'in': entered value is not correct];}
 5. in controller store(AdminRequest $request)
+6. 'name' => ['required', Rule::unique('tables','name')->ignore($this->table)] // in the Request instead of ['ignore($category->id,'category_id')']
+ 7. 
 
 ## TRY and Catch 
 1. put try catch in database createing or updating 
@@ -194,4 +196,9 @@ save_image($folder, $image){
     return $path;
 }
 
-  
+## useful functions:
+1. $value_with_no_index = array_value($collection)
+2. ModelName::insertGetId(['name'=>'value'])
+3. ModelNAme::insert($array_of_rows)
+4. DB::BeginTransactions() , DB::commit, DB::rollback()
+5.   

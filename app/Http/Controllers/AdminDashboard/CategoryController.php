@@ -9,6 +9,7 @@ use App\Models\Wrap;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class CategoryController extends Controller
 {
@@ -46,19 +47,21 @@ class CategoryController extends Controller
 
     public function edit(Category $category)
     {
+
+       
         $wraps = Wrap::all(); 
         return view('adminDashboard.categories.edit', compact('category','wraps'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(CategoryRequest $request, Category $category)
     {
-        $rules = ['wrap_id'=>'required'];
+        // $rules = ['wrap_id'=>'required'];
 
-        foreach(config('translatable.locales') as $locale){
-            $rules += [$locale.'.name' => ['required', Rule::unique('category_translations','name')->ignore($category->id,'category_id')] ]; 
-        }
+        // foreach(config('translatable.locales') as $locale){
+        //     $rules += [$locale.'.name' => ['required', Rule::unique('category_translations','name')->ignore($category->id,'category_id')] ]; 
+        // }
 
-        $request->validate($rules);
+        // $request->validate($rules);
 
         $category->update($request->except(['_token','_method']));
         session()->flash('success', __('site.updated-successfuly'));

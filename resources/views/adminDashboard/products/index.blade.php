@@ -103,7 +103,7 @@
                                                 <tr>
                                                     <td>{{ $index + 1 }}</td>
                                                     <td>
-                                                        @foreach ($product->category as $index=>$category)
+                                                        @foreach ($product->categories as $index=>$category)
                                                             @if ($index>0)
                                                             ,
                                                             @endif

@@ -82,20 +82,20 @@ class AdminController extends Controller
         return view('adminDashboard.admin.edit',compact('admin'));
     }// end of edit
 
-    public function update(Request $request, Admin $admin)
+    public function update(AdminRequest $request, Admin $admin)
     {
         
-        // ther is no data in the request :()
-        $request->validate([
-            'name' => 'required',
-            'email' => [
-                'required',
-                Rule::unique('admins')->ignore($admin->id),
-            ],
-            'phone' => 'required | min:10 | max:13',
-            'photo' => 'image',
-            'permissions' => 'required | min:1',
-        ]);
+        // // ther is no data in the request :()
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => [
+        //         'required',
+        //         Rule::unique('admins')->ignore($admin->id),
+        //     ],
+        //     'phone' => 'required | min:10 | max:13',
+        //     'photo' => 'image',
+        //     'permissions' => 'required | min:1',
+        // ]);
 
         $request_data = $request->except(['permissions', 'photo']);
 

@@ -6,14 +6,14 @@
                     class="header-top-left col-lg-6 col-md-6 d-flex justify-content-start align-items-center">
                     <div class="detail-email d-flex align-items-center justify-content-center">
                         <i class="icon-email"></i>
-                        <p>Email : </p>
+                        <p>@lang('site.email') : </p>
                         <span>
-                            support@gmail.com
+                            {{ App\Models\Vendor::where('name','zobatoys')->first()->admin->email}}
                         </span>
                     </div>
                     <div class="detail-call d-flex align-items-center justify-content-center">
                         <i class="icon-deal"></i>
-                        <p>Today Deals </p>
+                        <p>@lang('site.today-deals') </p>
                     </div>
                 </div>
                 <div
@@ -23,12 +23,12 @@
                         <a class="register"
                             href="http://demo.bestprestashoptheme.com/savemart/ar/تسجيل الدخول?create_account=1"
                             data-link-action="display-register-form">
-                            Register
+                            @lang('site.register')
                         </a>
-                        <span class="or-text">or</span>
+                        <span class="or-text">@lang('site.or')</span>
                         <a class="login"
                             href="http://demo.bestprestashoptheme.com/savemart/ar/الحساب الشخصي"
-                            rel="nofollow" title="تسجيل الدخول إلى حسابك">Sign in</a>
+                            rel="nofollow" title="تسجيل الدخول إلى حسابك">@lang('site.sign-in')</a>
                     </div>
 
                     <!-- begin module:ps_currencyselector/ps_currencyselector.tpl -->
@@ -37,33 +37,31 @@
                         class="currency-selector groups-selector hidden-sm-down currentcy-selector-dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" role="main">
-                            <span class="expand-more">GBP</span>
+                            <span class="expand-more" >@lang('site.EGP')</span>
                         </div>
                         <div class="currency-list dropdown-menu">
                             <div class="currency-list-content text-left">
                                 <div class="currency-item current flex-first">
-                                    <a title="جنيه إسترليني" rel="nofollow"
-                                        href="http://demo.bestprestashoptheme.com/savemart/ar/?home=home_3&amp;SubmitCurrency=1&amp;id_currency=1">UK£
-                                        GBP</a>
+                                    <a title="@lang('site.EGP')" rel="nofollow"
+                                        href="#">UK£
+                                        @lang('site.EGP')</a>
                                 </div>
                                 <div class="currency-item">
-                                    <a title="دولار أمريكي" rel="nofollow"
+                                    <a title="@lang('site.USD')" rel="nofollow"
                                         href="http://demo.bestprestashoptheme.com/savemart/ar/?home=home_3&amp;SubmitCurrency=1&amp;id_currency=2">US$
-                                        USD</a>
+                                        @lang('site.USD')</a>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- end /var/www/demo.bestprestashoptheme.com/public_html/savemart/themes/vinova_savemart/modules/ps_currencyselector/ps_currencyselector.tpl -->
-                    <!-- end module:ps_currencyselector/ps_currencyselector.tpl -->
-                   
+                    
                     <!--  start Language selector  -->
                     <div id="_desktop_language_selector"
                         class="language-selector groups-selector hidden-sm-down language-selector-dropdown">
                         <div class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
                             aria-expanded="false" role="main">
-                            <span class="expand-more"><img class="img-fluid" src="{{ asset('assets/site/images/flags/svg/ae.svg') }}"
+                            <span class="expand-more"><img class="img-fluid" src="{{ asset('assets/site/images/flags/svg/'.get_flag(app()->getLocale()).'.svg') }}"
                                     alt="اللغة العربية" width="16" height="11" /></span>
                         </div>
                         <div class="language-list dropdown-menu">
@@ -72,7 +70,7 @@
                                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
                                         <li class="language-item">
                                             <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                                <img class="img-fluid" src="{{ asset('assets/site/images/flags/svg/ae.svg') }}" alt="English"
+                                                <img class="img-fluid" src="{{ asset('assets/site/images/flags/svg/'.get_flag($localeCode).'.svg') }}" alt="English"
                                                 width="16" height="11" />
                                                 
                                                 <span>{{ $properties['native'] }}</span>

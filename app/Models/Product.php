@@ -21,7 +21,7 @@ class Product extends Model
     ############## relationships ###################
     
     // one to many --> a category has many products
-    public function category()
+    public function categories()
     {
         return $this->belongsToMany(Category::class);
     }

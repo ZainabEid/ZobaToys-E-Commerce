@@ -62,15 +62,14 @@
                                             </div>
                                             <div class="seller-title-home">
                                                 {{-- seller name --}}
-                                                <h1 class="page-subheading">SELLER SHOP: {{ $vendor->name }}</h1>
+                                                <h1 class="page-subheading">@lang('site.seller-shop'):{{ $vendor->name }}</h1>
                                                 {{-- followers --}}
                                                 <div class="d-inline-block ml-5 mt-13">
-                                                    <label><strong>Followers: </strong><span>1</span></label>
+                                                    <label><strong>@lang('site.followers'): </strong><span>1</span></label>
                                                 </div>
                                                 {{-- average rating --}}
                                                 <div class="d-inline-block ml-4 mt-13">
-                                                    <label><strong>Average rating: </strong>
-
+                                                    <label><strong>@lang('site.average-rating'): </strong>
                                                         {{-- stars reviews --}}
                                                         <div
                                                             class="average_rating buttons_bottom_block d-inline-block ml-2">
@@ -121,9 +120,8 @@
                                                                 @endswitch
                                                             </a>
                                                         </div>
-                                                        <span id="average_total">(0)</span>
-
                                                     </label>
+                                                    <span id="average_total">(0)</span>
 
                                                 </div>
                                             </div>
@@ -133,7 +131,7 @@
                                     <div
                                         class="col-md-12 col-xl-6 seller-header-right d-flex align-items-center justify-content-end flex-wrap">
                                         <a href="#">
-                                            <i class="icon-cart"></i> @lang('site.show-productsof'){{ $vendor->name }}
+                                            <i class="icon-cart"></i> @lang('site.show-products-of'){{ $vendor->name }}
                                         </a>
                                         <a title="Add to favorite seller"
                                             href="http://demo.bestprestashoptheme.com/savemart/ar/module/jmarketplace/favoriteseller?id_seller=3"
@@ -154,7 +152,7 @@
                                     {{-- vendor's admin photo --}}
                                     <div class="vendor-img">
                                         <img class="img-responsive"
-                                            src="http://demo.bestprestashoptheme.com/savemart//img/sellers/5.jpg"
+                                            src="{{ $vendor->admin->image_path }}"
                                             width="100%">
                                     </div>
 
@@ -165,16 +163,16 @@
                                             <p>{{ $vendor->admin->name }}</p>
                                         </div>
                                         <div class="ps-vendor-detail">
-                                            <p><i class="fa fa-fw fa-map-marker"></i><label><b>Seller Address : </b>
+                                            <p><i class="fa fa-fw fa-map-marker"></i><label><b>@lang('site.vendor-address') : </b>
                                                     {{ $vendor->address }}</label></p>
                                         </div>
                                         <div class="ps-vendor-detail">
-                                            <p><i class="fa fa-fw fa-phone"></i><label><b>Seller Phone :
+                                            <p><i class="fa fa-fw fa-phone"></i><label><b>@lang('site.vendor-phone') :
                                                     </b>{{ $vendor->phone }}</label></p>
-                                            <p><i class="fa fa-fax"></i><label><b>Seller Fax :</b>01656299992</label></p>
+                                            <p><i class="fa fa-fax"></i><label><b>@lang('site.vendor-fax') :</b>01656299992</label></p>
                                         </div>
                                         <div class="ps-vendor-detail">
-                                            <a href="mailto:demo@demo.com"><i class="fa fa-fw fa-envelope"></i><b>Email :
+                                            <a href="mailto:demo@demo.com"><i class="fa fa-fw fa-envelope"></i><b>@lang('site.email') :
                                                 </b>{{ $vendor->admin->email }}</a>
                                         </div>
 
@@ -205,9 +203,9 @@
                                                         href="http://demo.bestprestashoptheme.com/savemart/ar/smartphone-tablet/9-mauris-feugiat-et-dui-sit-amet.html"
                                                         title="Mauris feugiat et dui sit amet" itemprop="url">
                                                         <img class="img-fluid image-cover"
-                                                            src="http://demo.bestprestashoptheme.com/savemart/64-home_default/mauris-feugiat-et-dui-sit-amet.jpg"
-                                                            alt="Mauris feugiat et dui sit amet"
-                                                            title="Mauris feugiat et dui sit amet"
+                                                            src="{{$product->productimages->first()->image_path}}"
+                                                            alt="{{ $product->translate(app()->getLocale())->name ?? $product->name }}"
+                                                            title="{{ $product->translate(app()->getLocale())->name ?? $product->name }}"
                                                             data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/64-large_default/mauris-feugiat-et-dui-sit-amet.jpg">
                                                     </a>
 
@@ -295,10 +293,7 @@
                                                                 {{ $product->stock > 0 ? __('site.in-stock') : __('site.out-of-stock') }}
                                                             </span>
                                                         </div>
-                                                        <div class="product-desc" itemprop="desciption">Mauris feugiat et
-                                                            dui
-                                                            sit amet commodo. Cras a elit ac libero sagittis facilisis. Duis
-                                                            efficitur viverra mauris. Duis elementum ac eros...</div>
+                                                        <div class="product-desc" itemprop="desciption">{{ $product->translate(app()->getLocale())->description ?? $product->description }}</div>
                                                     </div>
                                                     {{-- product buttons --}}
                                                     <div class="product-buttons d-flex justify-content-center"
@@ -331,92 +326,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        {{-- unused product --}}
-                                        <div class="item col-12 col-sm-6 col-md-4 col-lg-3">
-                                            <div class="product-miniature js-product-miniature " data-id-product="10"
-                                                data-id-product-attribute="192" itemscope=""
-                                                itemtype="http://schema.org/Product">
-                                                <div class="thumbnail-container">
-
-                                                    <a class="product_img_link"
-                                                        href="http://demo.bestprestashoptheme.com/savemart/ar/smartphone-tablet/10-nullam-lacinia-metus-posuere.html"
-                                                        title="Nullam lacinia metus posuere" itemprop="url">
-                                                        <img class="img-fluid image-cover"
-                                                            src="http://demo.bestprestashoptheme.com/savemart/69-home_default/nullam-lacinia-metus-posuere.jpg"
-                                                            alt="Nullam lacinia metus posuere"
-                                                            title="Nullam lacinia metus posuere"
-                                                            data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/69-large_default/nullam-lacinia-metus-posuere.jpg">
-                                                    </a>
-
-                                                </div>
-                                                <div class="product-description">
-                                                    <div class="product-groups">
-
-                                                        <div class="product-title" itemprop="name"><a
-                                                                href="http://demo.bestprestashoptheme.com/savemart/ar/smartphone-tablet/10-nullam-lacinia-metus-posuere.html">Nullam
-                                                                lacinia metus posuere</a></div>
-
-                                                        <div class="product-comments">
-                                                            <div class="star_content">
-                                                                <div class="star"></div>
-                                                                <div class="star"></div>
-                                                                <div class="star"></div>
-                                                                <div class="star"></div>
-                                                                <div class="star"></div>
-                                                            </div>
-                                                            <span>0 review</span>
-                                                        </div>
-                                                        <p class="seller_name">
-                                                            <a title="View seller profile"
-                                                                href="http://demo.bestprestashoptheme.com/savemart/ar/jmarketplace/3_harry-makle/">
-                                                                <i class="fa fa-user"></i>
-                                                                Harry Makle
-                                                            </a>
-                                                        </p>
-
-                                                        <div class="product-group-price">
-
-                                                            <span class="price product-price">
-                                                                36.00&nbsp;UK£ </span>
-
-
-
-                                                        </div>
-                                                        <div class="info-stock">
-                                                            <span class=" label-success">
-                                                                in stock </span>
-                                                        </div>
-                                                        <div class="product-desc" itemprop="desciption">Nullam tellus
-                                                            lectus,
-                                                            auctor non facilisis volutpat, auctor eu neque. In volutpat non
-                                                            lacus sit amet pharetra. Nullam lacinia metus...</div>
-                                                    </div>
-                                                    <div class="product-buttons d-flex justify-content-center"
-                                                        itemprop="offers" itemscope="" itemtype="http://schema.org/Offer">
-                                                        <form
-                                                            action="http://demo.bestprestashoptheme.com/savemart/ar/عربة التسوق"
-                                                            method="post" class="formAddToCart">
-                                                            <input type="hidden" name="token"
-                                                                value="28add935523ef131c8432825597b9928">
-                                                            <input type="hidden" name="id_product" value="10">
-                                                            <a class="add-to-cart" href="#"
-                                                                data-button-action="add-to-cart"><i
-                                                                    class="novicon-cart"></i><span>أضف للسلة</span></a>
-                                                        </form>
-
-                                                        <a class="addToWishlist wishlistProd_10" href="#" data-rel="10"
-                                                            onclick="WishlistCart('wishlist_block_list', 'add', '10', false, 1); return false;">
-                                                            <i class="fa fa-heart"></i>
-                                                            <span>Add to Wishlist</span>
-                                                        </a>
-                                                        <a href="#" class="quick-view hidden-sm-down"
-                                                            data-link-action="quickview">
-                                                            <i class="fa fa-search"></i><span> نظرة سريعة</span>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      
                                     @endforeach
 
                                 </div>
