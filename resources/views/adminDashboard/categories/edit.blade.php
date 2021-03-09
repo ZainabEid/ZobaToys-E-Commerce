@@ -39,11 +39,13 @@
 
                         {{-- name --}}
                         @foreach ( config('translatable.locales') as $locale )
+                           @if ($locale)
                             <div class="form-group">
                                 <label for="name">@lang('site.'.$locale.'.name')</label>
                                 <input type="name" class="form-control" name="{{ $locale }}[name]"
-                                    placeholder=" @lang('site.enter-name')" value="{{ $category->translate($locale)->name }}">
+                                    placeholder=" @lang('site.enter-name')" value="{{ $category->translate($locale)->name ?? "" }}">
                             </div>
+                           @endif
                         @endforeach
 
                     </div><!-- end of card-body -->

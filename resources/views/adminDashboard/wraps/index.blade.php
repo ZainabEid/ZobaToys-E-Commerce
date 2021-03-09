@@ -60,17 +60,15 @@
                             </thead>
 
                             @if ($wraps->count() > 0)
-                            @php
-                                $locale = app()->getLocale();
-                            @endphp
+                           
                             
                             <tbody>
                               
                               @foreach ($wraps as $index=>$wrap)
                               <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $wrap->translate( $locale)->name  ??  $wrap->name }}</td>
-                                <td>{{ $wrap->translate( $locale)->description  ??  $wrap->description }}</td>
+                                <td>{{ $wrap->translate( app_locale_language())->name  ??  $wrap->name }}</td>
+                                <td>{{ $wrap->translate( app_locale_language())->description  ??  $wrap->description }}</td>
                                 <td>{{ $wrap->categories->count() }}</td>
                                 <td>
 

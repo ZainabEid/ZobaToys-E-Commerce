@@ -34,7 +34,7 @@
                                             <select name="category_id" id="" class="form-control">
                                                 <option value="" > @lang('site.all-categories')</option>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : '' }}> {{ $category->translate( app()->getLocale() )->name }}</option>
+                                                    <option value="{{ $category->id }}" {{ request()->category_id == $category->id ? 'selected' : '' }}> {{ $category->translate( app_locale_language() )->name ?? $category->name }}</option>
                                                 @endforeach
                                             </select>
 
@@ -94,10 +94,6 @@
                                     </thead>
 
                                     @if ($products->count() > 0)
-                                        @php
-                                        $locale = app()->getLocale();
-                                        @endphp
-
                                         <tbody>
                                             @foreach ($products as $index => $product)
                                                 <tr>
@@ -110,8 +106,8 @@
                                                             {{ $category->name }}
                                                         @endforeach
                                                        </td>
-                                                    <td>{{ $product->translate($locale)->name ?? $product->name }}</td>
-                                                    <td>{!! $product->translate($locale)->description ?? $product->description !!}</td>
+                                                    <td>{{ $product->translate(app_locale_language())->name ?? $product->name }}</td>
+                                                    <td>{!! $product->translate(app_locale_language())->description ?? $product->description !!}</td>
                                                     <td>
                                                         <div class="d-flex flex-column">
                                                             <img class="rounded img-thumbnail" style="width: 100px" 

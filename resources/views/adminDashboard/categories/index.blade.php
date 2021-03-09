@@ -60,16 +60,14 @@
                             </thead>
 
                             @if ($categories->count() > 0)
-                            @php
-                                $locale = app()->getLocale();
-                            @endphp
+                           
                             
                             <tbody>
                               
                               @foreach ($categories as $index=>$category)
                               <tr>
                                 <td>{{ $index + 1 }}</td>
-                                <td>{{ $category->translate( $locale)->name  ??  $category->name }}</td>
+                                <td>{{ $category->translate(app_locale_language())->name  ??  $category->name }}</td>
                                 <td>{{ $category->products->count() }}</td>
                                 <td> <a href="{{ route('adminDashboard.products.index', ['category_id' => $category->id]) }}" class="btn btn-info btn-sm"> @lang('site.show-products')</a> </td>
                                 <td>

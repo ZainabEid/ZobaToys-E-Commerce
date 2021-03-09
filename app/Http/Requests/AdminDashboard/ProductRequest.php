@@ -19,31 +19,29 @@ class ProductRequest extends FormRequest
 
         $this->merge([
             'category_ids' => array_values(array_filter($this['category_ids'])),
+            'in_sale' => $this['in_sale'] ?  $this['in_sale'] : 0,
+            'sale' => $this['sale'] ?  $this['sale'] : 10,
+            remove_translatable_nulls($this),
         ]);
     }//end prepare for vlaidation()
 
     
     public function rules()
     {
-        //   [nun localized fields]
-        $rules = [
+        return  [
             'category_ids' => 'required|array|min:1',
             'images' => 'array|min:1',
             'images.*' => 'image',
             'perchase_price' => 'required',
             'price' => 'required',
             'in_sale' => 'required|in:0,1',
-            'sale' => 'nullable|min:10|max:90',
+            'sale' => 'integer',
             'stock' => 'required',
+            default_language().'.name' =>  'required',
+            default_language().'.description' =>  'required',
+            '*.name' =>  Rule::unique('product_translations', 'name')->ignore($this->product->id ?? '','product_id'),
+            '*.description' =>  Rule::unique('product_translations', 'description')->ignore($this->product->id ?? '','product_id'),
         ];
-
-        //   [localized fields]
-        foreach (config('translatable.locales') as $locale) {
-            $rules += [$locale.'.name' => ['required', Rule::unique('product_translations', 'name')->ignore($this->product->id ?? '','product_id')]];
-            //$rules += [$locale.'.description' => 'required'];
-        }
-
-        return $rules;
     }//end of rules
 
     public function message()

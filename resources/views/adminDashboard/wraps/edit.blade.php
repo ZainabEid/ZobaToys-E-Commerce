@@ -30,11 +30,11 @@
                                 {{-- name --}}
                                 <label for="name">@lang('site.'.$locale.'.name')</label>
                                 <input type="text" class="form-control" name="{{ $locale }}[name]"
-                                    placeholder=" @lang('site.enter-name')" value="{{ $wrap->translate($locale)->name }}">
+                                    placeholder=" @lang('site.enter-name')" value="{{  $wrap->translate($locale)->name  ?? ""}}">
                                {{-- description --}}
                                 <label for="description">@lang('site.'.$locale.'.description')</label>
                                 <input type="text" class="form-control" name="{{ $locale }}[description]"
-                                    placeholder=" @lang('site.enter-description')" value="{{ $wrap->translate($locale)->description }}">
+                                    placeholder=" @lang('site.enter-description')" value="{{  $wrap->translate($locale)->description ?? "" }}">
                             
                             </div>
                         @endforeach

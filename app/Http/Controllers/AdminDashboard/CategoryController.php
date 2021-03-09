@@ -55,14 +55,6 @@ class CategoryController extends Controller
 
     public function update(CategoryRequest $request, Category $category)
     {
-        // $rules = ['wrap_id'=>'required'];
-
-        // foreach(config('translatable.locales') as $locale){
-        //     $rules += [$locale.'.name' => ['required', Rule::unique('category_translations','name')->ignore($category->id,'category_id')] ]; 
-        // }
-
-        // $request->validate($rules);
-
         $category->update($request->except(['_token','_method']));
         session()->flash('success', __('site.updated-successfuly'));
         return redirect()->route('adminDashboard.categories.index');

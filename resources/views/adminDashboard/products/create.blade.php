@@ -36,7 +36,7 @@
                                     <option value="">@lang('site.choose-category')</option>
         
                                     @foreach ($wrap->categories as $category)
-                                    <option value="{{ $category->id }}" {{ old('category_ids.'.$index) == $category->id ?  'selected' : '' }}>{{ $category->translate(app()->getLocale())->name }}</option>
+                                    <option value="{{ $category->id }}" {{ old('category_ids.'.$index) == $category->id ?  'selected' : '' }}>{{ $category->translate(app_locale_language())->name ?? $category->name }}</option>
                                   
                                     @endforeach
                                     
@@ -113,12 +113,11 @@
 
                             {{-- in_sale --}}
                             <div class="col-2">
-                                <div class="form-group">
+                                <div class="form-group mt-1">
                                     <div class="row">
                                         <div class="col">
-                                            <label>@lang('site.in-sale')</label>
-                                            <input type="checkbox" value="1" name="in_sale"  class="form-control" {{ old('in_sale') ?  'checked' : '' }}>
-                                            
+                                            <label>@lang('site.in-sale')</label> <br>
+                                            <input type="checkbox" name="in_sale" value="1" id="switcherySize1" class="switchery" {{ old('in_sale') ?  'checked' : '' }}>
                                         </div>
                                     </div>
                                 </div>

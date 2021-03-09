@@ -40,7 +40,7 @@
       
                                   @foreach ($wrap->categories as $category)
                                   <option value="{{ $category->id }}" {{ $product->categories->contains($category->id) ?  'selected' : '' }}>
-                                    {{ $category->translate(app()->getLocale())->name }}
+                                    {{ $category->translate(app_locale_language())->name ?? $category->name }}
                                   </option>
                                   @endforeach
                                 
@@ -61,14 +61,14 @@
                                 <label for="name">@lang('site.'.$locale.'.name')</label>
                                 <input type="name" class="form-control" name="{{ $locale }}[name]"
                                     placeholder=" @lang('site.'.$locale.'.enter-name')"
-                                    value="{{ old($locale . '.name') ?? $product->translate($locale)->name }}">
+                                    value="{{ old($locale . '.name') ?? $product->translate($locale)->name ?? " "}}">
                             </div>
 
                             {{-- description --}}
                             <div class="form-group">
                                 <label for="description">@lang('site.'.$locale.'.description')</label>
                                 <textarea class="form-control ckeditor" id="editor1" name="{{ $locale }}[description]"
-                                    placeholder=" @lang('site.'.$locale.'.enter-description')">{{ old($locale . '.description') ?? $product->translate($locale)->description }}</textarea>
+                                    placeholder=" @lang('site.'.$locale.'.enter-description')">{{ old($locale . '.description') ?? $product->translate($locale)->description  ?? ''}}</textarea>
                             </div>
                             <hr>
                         @endforeach
@@ -146,10 +146,7 @@
                                     <div class="row">
                                         <div class="col">
                                             <label>@lang('site.in-sale')</label>
-                                            <select name="in_sale" class="form-control">
-                                                <option value="true" {{ (old('in_sale') == true | $product->in_sale == true) ?  'selected' : '' }}>@lang('site.in-sale')</option>
-                                                <option value="false" {{( old('in_sale') == false | $product->in_sale == true)?  'selected' : '' }}>@lang('site.not-in-sale')</option>
-                                            </select>
+                                            <input type="checkbox" name="in_sale" value="1" id="switcherySize1" class="switchery" {{ old('in_sale')| $product->in_sale ?  'checked' : '' }}>
                                         </div>
                                     </div>
                                 </div>

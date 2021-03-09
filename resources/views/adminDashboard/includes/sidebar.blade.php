@@ -19,8 +19,8 @@
                             <a class="menu-item" data-i18n="nav.dash.ecommerce" rel="alternate"
                                 hreflang="{{ $localeCode }}"
                                 href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                                <img class="img-fluid" src="{{ asset('assets/site/images/flags/svg/ae.svg') }}"
-                                    alt="English" width="16" height="11" />
+                                <img class="img-fluid" src="{{ asset('assets/site/images/flags/svg/'.get_flag($localeCode).'.svg') }}" alt="{{ $properties['native'] }}"
+                                                width="16" height="11" />
 
                                 <span>{{ $properties['native'] }}</span>
 
