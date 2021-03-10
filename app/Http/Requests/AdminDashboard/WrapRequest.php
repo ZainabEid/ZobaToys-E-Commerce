@@ -21,9 +21,21 @@ class WrapRequest extends FormRequest
 
     public function rules()
     {
+        $rule = [];
+        foreach(config('translatable.locales') as $locale){
+            if($locale != default_language()){
+
+                $rule += [ 
+                    $locale.".name" => "required_with:'.$locale.'.description",
+                    $locale.".description" => "required_with:'.$locale.'.name", 
+                ];
+            }
+        }
+
         return [
             default_language().'.name' => 'required',
             default_language().'.description' => 'required',
+            $rule,
             '*.name' =>  Rule::unique('wrap_translations','name')->ignore($this->wrap->id ?? '','wrap_id'),
             '*.description' =>  Rule::unique('wrap_translations','description')->ignore($this->wrap->id ?? '','wrap_id'),
     ]; 

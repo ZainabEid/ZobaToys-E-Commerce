@@ -38,7 +38,6 @@
                                     class="{{ $index == 0 ? 'active' : '' }}"></li>
 
                             @endforeach
-
                         </ol>
                         
                         {{-- slider images --}}
@@ -46,7 +45,7 @@
 
                             @foreach ($product->productimages as $index => $image)
                                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                    <img class="d-block w-100" src="{{ $image->image_path }}">
+                                    <img class="d-block" style="width:100,height:100" src="{{ $image->image_path }}">
                                 </div>
                             @endforeach
 
@@ -63,36 +62,30 @@
                         </div>{{-- end of image slider --}}
 
                     </div><!-- end of carousel slide -->
-                    @php
-                    $locale = app()->getLocale();
-                    @endphp
+                    
                     <div class="card-footer">
 
                         {{-- name --}}
                         <div class="row">
                             <div class="col-md-2">
-                            @lang('site.product-name'):  
-
+                                @lang('site.product-name'):  
                             </div>
                             <div class="col-md-10">
                                 <p class="card-text">
-                                    {{ $product->translate($locale)->name ?? $product->name }}
+                                    {{ $product->translate(app_locale_language())->name ?? $product->name }}
     
                                 </p>
                             </div>
-                            
-                            
                         </div>
 
                         {{-- description --}}
                         <div class="row d-flex">
                             <div class="col-md-2">
                                 @lang('site.product-description'):  
-
                             </div>
                             <div class="col-md-10">
                                 <p class="card-text">
-                                    {!! $product->translate($locale)->description ?? $product->description !!}
+                                    {!! $product->translate(app_locale_language())->description ?? $product->description !!}
     
                                 </p>
                             </div>
@@ -104,7 +97,12 @@
                             {{-- category --}}
                             <div class="col-md-3">
                                 @lang('site.category'):
-                                {{ $product->category->translate($locale)->name ?? $product->category }}
+                                @foreach ($product->categories as $index => $category)
+                                    @if ($index>0)
+                                    ,
+                                    @endif
+                                    {{ $category->translate(app_locale_language())->name ?? $category->name }}
+                                @endforeach
                             </div>
 
                             {{-- perchase price --}}

@@ -48,7 +48,6 @@ class WrapController extends Controller
 
     public function update(WrapRequest $request, Wrap $wrap)
     {
-
         $wrap->update($request->except(['_token','_method']));
         session()->flash('success', __('site.updated-successfuly'));
         return redirect()->route('adminDashboard.wraps.index');

@@ -23,21 +23,39 @@
                     @method('put')
                     <div class="card-body">
 
+                        {{-- language tabs --}}
+                        <div class="form-group">
+                            <ul class="nav nav-tabs nav-linetriangle no-hover-bg nav-justified">
+                                @foreach (config('translatable.locales') as $index => $locale)
+                                    <li class="nav-item">
+                                        <a class="nav-link {{ $index == 0 ? 'active' : '' }}" id="active-tab3" data-toggle="tab"
+                                            href="#{{ $locale }}" aria-controls="active3"
+                                            aria-expanded="true">@lang('site.'.$locale.'.'.$locale)</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        {{-- language input fields for name and description --}}
+                        <div class="tab-content px-1 pt-1">
+                            @foreach (config('translatable.locales') as $index => $locale)
 
-                        {{-- name --}}
-                        @foreach ( config('translatable.locales') as $locale )
-                            <div class="form-group">
-                                {{-- name --}}
-                                <label for="name">@lang('site.'.$locale.'.name')</label>
-                                <input type="text" class="form-control" name="{{ $locale }}[name]"
-                                    placeholder=" @lang('site.enter-name')" value="{{  $wrap->translate($locale)->name  ?? ""}}">
-                               {{-- description --}}
-                                <label for="description">@lang('site.'.$locale.'.description')</label>
-                                <input type="text" class="form-control" name="{{ $locale }}[description]"
-                                    placeholder=" @lang('site.enter-description')" value="{{  $wrap->translate($locale)->description ?? "" }}">
-                            
-                            </div>
-                        @endforeach
+                                <div role="tabpanel" class="tab-pane {{ $index == 0 ? 'active' : '' }}" id="{{ $locale }}"
+                                    aria-labelledby="active-tab3" aria-expanded="{{ $index == 0 ? true : false }}">
+
+                                    {{-- name --}}
+                                    <label for="{{ $locale }}[name]">@lang('site.'.$locale.'.name')</label>
+                                    <input type="text" class="form-control" name="{{ $locale }}[name]"
+                                        placeholder=" @lang('site.enter-name')" value="{{ old($locale . '.name') ??  $wrap->translate($locale)->name  ?? ""}}">
+                                    
+                                    {{-- description --}}
+                                    <label for="{{ $locale }}[description]">@lang('site.'.$locale.'.description')</label>
+                                    <input type="text" class="form-control" name="{{ $locale }}[description]"
+                                        placeholder=" @lang('site.enter-description')"
+                                        value="{{ old($locale . '.description') ?? $wrap->translate($locale)->description ?? "" }}">
+
+                                </div>
+                            @endforeach
+                        </div>
 
                     </div><!-- end of card-body -->
 

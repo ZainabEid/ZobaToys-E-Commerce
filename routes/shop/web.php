@@ -43,6 +43,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
             ##########   [vendors] Routes   ##########
             Route::resource('vendors', 'VendorController');
 
+             ##########   [categories] Routes   ##########
+             Route::resource('categories', 'CategoryController')->except('create','store','edit','update','destroy');
+
 
         });// end of shop name
     });// end of shop prefix
