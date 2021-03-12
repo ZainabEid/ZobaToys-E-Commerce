@@ -13,7 +13,7 @@ class ShopController extends Controller
     public function __construct()
     {
         
-    }
+    }//end of construct
 
     
     public function index()

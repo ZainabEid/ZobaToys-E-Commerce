@@ -56,9 +56,15 @@ class WrapController extends Controller
 
     public function destroy(Wrap $wrap)
     {
-        $wrap->delete();
-        session()->flash('success', __('site.deleted-successfuly'));
+
+        if ($wrap->categories && $wrap->categories->count() == 0) {
+            $wrap->delete();
+            session()->flash('success', __('site.deleted-successfuly'));
+            return redirect()->route('adminDashboard.wraps.index');
+        }
+        session()->flash('error', __('site.can\'t be deleted ther are categories'));
         return redirect()->route('adminDashboard.wraps.index');
+       
     }
 
 }

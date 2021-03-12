@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AdminDashboard\VendorRequest;
 use App\Models\Admin;
 use App\Models\Vendor;
+use App\Notifications\VendorCreated;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 
 class VendorController extends Controller
 {
@@ -48,7 +50,10 @@ class VendorController extends Controller
 
         // store admin data into database
         $vendor = Vendor::create($request_data);
-      
+
+        // send mail notification to the vendor
+        $vendor->admin->notify(new VendorCreated($vendor));
+
         //session alert success
         session()->flash('success',__('site.added-successfuly'));
 

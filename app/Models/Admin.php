@@ -12,7 +12,6 @@ class Admin extends Authenticatable
 {
     use Notifiable;
     use LaratrustUserTrait;
-    //use Notifiable;
 
    
     protected $fillable = [

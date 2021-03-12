@@ -3,6 +3,7 @@
 namespace App\Http\Requests\AdminDashboard;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ClientRequest extends FormRequest
 {
@@ -15,10 +16,11 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' =>'required',
-            'phone' =>'required|array|min:1',
-            'phone.0' =>'required',
-            'address' =>'required',
+            'surname' => "sometimes|in:0,1",
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'phone' =>['required' , 'digits_between:10,13', Rule::unique('clients')->ignore($this->client)],
+            'address' =>['nullable','sometimes','string', 'max:255'],
         ];
     } //end of rules
 

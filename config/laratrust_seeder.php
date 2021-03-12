@@ -25,10 +25,17 @@ return [
             'orders' => 'c,r,u,d',
             'admins' => 'c,r,u,d',
         ],
-        
+
         'client' => [
             'clients' => 'c,r,u,d',
             'orders' => 'c,r,u,d',
+        ],
+
+        'vendor' => [
+            'vendors' => 'r,u',
+            'purchases' => 'c,r,u,d',
+            'products' => 'c,r,u,d',
+            'admins' => 'c,r,u,d',
         ],
 
         'admin' => [],

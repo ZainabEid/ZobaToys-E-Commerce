@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -21,23 +22,25 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
             | [UserLogin] Routes - in controller middleware :(guest:user) 
             |--------------------------------------------------------------------------
             */
-                Route::group(['namespace' => 'User'], function () {
+            Route::group(['namespace' => 'User'], function () {
+                // Auth::routes();
+                
+                Route::group(['namespace' => 'Auth'], function () {
 
-                Route::post('login', 'UserLoginController@login')->name('login.submit');
-                Route::get('login', 'UserLoginController@showLoginForm')->name('login');
-                Route::post('logout', 'UserLoginController@logout')->name('logout');
-          
-                });// end of user login routes
+                    Route::post('register', 'RegisterController@register')->name('register.submit');
+                    Route::get('register', 'RegisterController@showRegistrationForm')->name('register');
+                    Route::post('login', 'LoginController@login')->name('login.submit');
+                    Route::get('login', 'LoginController@showLoginForm')->name('login');
+                    Route::post('logout', 'LoginController@logout')->name('logout');
+              
+                }); //end of Auth rouets
+                
+            });// end of user login routes
 
 
-            /*
-            |--------------------------------------------------------------------------
-            | [Home - ...] Routes - no auth
-            |--------------------------------------------------------------------------
-            */
-
-            ##########   [Home] Routes   ##########
-            Route::get('/', 'ShopController@index')->name('shop');
+           
+            // ##########   [Home] Routes   ##########
+            Route::get('/', 'ShopController@index');
 
 
             ##########   [vendors] Routes   ##########

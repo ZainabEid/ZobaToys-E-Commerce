@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Notifications\Notifiable;
 
 class Vendor extends Model
 {
+    use Notifiable;
     protected $fillable = [
         'name','logo', 'phone', 'address', 'about','admin_id','avg_star',
     ];

@@ -20,7 +20,7 @@ class ClientController extends Controller
 
         })->latest()->paginate(5);
        return view('adminDashboard.clients.index', compact('clients'));
-    }
+    }// end of index
 
    
     public function create()
@@ -33,7 +33,8 @@ class ClientController extends Controller
     public function store(ClientRequest $request)
     {
         $request_data = $request->all();
-        $request_data['phone'] = array_filter($request->phone);
+        $request_data['phone'] = (int)$request->phone;
+       // $request_data['phone'] = array_filter($request->phone);
 
         Client::create($request_data);
         session()->flash('success',__('site.added-successfuly'));
@@ -51,7 +52,8 @@ class ClientController extends Controller
     public function update(ClientRequest $request, Client $client)
     {
         $request_data = $request->all();
-        $request_data['phone'] = array_filter($request->phone);
+        $request_data['phone'] = (int)$request->phone;
+        //$request_data['phone'] = array_filter($request->phone);
 
         $client->update($request_data);
         session()->flash('success',__('site.updated-successfuly'));

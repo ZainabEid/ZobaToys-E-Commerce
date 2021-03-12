@@ -23,28 +23,63 @@
                     @method('put')
                     <div class="card-body">
 
-                        {{-- name --}}
-                        <div class="form-group">
-                            <label for="name">@lang('site.name')</label>
-                            <input type="name" class="form-control" name="name" placeholder=" @lang('site.enter-name')"
-                                value="{{ $client->name }}">
-                        </div>
-                        
-                        {{-- phone --}}
-                        @for ($i = 0; $i < 2; $i++)
-                            <div class="form-group">
-                                <label for="phone">@lang('site.phone')</label>
-                                <input type="text" class="form-control" name="phone[]" 
-                                    value="{{ $client->phone[$i] ?? ''}}"
-                                    placeholder=" @lang('site.enter-phone')">
+                          {{-- surname --}}
+                          <div class="form-group">
+
+                            {{-- surname label --}}
+                            <label class="form-control-label mb-xs-5">
+                                @lang('site.surname') :
+                            </label>
+
+                            <div class=" form-control-valign">
+
+                                {{-- MR. --}}
+                                <label class="radio-inline">
+                                    <span class="custom-radio">
+                                        <input name="surname" type="radio" value="0" {{ $client->surname == 0 ? 'checked' : ''}}>
+                                        <span></span>
+                                    </span>
+                                    @lang('site.MR').
+                                </label>
+
+                                {{-- MS. --}}
+                                <label class="radio-inline">
+                                    <span class="custom-radio">
+                                        <input name="surname" type="radio" value="1"  {{ $client->surname == 1 ? 'checked' : '' }}>
+                                        <span></span>
+                                    </span>
+                                    @lang('site.MS').
+                                </label>
                             </div>
-                        @endfor
+                        </div>
+
+                        {{-- first_name --}}
+                        <div class="form-group">
+                            <label for="first_name">@lang('site.first_name')</label>
+                            <input type="text" class="form-control" name="first_name" placeholder=" @lang('site.enter-first_name')"
+                                value="{{ $client->first_name ?? old('first_name') }}">
+                        </div>
+
+                        {{-- last_name --}}
+                        <div class="form-group">
+                            <label for="last_name">@lang('site.last_name')</label>
+                            <input type="text" class="form-control" name="last_name" placeholder=" @lang('site.enter-last_name')"
+                                value="{{ $client->last_name ?? old('last_name') }}">
+                        </div>
+                         
+
+                        {{-- phone --}}     
+                        <div class="form-group">
+                            <label for="phone">@lang('site.phone')</label>
+                            <input type="text" class="form-control" name="phone"
+                                placeholder=" @lang('site.enter-phone')" value="{{ $client->phone ?? old('phone') }}">
+                        </div>
 
                         {{-- address --}}
                         <div class="form-group">
                             <label for="address">@lang('site.address')</label>
                             <input type="address" class="form-control" name="address"
-                                placeholder=" @lang('site.enter-address')" value="{{ $client->address }}">
+                                placeholder=" @lang('site.enter-address')" value="{{ $client->address ?? old('address') }}">
                         </div>
 
                     </div><!-- end of card-body -->

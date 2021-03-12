@@ -377,9 +377,21 @@ return [
 
    //  login page
    'show-password' => 'إظهار',
+   'hide-password' => 'إخفاء',
    'forget-password' => 'هل نسيت كلمة المرور؟',
    'login' => 'تسجيل الدخول',
    'you-dont-have-account?-register-now' => 'ليس لديك حساب ؟ تسجيل حساب جديد',
+
+   //register page
+   'have-an-account-alredy?'=>'لديك حساب بالفعل؟',
+   'login-instead!'=>'سجل الدخول بدلا من ذلك!',
+   'surname'=>'اللقب',
+   'MR'=>'السيد',
+   'MR'=>'السيدة',
+   'first-name'=>'الاسم الأول',
+   'last-name'=>'الاسم الأخير',
+   'date-of-birth'=>'تاريخ الميلاد',
+   'send-me-offers'=>'الحصول على العروض من شركائنا',
 
    //show vendor page
    'seller-shop' => 'اسم المتجر',

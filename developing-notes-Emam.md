@@ -202,3 +202,7 @@ save_image($folder, $image){
 3. ModelNAme::insert($array_of_rows)
 4. DB::BeginTransactions() , DB::commit, DB::rollback()
 5.   
+
+## observers:
+1. php artisan make:observe ModelNameObserer --model=Models/ModelName
+2. write the code in this class it will be called outomatically

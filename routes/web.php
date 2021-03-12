@@ -17,7 +17,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function(){
         return view('shop.index');
     });
 
-    Auth::routes();
+   // Auth::routes();
 
     Route::get('/home', 'HomeController@index')->name('home');
   

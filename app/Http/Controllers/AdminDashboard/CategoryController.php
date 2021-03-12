@@ -63,8 +63,13 @@ class CategoryController extends Controller
 
     public function destroy(Category $category)
     {
-        $category->delete();
-        session()->flash('success', __('site.deleted-successfuly'));
+        if ( $category->products && $category->products->count() == 0 ) {
+            $category->delete();
+            session()->flash('success', __('site.deleted-successfuly'));
+            return redirect()->route('adminDashboard.categories.index');
+        }
+        session()->flash('error', __('site.can\'t be deleted ther are products'));
         return redirect()->route('adminDashboard.categories.index');
+        
     }
 }

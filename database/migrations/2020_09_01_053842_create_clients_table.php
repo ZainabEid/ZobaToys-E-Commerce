@@ -1,5 +1,6 @@
 <?php
 
+use Brick\Math\BigInteger;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,23 +16,28 @@ class CreateClientsTable extends Migration
     {
     Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->boolean('surname')->nullable();
+            $table->string('first_name');
+            $table->string('last_name');
             $table->bigInteger('phone')->unique();
-            $table->text('address');
-            $table->string('email')->unique();
-            $table->string('username');
-            $table->string('password');
-
-
+            $table->text('address')->nullable();
+            
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->nullable() ;
+
         });
     }
 
-   public function getNameAttribute($value)
+   public function getFirstNameAttribute($value)
    {
        return ucfirst($value);
-   }
+   }//end of first name attribute
+
+   public function getLastNameAttribute($value)
+   {
+       return ucfirst($value);
+   }//end of last name attribute
+   
     
     public function down()
     {

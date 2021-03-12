@@ -9,15 +9,30 @@ class Client extends Model
 {
     
     protected $fillable = [
-        'name', 'phone', 'address','email', 'username', 'password' 
+        'surname','first_name', 'last_name', 'phone', 'address',
     ]; 
     protected $casts = [
         'phone' => 'array',
     ];
 
+    protected $appends = [
+        'name', 'email', 'gender'
+    ];
 
 
-
+    public function getNameAttribute()
+    {
+        return  $this->gender.' '.$this->first_name.' '.$this->last_name  ;
+    }
+    public function getGenderAttribute()
+    {
+        if (isset($this->surname)) {
+            return $this->surname ? 'Ms.' :'Mr.';
+        }else{
+            return "";
+        }
+    }// end of surname attribute
+    
 
     ############## relationships ###################
     
@@ -25,6 +40,11 @@ class Client extends Model
     public function order()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function user()
+    {
+        return  $this->hasOne(User::class);
     }
 
 }//end of model

@@ -106,7 +106,7 @@ class ProductsTableSeeder extends Seeder
             foreach ($product['productimages'] as $image) {
                 $new_product->productimages()->create(['image'=>$image]);
             }// end of productimages foreach
-            $new_product->category()->attach($product['category_ids']);
+            $new_product->categories()->attach($product['category_ids']);
            
         }//end of product foreach
         

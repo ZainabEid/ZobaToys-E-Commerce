@@ -20,7 +20,7 @@ class RedirectIfAuthenticated
     {
         if (Auth::guard($guard)->check()) {
             
-            if ($guard == 'client') {
+            if ($guard == 'web') {
 
                 return redirect(RouteServiceProvider::SHOP);
 

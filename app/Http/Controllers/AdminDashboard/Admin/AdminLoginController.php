@@ -17,21 +17,13 @@ class AdminLoginController extends Controller
         $this->middleware('guest:admin')->except('logout');
     }
     
-    /**
-     * Get Admin Login View
-     * @return view  login view
-     */
+    
     public function showLoginForm()
     {
         return view('adminDashboard.admin.auth.admin-login');
     }
 
-    /**
-     * check if Login request is auth 
-     * @param LoginRequest 
-     * @return redirect dashboard view // if succeded
-     * @return redirect back() with errors // if faild
-     */
+    
     public function login(LoginRequest $request)
     {
         $remember_me = $request->has('remember_me') ? true : false;

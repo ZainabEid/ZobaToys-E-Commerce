@@ -57,9 +57,14 @@ class GroupController extends Controller
 
     public function destroy(group $group)
     {
-        $group->delete();
-        session()->flash('success', __('site.deleted-successfuly'));
+        if ($group->supplies && $group->supplies->count() == 0) {
+            $group->delete();
+            session()->flash('success', __('site.deleted-successfuly'));
+            return redirect()->route('adminDashboard.groups.index');
+        }
+        session()->flash('error', __('site.can\'t be deleted ther are supplies'));
         return redirect()->route('adminDashboard.groups.index');
+
     }//end of destroy
 
 }//end of groups controler
