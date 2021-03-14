@@ -60,16 +60,19 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
+        if ($request->is('shop/user') || $request->is('shop/user/*') || $request->is(LaravelLocalization::setLocale().'shop/user/')) {
+            return redirect()->guest(route('login'));
+        }
 
+        
+        if ($request->is('adminDashboard') || $request->is('adminDashboard/*') || $request->is(LaravelLocalization::setLocale().'adminDashboard/')) {
+            return redirect()->guest(route('adminDashboard.login'));
+        }
+        
         if ($request->expectsJson()) {
             return response()->json(['error' => 'Unauthenticated.'], 401);
         }
 
-        if ($request->is('adminDashboard') || $request->is('adminDashboard/*') || $request->is(LaravelLocalization::setLocale().'adminDashboard/')) {
-            return redirect()->guest(route('adminDashboard.login'));
-        }
-
-
-        return redirect()->guest(route('shop.login'));
+        return redirect()->guest(route('login'));
     }
 }

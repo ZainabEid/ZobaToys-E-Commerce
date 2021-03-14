@@ -2,7 +2,7 @@
 
     {{-- product photos --}}
     <div class="thumbnail-container">
-
+        
         <a href="" class="thumbnail product-thumbnail two-image">
 
             {{-- cover image --}}
@@ -98,17 +98,22 @@
             itemtype="http://schema.org/Offer">
 
             {{-- add to cart form --}}
-            <form action="http://demo.bestprestashoptheme.com/savemart/ar/عربة التسوق" method="post"
-                class="formAddToCart">
-                <input type="hidden" name="token" value="28add935523ef131c8432825597b9928">
-                <input type="hidden" name="id_product" value="12">
-                <a class="add-to-cart" href="#" data-button-action="add-to-cart"><i class="novicon-cart"></i><span>أضف
-                        للسلة</span></a>
+            <form action="{{ route('shop.user.addToCart') }}" method="post" class="formAddToCart">
+                @csrf
+                @method('POST')
+                <a class="add-to-cart" href="#"  data-product-id="{{ $product->id }}"  data-is-in-cart="{{ $product->in_cart }}">
+                    <i class="novicon-cart"></i>
+                    <span>أضف للسلة</span>
+                </a>
+                @include('shop.includes.general-elements.block-cart', $product)
             </form>
 
             {{-- wish-list --}}
-            <a class="addToWishlist wishlistProd_12" href="#" data-rel="12"
-                onclick="WishlistCart('wishlist_block_list', 'add', '12', false, 1); return false;">
+            <a class="addToWishlist wishlistProd_12 {{ $product->in_wishlist ? 'bg-info' : "" }}"  
+                data-url="{{ route('shop.user.addToWishlist') }}"
+                data-product-id="{{ $product->id }}"
+                data-wishlist-value="{{ $product->in_wishlist }}"> {{-- makes error when the product has no reviews by this user --}}
+                
                 <i class="fa fa-heart"></i>
                 <span>Add to Wishlist</span>
             </a>

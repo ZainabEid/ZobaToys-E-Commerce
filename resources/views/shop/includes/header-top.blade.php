@@ -25,8 +25,8 @@
                            
                         @guest
                                 
-                            @if (Route::has('shop.register'))
-                                <a class="register" href="{{ route('shop.register') }}"
+                            @if (Route::has('register'))
+                                <a class="register" href="{{ route('register') }}"
                                     data-link-action="display-register-form" title="create new account">
                                     {{ __('Register') }}
                                 </a>
@@ -34,7 +34,7 @@
                             @endif
 
                                 
-                            <a class="login" href="{{ route('shop.login') }}" rel="nofollow"
+                            <a class="login" href="{{ route('login') }}" rel="nofollow"
                                 title="تسجيل الدخول إلى حسابك">
                                 {{ __('Login') }}
                             </a>
@@ -50,12 +50,12 @@
                             </a>
                                 
                             {{-- logout --}}
-                            <a class="logout" href="{{ route('shop.logout') }}" onclick="event.preventDefault();
+                            <a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                             </a>
     
-                            <form id="logout-form" action="{{ route('shop.logout') }}" method="POST"
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
                                 style="display: none;">w
                                 @csrf
                             </form>

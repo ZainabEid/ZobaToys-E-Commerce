@@ -35,6 +35,8 @@
 
                         <div class="block-category hidden-sm-down">
                             <h1 class="h1">{{ $category->translations(app_locale_language())->name ?? $category->name }}</h1>
+                            
+                            
                         </div>
 
 
@@ -100,6 +102,8 @@
 
                             </div>
 
+                            @if ($category->products->count() > 0)
+                                
                             {{-- category products --}}
                             <div id="categories-product">
 
@@ -114,15 +118,20 @@
                                                 itemtype="http://schema.org/Product">
                                                
                                                @include('shop.includes.general-elements.product-card',$product)
+                                               
                                             </div>
                                         </div>
                                         @endforeach
+                                        @include('shop.includes.general-elements.added-to-wishlist',$product)
                                        
 
                                     </div>
                                 </div>
 
                             </div>
+                            @else
+                                    <p> there is no products in {{ $category->name }}</p>                             
+                            @endif
 
                             {{-- paginataion data --}}
                             <div id="js-product-list-bottom">

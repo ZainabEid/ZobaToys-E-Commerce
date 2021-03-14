@@ -5,6 +5,12 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- logged in check variable -->
+    <script>
+        var logged_in = "{{ auth()->check() }}";
+    </script>
 
     <title>ZobaToys Shop</title>
     <meta name="description" content="zoba toys shop">
@@ -508,9 +514,18 @@
     </div>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <script type="text/javascript"
         src="http://demo.bestprestashoptheme.com/savemart/themes/vinova_savemart/assets/cache/bottom-3c96ed23.js">
+    </script>
+    
+    <script type="text/javascript"
+        src="{{ asset('assets/site/shop/js/shop.js') }}">
+    </script>
+
+    <script>
+    
     </script>
 
 

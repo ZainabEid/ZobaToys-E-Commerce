@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -24,9 +25,25 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'name' ,
+        'name' , 'wishlist_products', 'cart_products'
      ];
- 
+
+     //returns all products which this user added it to his wishlist
+     public function getWishlistProductsAttribute()
+     {
+        return $this->userProductIssues->where('in_wishlist',true)->pluck('product_id');
+     }// end of wish list product
+
+     //returns all products which this user added it to his wishlist
+     public function getCartProductsAttribute()
+     {
+        return $this->userProductIssues->where('in_cart',true)->pluck('product_id');
+     }// end of wish list product
+
+    
+
+    
+
     ############## Getting Attributes ###################
 
     public function getNameAttribute()
@@ -40,6 +57,11 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Client::class);
     }//end of client
+
+    public function userProductIssues()
+    {
+        return $this->hasMany(UserProductIssues::class, 'user_id', 'id');
+    }// end of product user issues
     ##########  END Relations ###########
 
     

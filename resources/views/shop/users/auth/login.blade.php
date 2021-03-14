@@ -29,7 +29,7 @@
                     {{-- login form --}}
                     <section id="content" class="page-content">
                         <section class="login-form">
-                            <form id="login-form" action="{{ route('shop.login') }}" method="post">
+                            <form id="login-form" action="{{ route('login') }}" method="post">
                                 @csrf
                                 @method('POST')
                                 <section> 

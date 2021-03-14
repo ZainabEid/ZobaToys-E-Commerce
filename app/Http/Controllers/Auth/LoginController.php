@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Shop\User\Auth;
+namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
@@ -37,7 +37,7 @@ class LoginController extends Controller
         }
        // dd(redirect()->back()->with(['error'=>'there is an error in data'])->withInput($request->all()));
         //notify()->error('خطأ في البيانات برجاء المحاولة مجددا');
-        return redirect()->route('shop.login')->with(['error'=>'هناك خطأ في البيانات'])->withInput($request->all());
+        return redirect()->route('login')->with(['error'=>'هناك خطأ في البيانات'])->withInput($request->all());
     }//end of login 
 
     public function logout(Request $request)
