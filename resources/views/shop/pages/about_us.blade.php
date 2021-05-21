@@ -2,6 +2,7 @@
 @section('content')
     <div id="wrapper-site">
 
+        {{-- nav --}}
         <nav data-depth="2" class="breadcrumb-bg">
             <div class="container no-index">
                 <div class="breadcrumb">
@@ -9,12 +10,12 @@
                     <ol itemscope="" itemtype="http://schema.org/BreadcrumbList">
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
                             <a itemprop="item" href="http://demo.bestprestashoptheme.com/savemart/ar/">
-                                <span itemprop="name">الصفحة الرئيسية</span>
+                                <span itemprop="name">@lang('site.homepage')</span>
                             </a>
                             <meta itemprop="position" content="1">
                         </li>
                         <li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
-                            <span>About us</span>
+                            <span>@lang('site.about-us')</span>
                             <meta itemprop="position" content="2">
                         </li>
                     </ol>
@@ -40,7 +41,7 @@
 
                             <h1 class="page_title">About us</h1>
 
-
+                            {{-- who we are --}}
                             <div class="row no-gutters">
                                 <div class="col-lg-6 col-md-6 col-sm-6"><a href="#"><img class="img-fluid"
                                             src="http://images.vinovathemes.com/prestashop_savemart/banner-about-1.jpg"
@@ -63,6 +64,8 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {{-- what we do --}}
                             <div class="row no-gutters">
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="cms-block left">
@@ -82,12 +85,20 @@
                                             src="http://images.vinovathemes.com/prestashop_savemart/banner-about-2.jpg"
                                             alt="#"></a></div>
                             </div>
+
+
                             <div class="row no-gutters">
-                                <div class="col-lg-6 col-md-6 col-sm-6"><a href="#"><img class="img-fluid"
+                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                    <a href="#">
+                                    <img class="img-fluid"
                                             src="http://images.vinovathemes.com/prestashop_savemart/banner-about-3.jpg"
-                                            alt="#"></a></div>
+                                            alt="#">
+                                        </a>
+                                    </div>
                                 <div class="col-lg-6 col-md-6 col-sm-6">
                                     <div class="cms-box right">
+
+                                        {{-- meet our team --}}
                                         <h3 class="page-subheading no-icon">MEET OUR TEAM</h3>
                                         <div class="owl-carousel owl-theme testimonials owl-rtl owl-loaded owl-drag">
 
@@ -97,6 +108,8 @@
                                             <div class="owl-stage-outer">
                                                 <div class="owl-stage"
                                                     style="transform: translate3d(0px, 0px, 0px); transition: all 0s ease 0s; width: 606px;">
+                                                  
+                                                    {{-- sellers --}}
                                                     <div class="owl-item active lastActiveItem" style="width: 151.5px;">
                                                         <div class="item">
                                                             <div class="name">William James</div>
@@ -109,6 +122,7 @@
                                                                 bibendum auctor, nisi elit conse quat ipsum</p>
                                                         </div>
                                                     </div>
+
                                                     <div class="owl-item active firstActiveItem" style="width: 151.5px;">
                                                         <div class="item">
                                                             <div class="name">Seller Smith</div>
@@ -121,6 +135,7 @@
                                                                 bibendum auctor, nisi elit conse quat ipsum</p>
                                                         </div>
                                                     </div>
+
                                                     <div class="owl-item" style="width: 151.5px;">
                                                         <div class="item">
                                                             <div class="name">Vinova Smith</div>
@@ -133,6 +148,7 @@
                                                                 bibendum auctor, nisi elit conse quat ipsum</p>
                                                         </div>
                                                     </div>
+
                                                     <div class="owl-item" style="width: 151.5px;">
                                                         <div class="item">
                                                             <div class="name">Vinova David</div>
@@ -145,8 +161,10 @@
                                                                 bibendum auctor, nisi elit conse quat ipsum</p>
                                                         </div>
                                                     </div>
+
                                                 </div>
                                             </div>
+
                                             <div class="owl-nav disabled">
                                                 <div class="owl-prev"><i class="fa fa-angle-left"></i></div>
                                                 <div class="owl-next"><i class="fa fa-angle-right"></i></div>
@@ -156,6 +174,8 @@
                                                 <div class="owl-dot"><span></span></div>
                                             </div>
                                         </div>
+
+                                        {{-- social block --}}
                                         <div id="social_block">
                                             <div class="social">
                                                 <ul>

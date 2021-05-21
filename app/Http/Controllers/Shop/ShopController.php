@@ -29,6 +29,11 @@ class ShopController extends Controller
     {
         
         return redirect()->back();
-    }
+    }// end of change_currency
+
+    public function subscribe()
+    {
+        // save the email to the subscribtion list
+    }// end of subscribtion
 
 }// end of shop controller

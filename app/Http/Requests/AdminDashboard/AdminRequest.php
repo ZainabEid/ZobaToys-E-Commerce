@@ -25,7 +25,7 @@ class AdminRequest extends FormRequest
             'phone' => ['required' , 'min:10' , 'max:13'],
             'photo' => ['image'],
             'password' => ['sometimes','required' ,  'min:6' ,  'confirmed'],
-            'permissions' => ['required' ,  'min:1'],
+            'role' => ['sometimes','required'],
         ];
     } //end of rules
 

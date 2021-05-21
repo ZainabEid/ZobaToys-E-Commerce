@@ -13,10 +13,10 @@ class Product extends Model
 
     public $translatedAttributes = ['name', 'description'];
     protected $fillable = [
-        'perchase_price', 'price', 'in_sale', 'sale',  'stock', 'vendor_id', 'avg_star'
+        'perchase_price', 'price', 'in_sale', 'sale',  'stock', 'vendor_id', 
     ];
     protected $appends = [
-        'profit_percentage', 'sale_price', 'in_wishlist', 'is_in_cart'
+        'profit_percentage', 'sale_price', 'in_wishlist', 'avg_star'
     ];
 
     ############## Getting Attributes ###################
@@ -40,18 +40,19 @@ class Product extends Model
 
     public function getInWishlistAttribute()
     {
-        if (auth()->user()) {
-            return auth()->user()->userProductIssues->where("product_id", $this->id)->first()->in_wishlist;
+        // there is no products for user yet
+        if (auth_user()) {
+            if($this->users()->count() > 0){
+                return $this->users()->findOrFail(auth_user()->id)->pivot->in_wishlist;
+            }
         }
-    } //end of in_wishlist
+    } //end of in_wishlist attribute
 
-    public function getISInCartAttribute()
+
+    public function getAvgStarAttribute()
     {
-        if (auth()->user()) {
-            return auth()->user()->userProductIssues->where("product_id", $this->id)->first()->in_cart;
-        }
-    } //end of in_cart
-
+        
+    } //end of in_wishlist attribute
 
     ############## relationships ###################
 
@@ -78,14 +79,16 @@ class Product extends Model
         return $this->belongsTo(Vendor::class);
     } //end  of vendor
 
-
     // wishlist,cart,stars
-    public function userProductIssues()
+    public function users()
     {
-        return $this->hasMany(UserProductIssues::class, 'product_id', 'id');
+        return $this->belongsToMany(User::class)->withPivot('in_wishlist');
     } // end of user product issues relation
 
-
+    public function carts()
+    {
+        return $this->belongsToMany(Cart::class);
+    }// end of cart relation
 
 
 

@@ -18,7 +18,7 @@
                 @include('adminDashboard.includes.errors')
 
                 <!-- form start -->
-                <form method="POST" action="{{ route('admin.update', $admin->id) }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('adminDashboard.admin.update', $admin->id) }}" enctype="multipart/form-data">
                     @csrf
                     @method('put')
                     <div class="card-body">
@@ -56,56 +56,6 @@
                             <img src="{{ $admin->image_path }}" alt="image"
                                 class="rounded-circle img-thumbnail photo-preview " id="photo-preview">
                         </div>
-
-
-                        {{-- permission tabs --}}
-                        <div class="form-group card-tabs">
-
-                            <label>@lang('site.permissions')</label>
-
-                            @php
-                            $models = ['admins','vendors','wraps','categories','products', 'clients', 'orders','suppliers','purchases', 'supplies', 'groups',  'production_cycles',
-                            ];
-                             $maps = ['read','create','update','delete', ];  
-                            @endphp
-
-                            {{-- nav tabs --}}
-                            <ul class="nav nav-tabs" role="tablist">
-
-                                @foreach ($models as $index=>$model)
-                                <li class="nav-item">
-                                    <a class="nav-link {{ ($index == 0 )? 'active' : '' }}" data-toggle="tab"
-                                        href="#{{ $model }}" role="tab" 
-                                        aria-selected="true">@lang('site.'.$model)</a>
-                                </li>
-                                @endforeach
-                               
-                            </ul>
-
-                            {{-- tab content : checkboxes --}}
-                            <div class="tab-content" >
-
-                                @foreach ($models as $index=>$model)
-                                <div class="tab-pane {{ ($index == 0) ? 'active': '' }}" id="{{ $model }}" role="tabpanel">
-
-                                    @foreach ($maps as $map)
-                                    
-                                    <div class="form-check">
-                                        <label class="form-check-label" for="{{ $map }}">
-                                            <input type="checkbox" class="form-check-input" name="permissions[]"  {{ $admin->hasPermission($map.'_'.$model) ? 'checked' : ''  }} value="{{ $map.'_'.$model }}" id="{{ $map }}">
-                                            @lang('site.'.$map) @lang('site.'.$model.(($map != 'read' ) ? '-single' : ''))
-                                        </label>
-                                    </div>
-                                    
-                                    @endforeach
-                                    
-                                </div>
-                                @endforeach
-                                    
-                            </div><!--end of tab content-->
-                            
-                        </div><!--end of permission tabs-->
-                        
 
                        
                     </div><!-- end of card-body -->

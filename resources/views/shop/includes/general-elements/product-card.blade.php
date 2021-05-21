@@ -1,8 +1,8 @@
 <div class="product-card">
-
+    {{ $product->in_wishlist }}
     {{-- product photos --}}
     <div class="thumbnail-container">
-        
+
         <a href="" class="thumbnail product-thumbnail two-image">
 
             {{-- cover image --}}
@@ -41,7 +41,13 @@
                     <div class="star_content">
 
                         @for ($i = 1; $i <= 5; $i++)
-                            <div class="star {{ $i <= $product->avg_star ? 'star_on' : '' }}"></div>
+                            <div id="star-product-{{ $product->id }}-{{ $i }}"
+                            class="star {{ $i <= $product->star_rate ? 'star_on' : '' }}"
+                                data-rate="{{ $i }}" data-id="{{ $product->id }}"
+                                data-url="{{ route('shop.user.rate') }}"
+                                data-product-or-vendor="product" >
+
+                            </div>
                         @endfor
 
 
@@ -98,10 +104,10 @@
             itemtype="http://schema.org/Offer">
 
             {{-- add to cart form --}}
-            <form action="{{ route('shop.user.addToCart') }}" method="post" class="formAddToCart">
+            <form action="{{ route('shop.user.cart.add', $product->id) }}" method="post" class="formAddToCart">
                 @csrf
                 @method('POST')
-                <a class="add-to-cart" href="#"  data-product-id="{{ $product->id }}"  data-is-in-cart="{{ $product->in_cart }}">
+                <a class="add-to-cart" href="{{ route('shop.user.cart.add', $product->id) }}">
                     <i class="novicon-cart"></i>
                     <span>أضف للسلة</span>
                 </a>
@@ -109,11 +115,12 @@
             </form>
 
             {{-- wish-list --}}
-            <a class="addToWishlist wishlistProd_12 {{ $product->in_wishlist ? 'bg-info' : "" }}"  
-                data-url="{{ route('shop.user.addToWishlist') }}"
-                data-product-id="{{ $product->id }}"
-                data-wishlist-value="{{ $product->in_wishlist }}"> {{-- makes error when the product has no reviews by this user --}}
-                
+            <a id="addToWishlist{{ $product->id }}"
+                class="addToWishlist wishlistProd_12 {{ $product->in_wishlist ? 'bg-info' : '' }}" @auth
+                    data-url="{{ route('shop.user.add-to-wishlist', $product->id) }}"
+                    data-wishlist-value="{{ $product->in_wishlist ?? '' }}" data-product-id="{{ $product->id }}"
+                @endauth> {{-- makes error when the product has no reviews by this user --}}
+
                 <i class="fa fa-heart"></i>
                 <span>Add to Wishlist</span>
             </a>

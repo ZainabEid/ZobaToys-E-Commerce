@@ -47,10 +47,10 @@ class AdminTableSeeder extends Seeder
                 ],    
         ];
 
-        foreach ($admins as $index => $admin) {
+        foreach ($admins as $admin) {
 
             $new_admin = Admin::create($admin);
-            $new_admin->attachRole('admin');
+            $new_admin->attachRole('dashboard');
         }// end of foreach
 
     }//end of run

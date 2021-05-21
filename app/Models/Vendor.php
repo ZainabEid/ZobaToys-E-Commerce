@@ -26,12 +26,15 @@ class Vendor extends Model
         return $this->hasMany(Product::class);
     }// end of products
 
-    public function admin()
+    public function admins()
     {
-        return $this->belongsTo(Admin::class);
+        return $this->belongsToMany(Admin::class);
     }// end of admin
 
-   
+    public function users()
+    {
+        return $this->belongsToMany(User::class)->withPivot('stars_rate');
+    }  // end of users
     
 
     ################## end relaion #################

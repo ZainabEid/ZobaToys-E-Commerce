@@ -32,6 +32,7 @@
             </li>
 
             {{-- sidbar Admins --}}
+            @if (auth()->user()->hasPermission('*_admins'))
             <li class="nav-item @if(Request::is('adminDashboard/admin') || Request::is('adminDashboard/admin/*') ) open @endif">
                 <a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.admins') </span>
@@ -41,7 +42,7 @@
 
                     @if (auth()->user()->hasPermission('read_admins'))
                         <li class="@if(Request::is(app()->getLocale().'/adminDashboard/admin')) active @endif ">
-                            <a class="menu-item" href=" {{ route('admin.index') }}" data-i18n="nav.dash.ecommerce">
+                            <a class="menu-item" href=" {{ route('adminDashboard.admin.index') }}" data-i18n="nav.dash.ecommerce">
                                 @lang('site.show-all-admins')
                             </a>
                         </li>
@@ -49,7 +50,7 @@
 
                     @if (auth()->user()->hasPermission('create_admins'))
                         <li class="@if(Request::is(app()->getLocale().'/adminDashboard/admin/create')) active @endif ">
-                            <a class="menu-item" href="{{ route('admin.create') }}" data-i18n="nav.dash.crypto">
+                            <a class="menu-item" href="{{ route('adminDashboard.admin.create') }}" data-i18n="nav.dash.crypto">
                                 @lang('site.add-new-admin')
                             </a>
                         </li>
@@ -57,8 +58,10 @@
 
                 </ul>
             </li>
+            @endif
 
               {{-- sidbar vendors --}}
+              @if (auth()->user()->hasPermission('*_vendors'))
               <li class="nav-item @if(Request::is('adminDashboard/vendors') || Request::is('vendorDashboard/vendors/*') ) open @endif">
                 <a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.vendors') </span>
@@ -84,16 +87,18 @@
 
                 </ul>
             </li>
+            @endif
 
             {{-- sidbar wraps & Categories --}}
-            <li class="nav-item  @if(Request::is('adminDashboard/categories*')) open @endif">
+            @if (auth()->user()->hasPermission('*_wraps') || auth()->user()->hasPermission('*_categories') )
+            <li class="nav-item  @if(Request::is('adminDashboard/categories') || Request::is('adminDashboard/categories/*') || Request::is('adminDashboard/wraps') || Request::is('adminDashboard/wraps/*') ) open @endif">
                 <a href=""><i class="la la-map"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.categories') </span>
                     <span class="badge badge badge-warning badge-pill float-right mr-2"> {{ count(App\Models\Category::all()) > 0  ? count(App\Models\Category::all()) : 0 }} </span>
                 </a>
                 <ul class="menu-content">
-
-                    {{-- wraps --}}
+                    
+                {{-- wraps --}}
                 @if (auth()->user()->hasPermission('read_wraps'))
                     <li class="@if(Request::is(app()->getLocale().'/adminDashboard/wraps')) active @endif ">
                         <a class="menu-item" href=" {{ route('adminDashboard.wraps.index') }}" data-i18n="nav.dash.ecommerce">
@@ -125,13 +130,14 @@
                             </a>
                         </li>
                     @endif
-
-
+                   
 
                 </ul>
             </li>
+            @endif
 
              {{-- sidbar products --}}
+             @if (auth()->user()->hasPermission('*_products'))
              <li class="nav-item  @if(Request::is('adminDashboard/products*')) open @endif">
                 <a href=""><i class="la la-television"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.products') </span>
@@ -157,8 +163,10 @@
 
                 </ul>
             </li>
+            @endif
 
              {{-- sidbar clients --}}
+             @if (auth()->user()->hasPermission('*_clients'))
              <li class="nav-item  @if(Request::is('adminDashboard/clients*')) open @endif">
                 <a href=""><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.clients') </span>
@@ -181,11 +189,13 @@
                             </a>
                         </li>
                     @endif
-
+                    
                 </ul>
             </li> {{-- end of clients --}}
+            @endif
 
              {{-- sidbar Orders --}}
+             @if (auth()->user()->hasPermission('*_orders'))
              <li class="nav-item  @if(Request::is('adminDashboard/orders*')) open @endif">
                 <a href=""><i class="la la-shopping-cart"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.orders') </span>
@@ -208,13 +218,15 @@
                             </a>
                         </li>
                     @endif
-
+                    
                 </ul>
             </li> {{-- end of orders --}}
+            @endif
 
 
 
             {{-- production part contains: suppliers, resources, purchases,  --}}
+            @if (auth()->user()->hasRole(['factory','vendor']))
             <li class=" nav-item">
                 <a href="#">
                     <i class="la la-th"></i>
@@ -225,6 +237,7 @@
 
                     
             {{-- sidbar groups --}}
+            @if (auth()->user()->hasPermission('*_groups'))
             <li class="nav-item  @if(Request::is('adminDashboard/groups*')) open @endif">
                 <a href=""><i class="la la-map"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">@lang('site.groups') </span>
@@ -247,12 +260,14 @@
                             </a>
                         </li>
                     @endif
-
+                    
                 </ul>
             </li>
+            @endif
 
                
                 {{-- sidbar supplies --}}
+                @if (auth()->user()->hasPermission('*_supplies'))
                 <li class="nav-item  @if(Request::is('adminDashboard/supplies*')) open @endif">
                     <a href=""><i class="la la-truck"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">@lang('site.supplies') </span>
@@ -275,11 +290,13 @@
                                 </a>
                             </li>
                         @endif
-
+                        
                     </ul>
                 </li> {{-- end of supplies --}}
+                @endif
 
                 {{-- sidbar suppliers --}}
+                @if (auth()->user()->hasPermission('*_suppliers'))
                 <li class="nav-item  @if(Request::is('adminDashboard/suppliers*')) open @endif">
                     <a href=""><i class="la la-industry"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">@lang('site.suppliers') </span>
@@ -302,13 +319,15 @@
                                 </a>
                             </li>
                         @endif
-
+                        
                     </ul>
                     
                 </li> {{-- end of suppliers --}}
+                @endif
 
 
                  {{-- sidbar purchases --}}
+                 @if (auth()->user()->hasPermission('*_purchases'))
                  <li class="nav-item  @if(Request::is('adminDashboard/purchases*')) open @endif">
                     <a href=""><i class="fas fa-hand-holding-usd"></i>
                         <span class="menu-title" data-i18n="nav.dash.main">@lang('site.purchases') </span>
@@ -331,14 +350,16 @@
                                 </a>
                             </li>
                         @endif
-
+                        
                     </ul>
                     
                 </li> {{-- end of purchases --}}
+                @endif
                 
                 
             </ul><!--End of menue content-->
-            </li><!--End prduction part-->
+        </li><!--End prduction part-->
+        @endif {{-- End vendor, factory, Dashboard  Roles --}}
 
            
        

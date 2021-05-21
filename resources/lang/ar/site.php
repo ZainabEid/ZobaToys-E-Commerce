@@ -18,7 +18,7 @@ return [
    'logout' => 'تسجيل الخروج ',
    'ZobaToys' => 'Zoba Toys  ',
    'new' => 'جديد',
-   
+
    /* notifications */
    'hour' => 'ساعة',
    'ago' => 'منذ',
@@ -38,7 +38,7 @@ return [
    'complete-task-message' => 'شكرا لك .. لقد اتممت قائمة مهامك اليوم ',
    'generate-monthly-report' => 'اصدار التقرير الشهري',
    'generate-monthly-report-message' => 'تم اصدار التقرير الشهري للمبيعات يمكنك الاطلاع عليه وطباعته',
-   
+
    /* messages */
    'Tuesday' => 'الثلاثاء',
    'Friday' => 'الجمعة',
@@ -110,6 +110,9 @@ return [
    'description' => " الوصف ",
    'permissions' => "الصلاحيات",
    'job' => "الوظيفة",
+   'shop-admin' => 'مسؤول موقع التسوق',
+   'vendor-admin' => 'تاجر',
+   'zoba-toys-company-admin ' => 'مسؤول المصنع',
 
    /*  Admin Controller  */
    'added-successfuly' => 'تم اضافة البيانات بنجاح',
@@ -118,16 +121,16 @@ return [
    'deleted-successfuly' => 'تم حذف البيانات بنجاح',
 
    /** Wraps */
-   'wrap'=>'التخصص',
-   'show-all-wraps' =>'عرض جميع التخصصات',
-   'show-wraps-data' =>'عرض بيانات التخصصات',
-   'categories-count' =>'عدد الاقسام',
-   'related-categories' =>'الاقسام',
-   'add-new-wrap' =>'اضافة تخصص جديد',
-   'edit-wrap' =>'تعديل التخصص',
-   'category-wrap' =>'التخصص',
-   'choose-category-wrap' =>'اختر تخصص القسم',
-   
+   'wrap' => 'التخصص',
+   'show-all-wraps' => 'عرض جميع التخصصات',
+   'show-wraps-data' => 'عرض بيانات التخصصات',
+   'categories-count' => 'عدد الاقسام',
+   'related-categories' => 'الاقسام',
+   'add-new-wrap' => 'اضافة تخصص جديد',
+   'edit-wrap' => 'تعديل التخصص',
+   'category-wrap' => 'التخصص',
+   'choose-category-wrap' => 'اختر تخصص القسم',
+
    /** Vendors  */
    'show-all-vendors' => 'عرض جميع التجار',
    'add-new-vendor' => 'اضافة تاجر جديد',
@@ -152,7 +155,7 @@ return [
    'related-products' => 'المنتجات المرتبطة',
    'show-products' => 'عرض المنتجات',
 
-   
+
    /** Products  */
    'product' => 'منتج',
    'products' => 'المنتجات',
@@ -183,7 +186,7 @@ return [
    'sale-price' => 'سعر البيع',
    'stock' => 'الكمية المتوفرة',
    'enter-stock' => 'ادخل الكمية المتوفرة',
-   
+
    /** Clients */
    'clients' => 'العميل',
    'clients' => 'العملاء',
@@ -196,7 +199,7 @@ return [
    'edit-client' => 'تعديل بيانات العميل',
    'choose-client' => 'اختر العميل',
    'client' => 'العميل',
-   
+
    /** Clients Orders */
    'order' => 'الطلب',
    'orders' => 'الطلبات',
@@ -205,7 +208,7 @@ return [
    'quantity' => 'الكمية',
    'product-price' => 'سعر المنتج',
    'total' => 'الاجمالي ',
-   
+
    /** Orders */
    'show-orders' => 'عرض الطلبات',
    'show-all-orders' => 'عرض جميع الطلبات',
@@ -222,7 +225,7 @@ return [
    'deliver-method' => 'طرق الاستلام  ',
    'shipment' => ' شحن ',
    'warehouse' => 'في المكتب  ',
-   
+
    // Supplyers
    'supplies' => 'الموارد ',
    'show-all-supplies' => 'عرض جميع الموارد ',
@@ -234,7 +237,7 @@ return [
    'add-new-supplier' => 'اضافة مورد جديد ',
    'show-suppliers-data' => 'عرض بيانات الموردين ',
    'action' => 'اجراء تعديل',
-  
+
    // gruops
    'groups' => ' تصنيف الموارد',
    'group' => ' التصنيف ',
@@ -267,7 +270,7 @@ return [
    'edit-supply' => 'تعديل الوارد',
    'all-suppliers' => 'جميع الموردين',
    'show-supplies-data' => 'عرض جميع الموارد',
-   
+
    //purchases
    'supply' => 'المشتريات',
    'purchase' => 'طلب شراء',
@@ -281,7 +284,7 @@ return [
    'pound' => 'جنيه',
    'supplies-number' => 'عدد الموارد',
    'price' => 'السعر',
-   
+
    //Homepage
    'total-expenses' => 'اجمالي المصروف',
    'total-income' => 'اجمالي الدخل',
@@ -330,7 +333,7 @@ return [
    ],
 
 
-   
+
    /*
     |--------------------------------------------------------------------------
     | shop | Index
@@ -338,42 +341,47 @@ return [
     | The following language lines are the default lines 
     | in the shop website header, sidebar,footer
     */
-    
-    //header
-    'today-deals' => 'عروض اليوم',
-    'register' => "اشتراك",
-    'sign-in' => 'تسجيل دخول',
-    'or' => 'أو',
-    'EGP' => 'جنيه مصري',
-    'USD' => 'دولار امريكي',
-    'call-customer-service' => ' التواصل مع العملاء',
-    'buying-basket' => 'سلة الشراء',
-    'items' => 'المشتروات',
-    'no-products-in-the-cart' => 'لا يوجد منتجات',
 
-    //index
-    'shop-by-categories' => 'تصفح من خلال الاقسام',
-    'homepage' => 'الصفحة الرئيسية',
-    'articls' => 'المقالات',
-    'show-all' => 'عرض الكل',
-    'kids-development' => 'تنمية الأطفال',
-    'toy-choosing' => 'اختيار الالعاب',
-    'home-schooling' => 'التعليم المنزلي',
-    'pages' => 'الصفحات',
-    'contact-us' => 'طرق الاتصال',
-    'send-email' => 'ارسل بريد',
-    'call-us' => 'اتصل بنا',
-    'whatsapp' => 'واتس اب',
-    'contact-us-page' => 'صفحة اتصل بنا',
-    'about-us' => 'عننا',
-    'history' => 'قصتنا',
-    'partners' => 'شركاءنا',
-    'team' => 'فريق العمل',
-    'about-us-page' => 'عن الشركة',
-    'join-our-team' => 'انضم الينا',
-    'active-job-oportunities' => 'فرص عمل',
-    'flash-deals' => 'عروض وخصومات',
-    'new-arrivals' => 'وصل حديثا',
+   //header
+   'today-deals' => 'عروض اليوم',
+   'register' => "اشتراك",
+   'sign-in' => 'تسجيل دخول',
+   'or' => 'أو',
+   'EGP' => 'جنيه مصري',
+   'USD' => 'دولار امريكي',
+   'call-customer-service' => ' التواصل مع العملاء',
+   'buying-basket' => 'سلة الشراء',
+   'items' => 'المشتروات',
+   'no-products-in-the-cart' => 'لا يوجد منتجات',
+
+   //footer
+   'sign-up-to-newsletter' => 'اشترك في النشرة البريدية',
+   'subscribe' => 'إشترك',
+   'follow-us-on' => 'تابعنا على ',
+
+   //index
+   'shop-by-categories' => 'تصفح من خلال الاقسام',
+   'homepage' => 'الصفحة الرئيسية',
+   'articls' => 'المقالات',
+   'show-all' => 'عرض الكل',
+   'kids-development' => 'تنمية الأطفال',
+   'toy-choosing' => 'اختيار الالعاب',
+   'home-schooling' => 'التعليم المنزلي',
+   'pages' => 'الصفحات',
+   'contact-us' => 'طرق الاتصال',
+   'send-email' => 'ارسل بريد',
+   'call-us' => 'اتصل بنا',
+   'whatsapp' => 'واتس اب',
+   'contact-us-page' => 'صفحة اتصل بنا',
+   'about-us' => 'عننا',
+   'history' => 'قصتنا',
+   'partners' => 'شركاءنا',
+   'team' => 'فريق العمل',
+   'about-us-page' => 'عن الشركة',
+   'join-our-team' => 'انضم الينا',
+   'active-job-oportunities' => 'فرص عمل',
+   'flash-deals' => 'عروض وخصومات',
+   'new-arrivals' => 'وصل حديثا',
 
    //  login page
    'show-password' => 'إظهار',
@@ -383,15 +391,15 @@ return [
    'you-dont-have-account?-register-now' => 'ليس لديك حساب ؟ تسجيل حساب جديد',
 
    //register page
-   'have-an-account-alredy?'=>'لديك حساب بالفعل؟',
-   'login-instead!'=>'سجل الدخول بدلا من ذلك!',
-   'surname'=>'اللقب',
-   'MR'=>'السيد',
-   'MR'=>'السيدة',
-   'first-name'=>'الاسم الأول',
-   'last-name'=>'الاسم الأخير',
-   'date-of-birth'=>'تاريخ الميلاد',
-   'send-me-offers'=>'الحصول على العروض من شركائنا',
+   'have-an-account-alredy?' => 'لديك حساب بالفعل؟',
+   'login-instead!' => 'سجل الدخول بدلا من ذلك!',
+   'surname' => 'اللقب',
+   'MR' => 'السيد',
+   'MR' => 'السيدة',
+   'first-name' => 'الاسم الأول',
+   'last-name' => 'الاسم الأخير',
+   'date-of-birth' => 'تاريخ الميلاد',
+   'send-me-offers' => 'الحصول على العروض من شركائنا',
 
    //show vendor page
    'seller-shop' => 'اسم المتجر',
@@ -421,7 +429,13 @@ return [
    'of' => ' من',
    'items' => 'عنصر',
 
-   
+   //cart
+   'cart' => 'سلة الشراء',
+   'continue-shopping' => 'الاستمرار في التسوق',
+   'in-your-cart' => 'في سلة التسوق',
+
+
+
 
 
 

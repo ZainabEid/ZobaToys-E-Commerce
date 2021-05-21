@@ -49,6 +49,7 @@
 
                             <h1 class="page_title">Contact us</h1>
 
+                            {{-- google map --}}
                             <div class="google-map">
                                 <div id="nov-map-contact" style="position: relative; overflow: hidden;">
                                     <div
@@ -421,9 +422,12 @@
                                 </div>
                                 <div class="map-locker"></div>
                             </div>
+
+                            {{-- contact information --}}
                             <div class="infomation-store">
                                 <div class="contact-rich row justify-content-between">
 
+                                    {{-- email --}}
                                     <div class="block col col-xs-12">
                                         <div class="icon"><i class="material-icons"></i></div>
                                         <div class="data d-flex align-self-stretch email">
@@ -431,6 +435,8 @@
                                             <div><a href="mailto:demo@demo.com">demo@demo.com</a></div>
                                         </div>
                                     </div>
+
+                                    {{-- address --}}
                                     <div class="block col col-xs-12 mt-xs-10">
                                         <div class="icon"><i class="material-icons">home</i></div>
                                         <div class="data d-flex align-self-stretch">
@@ -439,6 +445,8 @@
                                                 American</div>
                                         </div>
                                     </div>
+
+                                    {{-- hot line --}}
                                     <div class="block d-flex col col-xs-12 justify-content-md-end mt-xs-5">
                                         <div class="icon"><i class="material-icons"></i></div>
                                         <div class="data d-flex align-self-stretch">
@@ -448,13 +456,18 @@
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="desc-store text-center">
                                 <p>Proin gravida nibh vel velit auctor aliquet. Aenean sollicudin, lorem quis bibendum
                                     auctor, nisi elit consequat ipsum, nec<br>
                                     sagittis sem nibh id elit. Duis sed odio sit amet nibh vultate cursus a sit amet mauris.
                                     Proin gravida nibh vel velit auctor</p>
                             </div>
+
                             <div class="text-center"><i class="icon-comment"></i></div>
+
+                            {{-- send a massage form --}}
                             <div class="row justify-content-md-center">
                                 <div class="col-lg-6 co-md-6 col-sm-12 col-xs-12">
                                     <section class="contact-form">

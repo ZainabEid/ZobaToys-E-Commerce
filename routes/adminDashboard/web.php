@@ -34,12 +34,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
 
             /*
             |--------------------------------------------------------------------------
-            | [Home - Categories - ...] Routes - Auth:admin
+            | [Dashboard] Routes - Auth:admin 
             |--------------------------------------------------------------------------
             */
             Route::group(['middleware' => 'auth:admin'], function () {
 
                 ##########   [Home] Routes   ##########
+                Route::resource('admin', 'Admin\AdminController');
+
+                ##########   [Dashboard] Routes   ##########
                 Route::get('/', 'AdminDashboardController@index')->name('index');
                 
                ##########   [Vendors] Routes   ##########
@@ -97,20 +100,20 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
         | should be inside name: adminDashboard group with namespace: Admin
         | then change all route calling in all blades to be adminDashboard.admin.craeate
         */
-        Route::name('admin.')->prefix('admin')->group(function () {
-            Route::group(['middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
+        // Route::name('admin.')->prefix('admin')->group(function () {
+        //     Route::group(['middleware' => 'auth:admin', 'namespace' => 'Admin'], function () {
 
-                Route::get('/', 'AdminController@index')->name('index');
-                Route::post('/', 'AdminController@store')->name('store');
-                Route::get('/create', 'AdminController@create')->name('create');
-                Route::get('/{admin}/edit', 'AdminController@edit')->name('edit');
-                Route::put('/{admin}', 'AdminController@update')->name('update');
-                Route::delete('/{admin}', 'AdminController@destroy')->name('destroy');
-                Route::get('/{admin}', 'AdminController@show')->name('show');
+        //         Route::get('/', 'AdminController@index')->name('index');
+        //         Route::post('/', 'AdminController@store')->name('store');
+        //         Route::get('/create', 'AdminController@create')->name('create');
+        //         Route::get('/{admin}/edit', 'AdminController@edit')->name('edit');
+        //         Route::put('/{admin}', 'AdminController@update')->name('update');
+        //         Route::delete('/{admin}', 'AdminController@destroy')->name('destroy');
+        //         Route::get('/{admin}', 'AdminController@show')->name('show');
 
-            }); //auth: admin, namespace: Admin
+        //     }); //auth: admin, namespace: Admin
 
-        }); // name: , prefix: admin
+        // }); // name: , prefix: admin
 
     
     }); // end of adminDashboard prefix

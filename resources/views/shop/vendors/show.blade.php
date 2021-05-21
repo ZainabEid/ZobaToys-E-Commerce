@@ -62,7 +62,8 @@
                                             </div>
                                             <div class="seller-title-home">
                                                 {{-- seller name --}}
-                                                <h1 class="page-subheading">@lang('site.seller-shop'):{{ $vendor->name }}</h1>
+                                                <h1 class="page-subheading">@lang('site.seller-shop'):{{ $vendor->name }}
+                                                </h1>
                                                 {{-- followers --}}
                                                 <div class="d-inline-block ml-5 mt-13">
                                                     <label><strong>@lang('site.followers'): </strong><span>1</span></label>
@@ -71,53 +72,20 @@
                                                 <div class="d-inline-block ml-4 mt-13">
                                                     <label><strong>@lang('site.average-rating'): </strong>
                                                         {{-- stars reviews --}}
-                                                        <div
-                                                            class="average_rating buttons_bottom_block d-inline-block ml-2">
+                                                        <div class="average_rating buttons_bottom_block d-inline-block ml-2">
                                                             <a href="#ratethevendor"
-                                                                title="View comments about Harry Makle">
-                                                                @switch($vendor->avg_star)
-                                                                    @case(1)
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                    @break
-                                                                    @case(2)
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                    @break
-                                                                    @case(3)
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                    @break
-                                                                    @case(4)
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star"></div>
-                                                                    @break
-                                                                    @case(5)
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    <div class="star star_on"></div>
-                                                                    @break
-                                                                    @default
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                    <div class="star"></div>
-                                                                @endswitch
+                                                                title="View comments about {{ $vendor->name }}">
+
+                                                                @for ($i = 1; $i <= 5; $i++)
+                                                                    <div id="star-vendor-{{ $vendor->id }}-{{ $i }}"
+                                                                        class="star {{ $i <= $vendor->star_rate ? 'star_on' : '' }}"
+                                                                        data-rate="{{ $i }}"
+                                                                        data-id="{{ $vendor->id }}"
+                                                                        data-url="{{ route('shop.user.rate') }}"
+                                                                        data-product-or-vendor="vendor">
+                                                                    </div>
+
+                                                                @endfor
                                                             </a>
                                                         </div>
                                                     </label>
@@ -151,9 +119,7 @@
                                 <div class="row vendor-content-detail">
                                     {{-- vendor's admin photo --}}
                                     <div class="vendor-img">
-                                        <img class="img-responsive"
-                                            src="{{ $vendor->admin->image_path }}"
-                                            width="100%">
+                                        <img class="img-responsive" src="{{ $vendor->admin->image_path }}" width="100%">
                                     </div>
 
                                     {{-- vendor's admin contact data --}}
@@ -163,16 +129,19 @@
                                             <p>{{ $vendor->admin->name }}</p>
                                         </div>
                                         <div class="ps-vendor-detail">
-                                            <p><i class="fa fa-fw fa-map-marker"></i><label><b>@lang('site.vendor-address') : </b>
+                                            <p><i class="fa fa-fw fa-map-marker"></i><label><b>@lang('site.vendor-address')
+                                                        : </b>
                                                     {{ $vendor->address }}</label></p>
                                         </div>
                                         <div class="ps-vendor-detail">
                                             <p><i class="fa fa-fw fa-phone"></i><label><b>@lang('site.vendor-phone') :
                                                     </b>{{ $vendor->phone }}</label></p>
-                                            <p><i class="fa fa-fax"></i><label><b>@lang('site.vendor-fax') :</b>01656299992</label></p>
+                                            <p><i class="fa fa-fax"></i><label><b>@lang('site.vendor-fax')
+                                                        :</b>01656299992</label></p>
                                         </div>
                                         <div class="ps-vendor-detail">
-                                            <a href="mailto:demo@demo.com"><i class="fa fa-fw fa-envelope"></i><b>@lang('site.email') :
+                                            <a href="mailto:demo@demo.com"><i
+                                                    class="fa fa-fw fa-envelope"></i><b>@lang('site.email') :
                                                 </b>{{ $vendor->admin->email }}</a>
                                         </div>
 
@@ -203,7 +172,7 @@
                                                         href="http://demo.bestprestashoptheme.com/savemart/ar/smartphone-tablet/9-mauris-feugiat-et-dui-sit-amet.html"
                                                         title="Mauris feugiat et dui sit amet" itemprop="url">
                                                         <img class="img-fluid image-cover"
-                                                            src="{{$product->productimages->first()->image_path}}"
+                                                            src="{{ $product->productimages->first()->image_path }}"
                                                             alt="{{ $product->translate(app()->getLocale())->name ?? $product->name }}"
                                                             title="{{ $product->translate(app()->getLocale())->name ?? $product->name }}"
                                                             data-full-size-image-url="http://demo.bestprestashoptheme.com/savemart/64-large_default/mauris-feugiat-et-dui-sit-amet.jpg">
@@ -293,7 +262,9 @@
                                                                 {{ $product->stock > 0 ? __('site.in-stock') : __('site.out-of-stock') }}
                                                             </span>
                                                         </div>
-                                                        <div class="product-desc" itemprop="desciption">{{ $product->translate(app()->getLocale())->description ?? $product->description }}</div>
+                                                        <div class="product-desc" itemprop="desciption">
+                                                            {{ $product->translate(app()->getLocale())->description ?? $product->description }}
+                                                        </div>
                                                     </div>
                                                     {{-- product buttons --}}
                                                     <div class="product-buttons d-flex justify-content-center"
@@ -326,7 +297,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                      
+
                                     @endforeach
 
                                 </div>
@@ -370,5 +341,5 @@
 
 
     </div>
-    
+
 @endsection

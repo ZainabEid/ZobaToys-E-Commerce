@@ -18,7 +18,7 @@
                 @include('adminDashboard.includes.errors')
 
                 <!-- form start -->
-                <form method="POST" action="{{ route('admin.store') }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('adminDashboard.admin.store') }}" enctype="multipart/form-data">
                     @csrf
                     @method('post')
                     <div class="card-body">
@@ -72,70 +72,99 @@
                         </div>
 
 
+                        <!-- 
+                                    1. website admin -> edit shop pages
+                                    2. vendor admin -> access own his own data
+                                    3. zoba-toys admin -> access production line
+
+
+                                -->
+
                         {{-- permission tabs --}}
                         <div class="form-group card-tabs">
 
                             <label>@lang('site.permissions')</label>
 
-                            @php
 
-                            $models = ['admins','vendors','wraps','categories','products', 'clients', 'orders','suppliers','purchases', 'supplies', 'groups',  'production_cycles',
-                            ];
-                            $maps = ['read','create','update','delete', ];
+                            <div class="form-check">
 
-                            @endphp
+                                @foreach ($roles as $role_name => $role)
+                                <ul class="nav">
+                                    <li>
+                                        <input type="radio" class="form-check-input" name="role" value="{{ $role }}">
 
-                            {{-- nav tabs --}}
-                            <ul class="nav nav-tabs" role="tablist">
-
-                                @foreach ($models as $index => $model)
-                                    <li class="nav-item">
-                                        <a class="nav-link {{ $index == 0 ? 'active' : '' }}" data-toggle="tab"
-                                            href="#{{ $model }}" role="tab" aria-selected="true">@lang('site.'.$model)</a>
+                                    <label class="form-check-label">
+                                        @lang('site.'.$role_name)
+                                    </label>
                                     </li>
-                                @endforeach
+                                </ul>
+                                    
 
-                            </ul>
-
-                            {{-- tab content --}}
-                            <div class="tab-content">
-
-                                @foreach ($models as $index => $model)
-                                    <div id="{{ $model }}" class="tab-pane {{ $index == 0 ? 'active' : '' }}"
-                                        role="tabpanel">
-
-                                        @foreach ($maps as $map)
-
-                                            <div class="form-check">
-                                               
-                                                <input type="checkbox" class="form-check-input" name="permissions[]"
-                                                    value="{{ $map . '_' . $model }}">
-                                                    
-                                                <label class="form-check-label">
-                                                    @lang('site.'.$map) @lang('site.'.$model.(($map != 'read' ) ? '-single' : ''))
-                                                </label>
-                                               
-
-                                            </div>
-
-                                        @endforeach
-
-                                    </div>
                                 @endforeach
 
                             </div>
-                            <!--end of tab content-->
 
+
+                            <!-- {{-- old permision assignment --}}
+                                    <div>
+
+                                    @php
+                                        $models = ['admins', 'vendors', 'wraps', 'categories', 'products', 'clients', 'orders', 'suppliers', 'purchases', 'supplies', 'groups', 'production_cycles'];
+                                        $maps = ['read', 'create', 'update', 'delete'];
+                                    @endphp
+
+                                    {{-- nav tabs --}}
+                                    <ul class="nav nav-tabs" role="tablist">
+
+                                        @foreach ($models as $index => $model)
+                                            <li class="nav-item">
+                                                <a class="nav-link {{ $index == 0 ? 'active' : '' }}" data-toggle="tab"
+                                                    href="#{{ $model }}" role="tab" aria-selected="true">@lang('site.'.$model)</a>
+                                            </li>
+                                        @endforeach
+
+                                    </ul>
+
+                                    {{-- tab content --}}
+                                    <div class="tab-content">
+
+                                        @foreach ($models as $index => $model)
+                                            <div id="{{ $model }}" class="tab-pane {{ $index == 0 ? 'active' : '' }}"
+                                                role="tabpanel">
+
+                                                @foreach ($maps as $map)
+
+                                                    <div class="form-check">
+                                                        
+                                                        <input type="checkbox" class="form-check-input" name="permissions[]"
+                                                            value="{{ $map . '_' . $model }}">
+                                                            
+                                                        <label class="form-check-label">
+                                                            @lang('site.'.$map) @lang('site.'.$model.(($map != 'read' ) ? '-single' : ''))
+                                                        </label>
+                                                        
+
+                                                    </div>
+
+                                                @endforeach
+
+                                            </div>
+                                        @endforeach
+
+                                    </div>
+                                    {{-- end of tab content --}}
+                                    
+                                    </div> 
+                                --> {{-- End of old permision assignment --}}
+
+
+                            {{-- end of card-body --}}
                         </div>
-                        <!--end of permission tabs-->
 
-
-
-                    </div><!-- end of card-body -->
-
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">@lang('site.submit')</button>
-                    </div>
+                        {{-- end of permission tabs --}}
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">@lang('site.submit')</button>
+                        </div>
                 </form>
             </div>
             <!--end of create new admin card -->

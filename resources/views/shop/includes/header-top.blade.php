@@ -7,7 +7,7 @@
                         <i class="icon-email"></i>
                         <p>@lang('site.email') : </p>
                         <span>
-                            {{ App\Models\Vendor::where('name', 'zobatoys')->first()->admin->email }}
+                            {{ App\Models\Vendor::where('name', 'zobatoys')->first()->admin->email ?? "" }}
                         </span>
                     </div>
                     <div class="detail-call d-flex align-items-center justify-content-center">

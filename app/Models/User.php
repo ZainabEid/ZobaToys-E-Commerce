@@ -11,58 +11,59 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-   
+
     protected $fillable = [
-         'email', 'password', 'client_id'
+        'email', 'password', 'client_id'
     ];
-     
+
     protected $hidden = [
         'password', 'remember_token',
     ];
-    
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
     protected $appends = [
-        'name' , 'wishlist_products', 'cart_products'
-     ];
+        'name', 'wishlist_products', 'cart_products'
+    ];
 
-     //returns all products which this user added it to his wishlist
-     public function getWishlistProductsAttribute()
-     {
-        return $this->userProductIssues->where('in_wishlist',true)->pluck('product_id');
-     }// end of wish list product
 
-     //returns all products which this user added it to his wishlist
-     public function getCartProductsAttribute()
-     {
-        return $this->userProductIssues->where('in_cart',true)->pluck('product_id');
-     }// end of wish list product
-
-    
-
-    
 
     ############## Getting Attributes ###################
 
     public function getNameAttribute()
-    {    
-        return $this->client->first_name." ".$this->client->last_name;
-    }
+    {
+        return $this->client->first_name . " " . $this->client->last_name;
+    } //end of name attribute
 
+    //returns all products which this user added it to his wishlist
+    public function getWishlistProductsAttribute()
+    {
+        return $this->products->pivot->where('in_wishlist', true);
+    } // end of wish list product
 
     ########## Start Relations ###########
     public function client()
     {
         return $this->belongsTo(Client::class);
-    }//end of client
+    } //end of client
 
-    public function userProductIssues()
+    public function cart()
     {
-        return $this->hasMany(UserProductIssues::class, 'user_id', 'id');
-    }// end of product user issues
+        return $this->hasOne(Cart::class);
+    } //end of client
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    } // end of product user issues
+
+    public function vendors()
+    {
+        return $this->belongsToMany(Vendor::class)->withPivot('stars_rate');
+    }
     ##########  END Relations ###########
 
-    
+
 }// end of User Model

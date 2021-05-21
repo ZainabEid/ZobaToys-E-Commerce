@@ -24,6 +24,7 @@ class OrderController extends Controller
     {
         $categories = Category::all();
         $orders = $client->order()->with('products')->paginate(5);
+        
         return view('adminDashboard.clients.orders.create', compact('client','categories','orders'));
     }// end of create
 
@@ -31,7 +32,6 @@ class OrderController extends Controller
     public function store(OrderRequest $request, Client $client)
     {
        $this->attach_order($request,$client);
-
       
        session()->flash('success', __('site.added_successfully'));
        return redirect()->route('adminDashboard.orders.index');
@@ -68,7 +68,7 @@ class OrderController extends Controller
     private function attach_order($request,$client)      
     {
         // paid_trigger  (1):cash , (0):credit 
-        // paid_trigger  (1):shipment , (0):werehouse 
+        // ship_trigger  (1):shipment , (0):werehouse 
         $order = $client->order()->create([
             'paid_trigger' => $request->paid_trigger,
             'ship_trigger' =>  $request->ship_trigger ,
@@ -104,7 +104,7 @@ class OrderController extends Controller
         }// end of foreach
 
         $order->delete();
-    }
+    }// end of detach order
 
     
    

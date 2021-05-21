@@ -19,7 +19,7 @@
                     <div class="col-xl-3 col-8">
                         <div class="card crypto-card-3 pull-up">
                             <div class="card-content">
-                                <a  href="{{ route('admin.index') }}">
+                                <a  href="{{ route('adminDashboard.admin.index') }}">
                                 <div class="card-body pb-0">
                                     <div class="row">
                                         <div class="col-4">

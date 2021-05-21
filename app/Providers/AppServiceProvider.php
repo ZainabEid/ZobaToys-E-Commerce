@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Models\User;
+use App\Observers\UserTableObserver;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Session;
@@ -26,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        User::observe(UserTableObserver::class);
         Schema::defaultStringLength(191);
            
        //check if current locale is empty if so a default locale must be provided 

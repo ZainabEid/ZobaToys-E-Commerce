@@ -4,6 +4,14 @@
 
 use Illuminate\Support\Facades\Auth;
 
+
+if (!function_exists('auth_user')) {
+    function auth_user()
+    {
+        return auth()->user();
+    }// end of auth user 
+}; // end of exist
+
 if (!function_exists('get_flag')) {
     function get_flag($language)
     {

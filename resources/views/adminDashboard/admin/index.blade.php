@@ -20,7 +20,7 @@
                           </div>
 
                             {{-- search & add button --}}
-                            <form action="{{ route('admin.index') }}" method="get">
+                            <form action="{{ route('adminDashboard.admin.index') }}" method="get">
                               <div class="d-flex" style="width: 300px;" >
                                 
                                 <input type="text" name="search" class="form-control float-right" placeholder="@lang('site.search')" value="{{ request()->search }}">
@@ -32,7 +32,7 @@
                                 {{-- add new admin Button --}}
                                 <div class="input-group-append">
                                   @if (auth()->user()->hasPermission('create_admins'))
-                                  <a href="{{ route('admin.create') }}" class="btn btn-info "><i class="fas fa-plus"></i> @lang('site.create')</a>
+                                  <a href="{{ route('adminDashboard.admin.create') }}" class="btn btn-info "><i class="fas fa-plus"></i> @lang('site.create')</a>
                                   @else
                                   <a href="#" class="btn btn-info disabled btn-sm"><i class="fas fa-plus"></i> @lang('site.create')</a>
                                   @endif
@@ -53,6 +53,7 @@
                               <tr>
                                 <th>@lang('site.index')</th>
                                 <th>@lang('site.name')</th>
+                                <th>@lang('site.admin-for')</th>
                                 <th>@lang('site.email')</th>
                                 <th>@lang('site.phone')</th>
                                 <th>@lang('site.photo')</th>
@@ -66,6 +67,7 @@
                               <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $admin->name }}</td>
+                                <td>{{ $admin->roles()->first()->name }}</td>
                                 <td>{{ $admin->email }}</td>
                                 <td>{{ $admin->phone }}</td>
                                 <td><img src="{{ $admin->image_path}}" alt="image" class=" img-thumbnail" style="height: 50px; width:50px;"></td>
@@ -73,7 +75,7 @@
 
                                   {{-- edit button --}}
                                   @if (auth()->user()->hasPermission('update_admins'))
-                                  <a href="{{ route('admin.edit',$admin->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> @lang('site.edit')</a>
+                                  <a href="{{ route('adminDashboard.admin.edit',$admin->id) }}" class="btn btn-info btn-sm"><i class="fas fa-edit"></i> @lang('site.edit')</a>
                                   @else
                                   <a href="#" class="btn btn-info disabled btn-sm"><i class="fas fa-edit"></i> @lang('site.edit')</a>
                                   @endif
@@ -82,7 +84,7 @@
                                   {{-- delete button --}}
                                   @if (auth()->user()->hasPermission('delete_admins'))
 
-                                  <form class="delete" method="POST" action="{{ route('admin.destroy', $admin->id) }}" style="display: inline-block">
+                                  <form class="delete" method="POST" action="{{ route('adminDashboard.admin.destroy', $admin->id) }}" style="display: inline-block">
                                     @csrf
                                     @method('DELETE')
                                       <button type="submit" class="btn btn-danger btn-sm">

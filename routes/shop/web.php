@@ -17,11 +17,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
     Route::prefix('shop')->group(function () {
         Route::name('shop.')->group(function () {
 
-            /*
-            |--------------------------------------------------------------------------
-            | [UserLogin] Routes - in controller middleware :(guest:user) 
-            |--------------------------------------------------------------------------
-            */
+             ##########   [User] Routes   ##########
             Route::group(['namespace' => 'User'], function () {
                 // Route::group(['namespace' => 'Auth'], function () {
 
@@ -34,32 +30,43 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function () {
                 // }); //end of Auth rouets
 
                 //user action routes
-                Route::prefix('user')->group(function () {
+                Route::group( ['prefix' => 'user' , 'name' => 'user.'],function () {
                     Route::name('user.')->group(function () {
 
                         ########## User Routes ##########
-                        Route::post('addtowishlist/', 'UserController@addToWishlist')->name('addToWishlist');
-                        Route::post('addtocart/', 'UserController@addToCart')->name('addToCart');
-                        Route::post('star-product/', 'UserController@starProduct')->name('star-product');
-                        Route::post('star-vendor/', 'UserController@starVendor')->name('star-vendor');
+                        Route::post('add-to-wishlist/{product}', 'UserController@addToWishlist')->name('add-to-wishlist');
+                        Route::post('rate/', 'UserController@rate')->name('rate');
+                        
                         
                         ########## Cart Routes ##########
-                        Route::get('cart/show/', 'CartController@show')->name('cart.show');
-                        Route::post('cart/edit/', 'CartController@edit')->name('cart.edit');
+                        Route::get('cart/show', 'CartController@show_cart')->name('cart.show');
+                        Route::post('cart/add/{product}', 'CartController@add')->name('cart.add');
                         Route::post('cart/order/', 'CartController@order')->name('cart.order');
                         Route::post('cart/clear/', 'CartController@clear')->name('cart.clear');
                         
+                        ########## order Routes ##########
+                        Route::resource('order', 'OrderController');
+
+                       
+                       
                         ########## Profile Routes ##########
 
 
                     }); // end of user name
                 }); // end of user prefix
-            }); // end of user namespace
-
+            }); // end of User namespace
 
 
             // ##########   [Home] Routes   ##########
             Route::get('/', 'ShopController@index');
+            
+            // ##########   [subscribe] Routes   ##########
+            Route::get('/subscribe', 'ShopController@subscribe')->name('subscribe');
+
+             ########## pages Routes ##########
+             Route::get('pages/about-us', 'PageController@about_us')->name('pages.about-us');
+             Route::get('pages/contact-us', 'PageController@contact_us')->name('pages.contact-us');
+             Route::get('pages/blog', 'PageController@blog')->name('pages.blog');
 
 
             ##########   [vendors] Routes   ##########

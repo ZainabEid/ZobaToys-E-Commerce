@@ -58,7 +58,7 @@
                         {{-- dropdown List --}}
                          <div class="dropdown-menu dropdown-menu-right">
                              {{-- profile --}}
-                             <a class="dropdown-item" href="{{ route('admin.show', Auth::guard('admin')->user()->id) }}"><i class="ft-user"></i> @lang('site.show-profile')</a>
+                             <a class="dropdown-item" href="{{ route('adminDashboard.admin.show', Auth::guard('admin')->user()->id) }}"><i class="ft-user"></i> @lang('site.show-profile')</a>
                              
                              {{-- divider --}}
                              <div class="dropdown-divider"></div>
@@ -71,6 +71,7 @@
 
                              <form id="logout-form" action="{{ route('adminDashboard.logout') }}" method="POST" style="display: none;">
                                  @csrf
+                                 @method('POST')
                              </form>
 
                          </div>

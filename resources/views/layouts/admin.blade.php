@@ -32,21 +32,29 @@
     @endif
     <style>
         .loader {
-          border: 16px solid #f3f3f3; /* Light grey */
-          border-top: 16px solid #3498db; /* Blue */
-          border-radius: 50%;
-          width: 120px;
-          height: 120px;
-          animation: spin 2s linear infinite;
+            border: 16px solid #f3f3f3;
+            /* Light grey */
+            border-top: 16px solid #3498db;
+            /* Blue */
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
         }
 
         @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-}
-      </style>
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+    </style>
     {{-- line-awsom --}}
-    <link type="text/css" rel="stylesheet" href="{{asset('assets/line-awesome/css/line-awesome.min.css')}}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/line-awesome/css/line-awesome.min.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('assets/line-awesome/css/line-awesome.css') }}">
 
     {{-- font-awsom --}}
@@ -59,8 +67,8 @@
     <link rel="apple-touch-icon" href="{{ asset('assets/admin/images/ico/apple-icon-120.png') }}">
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('asstes/admin/images/ico/favicon.ico') }}">
     <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
-    rel="stylesheet">
+        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Quicksand:300,400,500,700"
+        rel="stylesheet">
     <link href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome.min.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css-rtl/plugins/animate/animate.css') }}">
@@ -73,7 +81,8 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/fonts/meteocons/style.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/vendors/css/charts/morris.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/vendors/css/charts/chartist.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/vendors/css/forms/selects/select2.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets/admin/vendors/css/forms/selects/select2.min.css') }}">
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets/admin/vendors/css/charts/chartist-plugin-tooltip.css') }}">
     <link rel="stylesheet" type="text/css"
@@ -93,11 +102,14 @@
     <!-- BEGIN Page Level CSS-->
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets/admin/css-rtl/core/menu/menu-types/vertical-menu.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css-rtl/core/colors/palette-gradient.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets/admin/css-rtl/core/colors/palette-gradient.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/fonts/simple-line-icons/style.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css-rtl/core/colors/palette-gradient.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets/admin/css-rtl/core/colors/palette-gradient.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/css-rtl/pages/timeline.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="{{ asset('assets/admin/vendors/css/cryptocoins/cryptocoins.css') }}">
     <link rel="stylesheet" type="text/css"
         href="{{ asset('assets/admin/vendors/css/extensions/datedropper.min.css') }}">
     <link rel="stylesheet" type="text/css"
@@ -142,20 +154,25 @@
 
     <script src="{{ asset('assets/admin/vendors/js/forms/toggle/bootstrap-switch.min.js') }}" type="text/javascript">
     </script>
-    <script src="{{ asset('assets/admin/vendors/js/forms/toggle/bootstrap-checkbox.min.js') }}" type="text/javascript">
+    <script src="{{ asset('assets/admin/vendors/js/forms/toggle/bootstrap-checkbox.min.js') }}"
+        type="text/javascript">
     </script>
-    <script src="{{ asset('assets/admin/vendors/js/forms/toggle/switchery.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/vendors/js/forms/toggle/switchery.min.js') }}" type="text/javascript">
+    </script>
     <script src="{{ asset('assets/admin/js/scripts/forms/switch.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/admin/vendors/js/forms/select/select2.full.min.js') }}" type="text/javascript">
     </script>
-    <script src="{{ asset('assets/admin/js/scripts/forms/select/form-select2.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/js/scripts/forms/select/form-select2.js') }}" type="text/javascript">
+    </script>
 
     <!-- BEGIN PAGE VENDOR JS-->
     <script src="{{ asset('assets/admin/vendors/js/charts/chart.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/admin/vendors/js/charts/echarts/echarts.js') }}" type="text/javascript"></script>
 
-    <script src="{{ asset('assets/admin/vendors/js/extensions/datedropper.min.js') }}" type="text/javascript"></script>
-    <script src="{{ asset('assets/admin/vendors/js/extensions/timedropper.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/admin/vendors/js/extensions/datedropper.min.js') }}" type="text/javascript">
+    </script>
+    <script src="{{ asset('assets/admin/vendors/js/extensions/timedropper.min.js') }}" type="text/javascript">
+    </script>
 
     <script src="{{ asset('assets/admin/vendors/js/forms/icheck/icheck.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/admin/js/scripts/pages/chat-application.js') }}" type="text/javascript"></script>
@@ -257,7 +274,7 @@
 
 
 
-   <!-- CUSTOM JS-->
+    <!-- CUSTOM JS-->
     <script src="{{ asset('assets/admin/js/custom/orders.js') }}"></script>
     <script src="{{ asset('assets/admin/js/custom/purchases.js') }}"></script>
     <script src="{{ asset('assets/admin/js/custom/sale.js') }}"></script>
@@ -265,11 +282,10 @@
 
 </body>
 <script>
-
     // show the quick change sale form in show products page
-    $('.show-change-sale').on('click', function(e){
+    $('.show-change-sale').on('click', function(e) {
         e.preventDefault();
-        $(this).next('.change-sale').css('display','flex');
+        $(this).next('.change-sale').css('display', 'flex');
     });
 
     // show the file name
@@ -286,13 +302,13 @@
 
     });
 
-    $(".delete").on("click",function checkDelete(url) {
+    $(".delete").on("click", function checkDelete(url) {
         if (confirm('Really delete?')) {
             $.ajax({
                 type: "DELETE",
                 url: url,
                 success: function(result) {
-                    document.location.href=url;
+                    document.location.href = url;
                 }
             });
         }
