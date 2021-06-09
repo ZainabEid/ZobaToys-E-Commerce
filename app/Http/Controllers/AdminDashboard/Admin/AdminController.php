@@ -85,7 +85,7 @@ class AdminController extends Controller
 
             // store admin data into database
             $admin = Admin::create($request_data);
-            $admin->attachRole($request->role);
+            $admin->assignRole($request->role);
 
             // //add permissions (old one)
             // $admin->attachRole('admin');

@@ -164,8 +164,8 @@ __note__ : very annoying error about multi routing [too many redirects] :
 1. make a new directory in root or app or anywhare calded helpers and create the new php file
 2. write in side it function only function functionname(){return 'name';}
 3. activate auto-load: // any function can be called publically 
-    1. vendor/composer.json: inside "autoload" : {} make "files" array that include the helper files path
-4. run >> composer dumb-autoload
+    1. vendor/composer.json: inside "autoload" : {} make "files" : []array that include the helper files path
+4. run >> composer dump-autoload
 
 
 ## MAKE:REQUEST for validations
